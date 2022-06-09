@@ -1,12 +1,12 @@
 package net.anvian.sculkhornid.item.custom;
 
-import net.minecraft.entity.ai.brain.task.SonicBoomTask;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class SculkHorn extends Item {
@@ -15,35 +15,22 @@ public class SculkHorn extends Item {
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        if(context.getWorld().isClient){
-            PlayerEntity player = context.getPlayer();
-            //Hand hand = context.getHand();
-            //ItemStack stack = player.getStackInHand(hand);
-            World world = context.getWorld();
-
-            if(player.isCreative()){
-                SonicBoomTask.cooldown(player, 40);
-                world.playSound(player, player.getX(), player.getY(), player.getZ(),
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (world.isClient) {
+            if (user.isCreative()) {
+                world.playSound(user, user.getX(), user.getY(), user.getZ(),
                         SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.AMBIENT, 10.0f, 1.0f);
-                player.getItemCooldownManager().set(this, 600); //add a cooldown 30s
+                user.getItemCooldownManager().set(this, 600); //add a cooldown 30s
 
-            }else{
-                if(player.experienceLevel >= 10){
-                    SonicBoomTask.cooldown(player, 40);
-                    world.playSound(player, player.getX(), player.getY(), player.getZ(),
+            } else {
+                if (user.experienceLevel >= 10) {
+                    world.playSound(user, user.getX(), user.getY(), user.getZ(),
                             SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.AMBIENT, 10.0f, 1.0f);
-                    player.experienceLevel -= 10;
-                    player.getItemCooldownManager().set(this, 600); //add a cooldown 30s
-
-                }else{
-                    player.sendMessage(Text.of("Necesitas 10 niveles o más"), false);
+                    user.experienceLevel -= 10;
+                    user.getItemCooldownManager().set(this, 600); //add a cooldown 30s
                 }
             }
         }
-
-
-
-        return super.useOnBlock(context);
+        return super.use(world, user, hand);
     }
 }
