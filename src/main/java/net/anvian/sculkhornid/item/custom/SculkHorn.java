@@ -6,7 +6,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
@@ -22,26 +21,25 @@ public class SculkHorn extends Item{
         if (world.isClient) {
             if (user.isCreative()) {
                 playsound(world, user);
-                user.getItemCooldownManager().set(this, 600); //add a cooldown 30s
+                coolDown(user);
             } else {
                 if (user.experienceLevel >= 10) {
                     playsound(world, user);
                     user.experienceLevel -= 10;
-                    user.getItemCooldownManager().set(this, 600); //add a cooldown 30s
+                    coolDown(user);
                 }
             }
         }
         return super.use(world, user, hand);
     }
 
-    @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.TOOT_HORN;
-    }
-
     private static void playsound(World world, PlayerEntity user){
         world.playSoundFromEntity(user, user, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.RECORDS, 10.0f, 1.0f);
         world.emitGameEvent(GameEvent.INSTRUMENT_PLAY, user.getPos(), GameEvent.Emitter.of(user));
+    }
+
+    private void coolDown(PlayerEntity user){
+        user.getItemCooldownManager().set(this, 600); //add a cooldown 30s
     }
 
 
