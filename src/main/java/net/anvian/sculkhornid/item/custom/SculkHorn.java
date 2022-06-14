@@ -4,6 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -18,29 +19,21 @@ public class SculkHorn extends Item{
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
 
-        if (world.isClient) {
-            if (user.isCreative()) {
-                playsound(world, user);
-                coolDown(user);
-            } else {
-                if (user.experienceLevel >= 10) {
-                    playsound(world, user);
-                    user.experienceLevel -= 10;
-                    coolDown(user);
+        if (!world.isClient) {
+            if(user.experienceLevel >= 5 || user.isCreative()){
+                if(!user.isCreative()){
+                    user.addExperience(-55);
                 }
+                if (!user.isCreative()){
+                    itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
+                }
+                user.getItemCooldownManager().set(this, 500); //add a cooldown 30s
+            }
+        }if(world.isClient){
+            if(user.experienceLevel >= 5 || user.isCreative()){
+                world.playSoundFromEntity(user, user, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.RECORDS, 10.0f, 1.0f);
             }
         }
-        return super.use(world, user, hand);
+         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
     }
-
-    private static void playsound(World world, PlayerEntity user){
-        world.playSoundFromEntity(user, user, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.RECORDS, 10.0f, 1.0f);
-        world.emitGameEvent(GameEvent.INSTRUMENT_PLAY, user.getPos(), GameEvent.Emitter.of(user));
-    }
-
-    private void coolDown(PlayerEntity user){
-        user.getItemCooldownManager().set(this, 600); //add a cooldown 30s
-    }
-
-
 }
