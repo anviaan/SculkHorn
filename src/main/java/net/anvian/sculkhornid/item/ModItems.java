@@ -17,7 +17,7 @@ public class ModItems {
             new FabricItemSettings()
                     .rarity(Rarity.EPIC)
                     .maxCount(1)
-                    .maxDamage(350)
+                    //.maxDamage(350)
                     .group(ModItemGroup.SCULKHORNGROUP)));
 
     public static Item registerItem(String name, Item item){

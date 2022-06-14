@@ -26,7 +26,7 @@ public class SculkHorn extends Item{
             if(user.experienceLevel >= 5 || user.isCreative()){
                 if(!user.isCreative()){
                     user.addExperience(-55);
-                    itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
+                    //itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
                 user.getItemCooldownManager().set(this, 300); //add a cooldown 15s
                 sonicBoom(user, user, 5.0f);
