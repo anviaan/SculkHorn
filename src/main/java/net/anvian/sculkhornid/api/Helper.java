@@ -1,7 +1,5 @@
 package net.anvian.sculkhornid.api;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.AllayEntity;
@@ -22,7 +20,6 @@ public class Helper {
         }
     }
 
-    /** Returns targets of an AOE effect from 'attacker' around 'center'. This includes 'center'. */
     private static List<LivingEntity> getAoeTargets(LivingEntity center, LivingEntity attacker, float distance) {
         return center.getEntityWorld().getEntitiesByClass(LivingEntity.class,
                 new Box(center.getBlockPos()).expand(distance),
