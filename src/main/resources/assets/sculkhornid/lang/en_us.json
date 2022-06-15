@@ -1,4 +1,10 @@
 {
   "itemGroup.sculkhornid.sculkhorngroup": "Sculk Horn Mod",
-  "item.sculkhornid.sculkhorn" : "Sculk Horn"
+
+  "item.sculkhornid.sculkhorn": "Sculk Horn",
+
+  "tooltip_info_item.sculkhorn_1": "When used, it consumes 55 experience points",
+  "tooltip_info_item.sculkhorn_2": "to generate a sonic shock around you.",
+
+  "tooltip_info_item.sculkhorn_shif": "Press §lSHIFT§r for more Information"
 }
