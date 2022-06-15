@@ -3,6 +3,8 @@ package net.anvian.sculkhornid.item.custom;
 import net.anvian.sculkhornid.api.Helper;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
@@ -28,9 +30,10 @@ public class SculkHorn extends Item{
                     user.addExperience(-55);
                     //itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
-                user.getItemCooldownManager().set(this, 300); //add a cooldown 15s
                 sonicBoom(user, user, 5.0f);
                 Helper.causeMagicExplosionAttack(user, user, 45, 5.0f);
+                user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,120,1));
+                user.getItemCooldownManager().set(this, 300); //add a cooldown 15s
             }
         }if(world.isClient){
             if(user.experienceLevel >= 5 || user.isCreative()){
