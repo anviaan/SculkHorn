@@ -16,6 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,7 +39,13 @@ public class SculkHorn extends Item{
                     //itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
                 sonicBoom(user, user, radius);
-                Helper.causeMagicExplosionAttack(user, user, 45, radius);
+                if(world.getDifficulty() == Difficulty.EASY){
+                    Helper.causeMagicExplosionAttack(user, user, 9, radius);
+                }else if(world.getDifficulty() == Difficulty.HARD){
+                    Helper.causeMagicExplosionAttack(user, user, 22.5f, radius);
+                }else{
+                    Helper.causeMagicExplosionAttack(user, user, 15, radius);
+                }
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,80,0));
                 user.getItemCooldownManager().set(this, 300); //add a cooldown 15s
             }
