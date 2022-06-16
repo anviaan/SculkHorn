@@ -29,6 +29,7 @@ public class SculkHorn extends Item{
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
+        float radius = 3.5f;
 
         if (!world.isClient) {
             if(user.experienceLevel >= 5 || user.isCreative()){
@@ -36,8 +37,8 @@ public class SculkHorn extends Item{
                     user.addExperience(-55);
                     //itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
-                sonicBoom(user, user, 5.0f);
-                Helper.causeMagicExplosionAttack(user, user, 45, 5.0f);
+                sonicBoom(user, user, radius);
+                Helper.causeMagicExplosionAttack(user, user, 45, radius);
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,80,0));
                 user.getItemCooldownManager().set(this, 300); //add a cooldown 15s
             }
