@@ -46,7 +46,7 @@ public class SculkHorn extends Item{
                 }else{
                     Helper.causeMagicExplosionAttack(user, user, 15, radius);
                 }
-                user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,80,0));
+                user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,60,0));
                 user.getItemCooldownManager().set(this, 300); //add a cooldown 15s
             }
         }if(world.isClient){
