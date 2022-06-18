@@ -36,7 +36,7 @@ public class SculkHorn extends Item{
             if(user.experienceLevel >= 5 || user.isCreative()){
                 if(!user.isCreative()){
                     user.addExperience(-55);
-                    //itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
+                    itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
                 sonicBoom(user, user, radius);
                 if(world.getDifficulty() == Difficulty.EASY){
