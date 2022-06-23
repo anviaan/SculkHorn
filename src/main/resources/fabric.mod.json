@@ -4,16 +4,15 @@
   "version": "${version}",
 
   "name": "Sculk Horn Mod",
-  "description": "Testing",
+  "description": "Create a Sonic Shock from a Sculk Horn",
   "authors": [
     "anvian"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/anviaan/SculkHorn"
   },
 
-  "license": "MIT",
+  "license": "GNU GPLv3",
   "icon": "assets/sculkhornid/icon.png",
 
   "environment": "*",
