@@ -1,6 +1,7 @@
 package net.anvian.sculkhornid.item.custom;
 
 import net.anvian.sculkhornid.api.Helper;
+import net.anvian.sculkhornid.config.ModConfigs;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.AreaEffectCloudEntity;
@@ -30,7 +31,12 @@ public class SculkHorn extends Item{
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        float radius = 3.5f;
+
+        float RADIUS = (float) ModConfigs.RADIUS;
+        int COOLDOWN = ModConfigs.COOLDOWN;
+        float DAMAGE_EASY = (float) ModConfigs.DAMAGE_EASY;
+        float DAMAGE_NORMAL = (float) ModConfigs.DAMAGE_NORMAL;
+        float DAMAGE_HARD = (float) ModConfigs.DAMAGE_HARD;
 
         if (!world.isClient) {
             if(user.experienceLevel >= 5 || user.isCreative()){
@@ -38,16 +44,16 @@ public class SculkHorn extends Item{
                     user.addExperience(-55);
                     itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
-                sonicBoom(user, user, radius);
+                sonicBoom(user, user, RADIUS);
                 if(world.getDifficulty() == Difficulty.EASY){
-                    Helper.causeMagicExplosionAttack(user, user, 9, radius);
+                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_EASY, RADIUS); //9
                 }else if(world.getDifficulty() == Difficulty.HARD){
-                    Helper.causeMagicExplosionAttack(user, user, 22.5f, radius);
+                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_HARD, RADIUS); //22.5f
                 }else{
-                    Helper.causeMagicExplosionAttack(user, user, 15, radius);
+                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_NORMAL, RADIUS); //15
                 }
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,60,0));
-                user.getItemCooldownManager().set(this, 300); //add a cooldown 15s
+                user.getItemCooldownManager().set(this, COOLDOWN); //add a cooldown 15s from config
             }
         }if(world.isClient){
             if(user.experienceLevel >= 5 || user.isCreative()){
