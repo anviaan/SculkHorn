@@ -39,9 +39,9 @@ public class SculkHorn extends Item{
         float DAMAGE_HARD = (float) ModConfigs.DAMAGE_HARD;
 
         if (!world.isClient) {
-            if(user.experienceLevel >= 5 || user.isCreative()){
+            if(user.experienceLevel >= ModConfigs.EXPERIENCE_LEVEL || user.isCreative()){ //5
                 if(!user.isCreative()){
-                    user.addExperience(-55);
+                    user.addExperience(ModConfigs.REMOVE_EXPERIENCE); //-55
                     itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
                 sonicBoom(user, user, RADIUS);
@@ -56,7 +56,7 @@ public class SculkHorn extends Item{
                 user.getItemCooldownManager().set(this, COOLDOWN); //add a cooldown 15s from config
             }
         }if(world.isClient){
-            if(user.experienceLevel >= 5 || user.isCreative()){
+            if(user.experienceLevel >= ModConfigs.EXPERIENCE_LEVEL || user.isCreative()){
                 world.playSoundFromEntity(user, user, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.RECORDS, 10.0f, 1.0f);
             }
         }
