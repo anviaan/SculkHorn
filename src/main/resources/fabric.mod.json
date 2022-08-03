@@ -9,7 +9,9 @@
     "anvian"
   ],
   "contact": {
-    "sources": "https://github.com/anviaan/SculkHorn"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/sculk-horn",
+    "sources": "https://github.com/anviaan/SculkHorn",
+    "issues": "https://github.com/anviaan/SculkHorn/issues"
   },
 
   "license": "GNU GPLv3",
@@ -26,7 +28,7 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.6",
+    "fabricloader": ">=0.14.8",
     "fabric": "*",
     "minecraft": "~1.19",
     "java": ">=17"
