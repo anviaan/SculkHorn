@@ -1,12 +1,7 @@
 package net.anvian.sculkhornid.item.custom;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.WolfEntity;
@@ -30,9 +25,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class SculkHornSonicBoom extends Item {
-
-    //private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
-
     public SculkHornSonicBoom(Settings settings) {
         super(settings);
     }
