@@ -3,7 +3,6 @@ package net.anvian.sculkhornid.api;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.AllayEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -40,7 +39,6 @@ public class Helper {
     }
     private static boolean exludeFromDamage(LivingEntity nearbyEntity) {
         return (nearbyEntity instanceof VillagerEntity)
-                || (nearbyEntity instanceof IronGolemEntity)
                 || (nearbyEntity instanceof WolfEntity)
                 || (nearbyEntity instanceof AllayEntity);
     }
