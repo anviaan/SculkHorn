@@ -2,6 +2,7 @@ package net.anvian.sculkhornid.item;
 
 import net.anvian.sculkhornid.SculkHornMod;
 import net.anvian.sculkhornid.item.custom.SculkHorn;
+import net.anvian.sculkhornid.item.custom.SculkHornSonicBoom;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -10,6 +11,13 @@ import net.minecraft.util.registry.Registry;
 
 public class ModItems {
     public static final Item SCULKHORN =registerItem("sculkhorn", new SculkHorn(
+            new FabricItemSettings()
+                    .rarity(Rarity.EPIC)
+                    .maxCount(1)
+                    .maxDamage(350)
+                    .group(ModItemGroup.SCULKHORNGROUP)));
+
+    public static final Item SCULKHORN_SONICBOOM = registerItem("sculkhorn_sonicboom", new SculkHornSonicBoom(
             new FabricItemSettings()
                     .rarity(Rarity.EPIC)
                     .maxCount(1)
