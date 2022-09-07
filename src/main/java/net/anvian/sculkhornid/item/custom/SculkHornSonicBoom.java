@@ -9,6 +9,8 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.passive.AllayEntity;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -49,6 +51,11 @@ public class SculkHornSonicBoom extends Item {
     }
 
     @Override
+    public boolean hasGlint(ItemStack stack) {
+        return true;
+    }
+
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         user.setCurrentHand(hand);
         return super.use(world, user, hand);
@@ -56,12 +63,12 @@ public class SculkHornSonicBoom extends Item {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.SPYGLASS;
+        return UseAction.BOW; //bow
     }
 
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return 20;
+        return 10;//10, x!= 0
     }
 
     @Override
@@ -69,17 +76,22 @@ public class SculkHornSonicBoom extends Item {
         super.usageTick(world, user, stack, remainingUseTicks);
 
         if(getMaxUseTime(stack) - remainingUseTicks == 1) {
-            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_CHARGE, SoundCategory.PLAYERS, 3.0f, 1.0f);
+            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_CHARGE, SoundCategory.PLAYERS, 1.0f, 1.0f);
         }
     }
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if(!world.isClient) {
-            spawnSonicBoom(world, user);
             if(user instanceof PlayerEntity player) {
-                //player.getItemCooldownManager().set(this, 20 * 5);
-                stack.damage(1, user, x -> x.sendToolBreakStatus(Hand.MAIN_HAND));
+                if(player.experienceLevel >= 5 || player.isCreative()){
+                    if(!player.isCreative()){
+                        player.addExperience(-55);
+                        stack.damage(1, user, x -> x.sendToolBreakStatus(Hand.MAIN_HAND));
+                    }
+                    player.getItemCooldownManager().set(this, 200);
+                    spawnSonicBoom(world, user);
+                }
             }
         }
 
@@ -88,13 +100,12 @@ public class SculkHornSonicBoom extends Item {
 
     // https://github.com/Draylar/identity/blob/arch-1.19/common/src/main/java/draylar/identity/mixin/PlayerSonicBoomMixin.java
     private void spawnSonicBoom(World world, LivingEntity user) {
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 3.0f, 1.0f);
+        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
         // Raycast out for sonic boom effect
-        float heightOffset = 1.6f;
         int distance = 16;
         Vec3d target = user.getPos().add(user.getRotationVector().multiply(distance));
-        Vec3d source = user.getPos().add(0.0, heightOffset, 0.0);
+        Vec3d source = user.getPos().add(0.0, 1.6f, 0.0);
         Vec3d offsetToTarget = target.subtract(source);
         Vec3d normalized = offsetToTarget.normalize();
 
@@ -105,7 +116,9 @@ public class SculkHornSonicBoom extends Item {
             ((ServerWorld) world).spawnParticles(ParticleTypes.SONIC_BOOM, particlePos.x, particlePos.y, particlePos.z, 1, 0.0, 0.0, 0.0, 0.0);
 
             // Locate entities around the particle location for damage
-            hit.addAll(world.getEntitiesByClass(LivingEntity.class, new Box(new BlockPos(particlePos.getX(), particlePos.getY(), particlePos.getZ())).expand(2), it -> !(it instanceof WolfEntity)));
+            hit.addAll(world.getEntitiesByClass(LivingEntity.class,
+                    new Box(new BlockPos(particlePos.getX(), particlePos.getY(), particlePos.getZ())).expand(2),
+                    it -> !(it instanceof VillagerEntity || it instanceof WolfEntity || it instanceof AllayEntity)));
         }
 
         // Don't hit ourselves
