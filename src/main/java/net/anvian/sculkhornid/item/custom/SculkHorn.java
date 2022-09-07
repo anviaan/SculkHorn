@@ -57,7 +57,7 @@ public class SculkHorn extends Item{
             }
         }if(world.isClient){
             if(user.experienceLevel >= ModConfigs.EXPERIENCE_LEVEL || user.isCreative()){
-                world.playSoundFromEntity(user, user, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.RECORDS, 10.0f, 1.0f);
+                world.playSoundFromEntity(user, user, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.RECORDS, 1.0f, 1.0f);
             }
         }
          return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
