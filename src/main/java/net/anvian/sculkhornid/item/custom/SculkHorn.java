@@ -2,8 +2,6 @@ package net.anvian.sculkhornid.item.custom;
 
 import net.anvian.sculkhornid.api.Helper;
 import net.anvian.sculkhornid.config.ModConfigs;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -13,15 +11,11 @@ import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class SculkHorn extends Item{
     public SculkHorn(Settings settings) {
@@ -61,16 +55,6 @@ public class SculkHorn extends Item{
             }
         }
          return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if(Screen.hasShiftDown()){
-            tooltip.add(Text.translatable("tooltip_info_item.sculkhorn_1"));
-            tooltip.add(Text.translatable("tooltip_info_item.sculkhorn_2"));
-        }else{
-            tooltip.add(Text.translatable("tooltip_info_item.sculkhorn_shif"));
-        }
     }
 
     private static void sonicBoom(LivingEntity attacker, LivingEntity victim, float radius){
