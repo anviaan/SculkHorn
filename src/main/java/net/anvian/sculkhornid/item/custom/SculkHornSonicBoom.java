@@ -58,6 +58,11 @@ public class SculkHornSonicBoom extends Item {
     }
 
     @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.translatable("tootip_sculkhorn_range"));
+    }
+
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         user.setCurrentHand(hand);
         return super.use(world, user, hand);
