@@ -2,6 +2,7 @@ package net.anvian.sculkhornid.item.custom;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.anvian.sculkhornid.config.ModConfigs;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -91,9 +92,9 @@ public class SculkHornSonicBoom extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if(!world.isClient) {
             if(user instanceof PlayerEntity player) {
-                if(player.experienceLevel >= 5 || player.isCreative()){
+                if(player.experienceLevel >= ModConfigs.RANGE_EXPERIENCE_LEVEL || player.isCreative()){//5
                     if(!player.isCreative()){
-                        player.addExperience(-55);
+                        player.addExperience(ModConfigs.RANGE_REMOVE_EXPERIENCE);//-55
                         stack.damage(1, user, x -> x.sendToolBreakStatus(Hand.MAIN_HAND));
                     }
                     player.getItemCooldownManager().set(this, 200);
@@ -110,8 +111,8 @@ public class SculkHornSonicBoom extends Item {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
         // Raycast out for sonic boom effect
-        int distance = 16;
-        Vec3d target = user.getPos().add(user.getRotationVector().multiply(distance));
+        int distance = ModConfigs.DISTANCE;
+        Vec3d target = user.getPos().add(user.getRotationVector().multiply(distance)); //distance = 16
         Vec3d source = user.getPos().add(0.0, 1.6f, 0.0);
         Vec3d offsetToTarget = target.subtract(source);
         Vec3d normalized = offsetToTarget.normalize();

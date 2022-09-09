@@ -1,6 +1,7 @@
 package net.anvian.sculkhornid.item;
 
 import net.anvian.sculkhornid.SculkHornMod;
+import net.anvian.sculkhornid.config.ModConfigs;
 import net.anvian.sculkhornid.item.custom.SculkHorn;
 import net.anvian.sculkhornid.item.custom.SculkHornSonicBoom;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -10,6 +11,9 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
 public class ModItems {
+
+    private static final float RANGE_DAMAGE = ((float) ModConfigs.DAMAGE)-1;
+
     public static final Item SCULKHORN =registerItem("sculkhorn", new SculkHorn(
             new FabricItemSettings()
                     .rarity(Rarity.EPIC)
@@ -23,7 +27,7 @@ public class ModItems {
                     .maxCount(1)
                     .maxDamage(500)
                     .group(ModItemGroup.SCULKHORNGROUP)
-            ,7.0f));
+            ,RANGE_DAMAGE));//7.0f
 
     public static Item registerItem(String name, Item item){
         return Registry.register(Registry.ITEM, new Identifier(SculkHornMod.MOD_ID, name), item);
