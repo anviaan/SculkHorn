@@ -2,7 +2,6 @@ package net.anvian.sculkhornid.api;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,9 +37,8 @@ public class Helper {
                 || exludeFromDamage(other);
     }
     private static boolean exludeFromDamage(LivingEntity nearbyEntity) {
-        return (nearbyEntity instanceof VillagerEntity)
-                || (nearbyEntity instanceof WolfEntity)
-                || (nearbyEntity instanceof AllayEntity);
+        return (nearbyEntity instanceof WolfEntity) ||
+                (nearbyEntity instanceof VillagerEntity);
     }
     private static boolean isUnaffected(LivingEntity entity) {
         if (entity instanceof PlayerEntity)
