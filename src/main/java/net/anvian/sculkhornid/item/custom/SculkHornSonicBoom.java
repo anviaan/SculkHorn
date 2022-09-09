@@ -76,16 +76,12 @@ public class SculkHornSonicBoom extends Item {
 
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return 10;//10, x!= 0
+        return 10;//x!= 0
     }
 
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         super.usageTick(world, user, stack, remainingUseTicks);
-
-        if(getMaxUseTime(stack) - remainingUseTicks == 1) {
-            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_CHARGE, SoundCategory.PLAYERS, 1.0f, 1.0f);
-        }
     }
 
     @Override
