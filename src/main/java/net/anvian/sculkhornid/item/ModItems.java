@@ -21,8 +21,9 @@ public class ModItems {
             new FabricItemSettings()
                     .rarity(Rarity.EPIC)
                     .maxCount(1)
-                    .maxDamage(350)
-                    .group(ModItemGroup.SCULKHORNGROUP)));
+                    .maxDamage(500)
+                    .group(ModItemGroup.SCULKHORNGROUP)
+            ,7.0f));
 
     public static Item registerItem(String name, Item item){
         return Registry.register(Registry.ITEM, new Identifier(SculkHornMod.MOD_ID, name), item);
