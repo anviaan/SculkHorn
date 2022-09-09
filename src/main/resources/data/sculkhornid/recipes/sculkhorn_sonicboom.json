@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:echo_shard"
+    },
+    "@": {
+      "item": "sculkhornid:sculkhorn"
+    }
+  },
+  "pattern": [
+    "#",
+    "@",
+    "#"
+  ],
+  "result": {
+    "item": "sculkhornid:sculkhorn_sonicboom"
+  }
+}
