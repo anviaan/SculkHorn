@@ -36,11 +36,11 @@ public class SculkHorn extends Item{
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
 
-        float RADIUS = (float) ModConfigs.RADIUS;
-        int COOLDOWN = ModConfigs.COOLDOWN;
-        float DAMAGE_EASY = (float) ModConfigs.DAMAGE_EASY;
-        float DAMAGE_NORMAL = (float) ModConfigs.DAMAGE_NORMAL;
-        float DAMAGE_HARD = (float) ModConfigs.DAMAGE_HARD;
+        float RADIUS = (float) ModConfigs.RADIUS;//3.5
+        int COOLDOWN = ModConfigs.COOLDOWN;//300
+        float DAMAGE_EASY = (float) ModConfigs.DAMAGE_EASY;//9
+        float DAMAGE_NORMAL = (float) ModConfigs.DAMAGE_NORMAL;//15
+        float DAMAGE_HARD = (float) ModConfigs.DAMAGE_HARD;//22.5
 
         if (!world.isClient) {
             if(user.experienceLevel >= ModConfigs.EXPERIENCE_LEVEL || user.isCreative()){ //5
@@ -50,14 +50,14 @@ public class SculkHorn extends Item{
                 }
                 sonicBoom(user, user, RADIUS);
                 if(world.getDifficulty() == Difficulty.EASY){
-                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_EASY, RADIUS); //9
+                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_EASY, RADIUS);
                 }else if(world.getDifficulty() == Difficulty.HARD){
-                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_HARD, RADIUS); //22.5f
+                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_HARD, RADIUS);
                 }else{
-                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_NORMAL, RADIUS); //15
+                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_NORMAL, RADIUS);
                 }
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,60,0));
-                user.getItemCooldownManager().set(this, COOLDOWN); //add a cooldown 15s from config
+                user.getItemCooldownManager().set(this, COOLDOWN);
             }
         }if(world.isClient){
             if(user.experienceLevel >= ModConfigs.EXPERIENCE_LEVEL || user.isCreative()){
