@@ -65,12 +65,10 @@ public class SculkHornSonicBoom extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if(user.experienceLevel < ModConfigs.RANGE_EXPERIENCE_LEVEL){
-            return super.use(world, user, hand);
-        }else{
+        if (user.experienceLevel >= ModConfigs.RANGE_EXPERIENCE_LEVEL) {
             user.setCurrentHand(hand);
-            return super.use(world, user, hand);
         }
+        return super.use(world, user, hand);
     }
 
     @Override
@@ -136,9 +134,6 @@ public class SculkHornSonicBoom extends Item {
         for (Entity hitTarget : hit) {
             if(hitTarget instanceof LivingEntity living) {
                 living.damage(DamageSource.sonicBoom(user), 10.0f);
-                //double vertical = 0.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
-                //double horizontal = 2.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
-                //living.addVelocity(normalized.getX() * horizontal, normalized.getY() * vertical, normalized.getZ() * horizontal);
                 living.addVelocity(normalized.getX(), normalized.getY(), normalized.getZ());
 
             }
