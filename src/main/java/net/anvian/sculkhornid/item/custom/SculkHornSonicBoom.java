@@ -65,7 +65,7 @@ public class SculkHornSonicBoom extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (user.experienceLevel >= ModConfigs.RANGE_EXPERIENCE_LEVEL) {
+        if (user.experienceLevel >= ModConfigs.RANGE_EXPERIENCE_LEVEL || user.isCreative()) {
             user.setCurrentHand(hand);
         }
         return super.use(world, user, hand);
