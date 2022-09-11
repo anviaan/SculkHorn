@@ -64,7 +64,13 @@ public class SculkHorn extends Item{
                 world.playSoundFromEntity(user, user, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.RECORDS, 1.0f, 1.0f);
             }
         }
-         return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
+
+        if(user.experienceLevel < ModConfigs.RANGE_EXPERIENCE_LEVEL){
+            return super.use(world, user, hand);
+        }else{
+            return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
+        }
+
     }
 
     private static void sonicBoom(LivingEntity attacker, LivingEntity victim, float radius){
