@@ -12,20 +12,20 @@ import net.minecraft.util.registry.Registry;
 
 public class ModItems {
 
-    private static final float RANGE_DAMAGE = ((float) ModConfigs.DAMAGE)-1;
+    private static final float RANGE_DAMAGE = ((float) ModConfigs.RANGE_DAMAGE)-1;
 
     public static final Item SCULKHORN =registerItem("sculkhorn", new SculkHorn(
             new FabricItemSettings()
                     .rarity(Rarity.EPIC)
                     .maxCount(1)
-                    .maxDamage(350)
+                    .maxDamage(ModConfigs.AREA_DURABILITY)//350
                     .group(ModItemGroup.SCULKHORNGROUP)));
 
     public static final Item SCULKHORN_SONICBOOM = registerItem("sculkhorn_sonicboom", new SculkHornSonicBoom(
             new FabricItemSettings()
                     .rarity(Rarity.EPIC)
                     .maxCount(1)
-                    .maxDamage(500)
+                    .maxDamage(ModConfigs.RANGE_DURABILITY)//500
                     .group(ModItemGroup.SCULKHORNGROUP)
             ,RANGE_DAMAGE));//7.0f
 

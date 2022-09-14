@@ -109,7 +109,7 @@ public class SculkHornSonicBoom extends Item {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
         // Raycast out for sonic boom effect
-        int distance = ModConfigs.DISTANCE;
+        int distance = ModConfigs.RANGE_DISTANCE;
         Vec3d target = user.getPos().add(user.getRotationVector().multiply(distance)); //distance = 16
         Vec3d source = user.getPos().add(0.0, 1.6f, 0.0);
         Vec3d offsetToTarget = target.subtract(source);

@@ -1,5 +1,4 @@
 package net.anvian.sculkhornid.config;
-
 /*
  * Copyright (c) 2021 magistermaks
  * Slightly modified by Kaupenjoe 2021
@@ -22,7 +21,6 @@ package net.anvian.sculkhornid.config;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,7 +34,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class SimpleConfig {
-
     private static final Logger LOGGER = LogManager.getLogger("SimpleConfig");
     private final HashMap<String, String> config = new HashMap<>();
     private final ConfigRequest request;
@@ -51,7 +48,6 @@ public class SimpleConfig {
     }
 
     public static class ConfigRequest {
-
         private final File file;
         private final String filename;
         private DefaultConfig provider;
@@ -61,7 +57,6 @@ public class SimpleConfig {
             this.filename = filename;
             this.provider = DefaultConfig::empty;
         }
-
         /**
          * Sets the default config provider, used to generate the
          * config if it's missing.
@@ -74,7 +69,6 @@ public class SimpleConfig {
             this.provider = provider;
             return this;
         }
-
         /**
          * Loads the config from the filesystem.
          *
@@ -84,11 +78,9 @@ public class SimpleConfig {
         public SimpleConfig request() {
             return new SimpleConfig( this );
         }
-
         private String getConfig() {
             return provider.get( filename ) + "\n";
         }
-
     }
 
     /**
@@ -140,10 +132,8 @@ public class SimpleConfig {
     private SimpleConfig(ConfigRequest request ) {
         this.request = request;
         String identifier = "Config '" + request.filename + "'";
-
         if( !request.file.exists() ) {
             LOGGER.info( identifier + " is missing, generating default one..." );
-
             try {
                 createConfig();
             } catch (IOException e) {
@@ -152,7 +142,6 @@ public class SimpleConfig {
                 broken = true;
             }
         }
-
         if( !broken ) {
             try {
                 loadConfig();
@@ -162,9 +151,7 @@ public class SimpleConfig {
                 broken = true;
             }
         }
-
     }
-
     /**
      * Queries a value from config, returns `null` if the
      * key does not exist.
@@ -176,7 +163,6 @@ public class SimpleConfig {
     public String get( String key ) {
         return config.get( key );
     }
-
     /**
      * Returns string value from config corresponding to the given
      * key, or the default string if the key is missing.
@@ -187,7 +173,6 @@ public class SimpleConfig {
         String val = get(key);
         return val == null ? def : val;
     }
-
     /**
      * Returns integer value from config corresponding to the given
      * key, or the default integer if the key is missing or invalid.
@@ -201,7 +186,6 @@ public class SimpleConfig {
             return def;
         }
     }
-
     /**
      * Returns boolean value from config corresponding to the given
      * key, or the default boolean if the key is missing.
@@ -216,7 +200,6 @@ public class SimpleConfig {
 
         return def;
     }
-
     /**
      * Returns double value from config corresponding to the given
      * key, or the default string if the key is missing or invalid.
@@ -230,7 +213,6 @@ public class SimpleConfig {
             return def;
         }
     }
-
     /**
      * If any error occurred during loading or reading from the config
      * a 'broken' flag is set, indicating that the config's state
@@ -241,7 +223,6 @@ public class SimpleConfig {
     public boolean isBroken() {
         return broken;
     }
-
     /**
      * deletes the config file from the filesystem
      *

@@ -7,20 +7,19 @@ public class ModConfigs {
     public static SimpleConfig CONFIG;
     private static ModConfigProvider configs;
     //sculk horn area
-    public static double RADIUS;
-    public static int COOLDOWN;
-    public static double DAMAGE_EASY;
-    public static double DAMAGE_NORMAL;
-    public static double DAMAGE_HARD;
-
-    public static int EXPERIENCE_LEVEL;
-    public static int REMOVE_EXPERIENCE;
-
-    //sculk horn range
-    public static double DAMAGE;
+    public static double AREA_RADIUS;
+    public static int AREA_COOLDOWN;
+    public static double AREA_DAMAGE_EASY;
+    public static double AREA_DAMAGE_NORMAL;
+    public static double AREA_DAMAGE_HARD;
+    public static int AREA_EXPERIENCE_LEVEL;
+    public static int AREA_REMOVE_EXPERIENCE;
+    public static double RANGE_DAMAGE;
     public static int RANGE_EXPERIENCE_LEVEL;
     public static int RANGE_REMOVE_EXPERIENCE;
-    public static int DISTANCE;
+    public static int RANGE_DISTANCE;
+    public static int AREA_DURABILITY;
+    public static int RANGE_DURABILITY;
 
     public static void registerConfigs() {
         configs = new ModConfigProvider();
@@ -45,21 +44,25 @@ public class ModConfigs {
         removeExperience();
         configs.addKeyValuePair(new Pair<>("range_remove_experience",-55),"int");
         configs.addKeyValuePair(new Pair<>("range_distance",16),"int");
+        configs.addKeyValuePair(new Pair<>("area_durability",350),"int");
+        configs.addKeyValuePair(new Pair<>("range_durability",350),"int");
 
     }
 
     private static void assignConfigs() {
-        RADIUS = CONFIG.getOrDefault("area_radius", 3.5);
-        COOLDOWN = CONFIG.getOrDefault("area_cooldown", 300);
-        DAMAGE_EASY = CONFIG.getOrDefault("area_damage_easy", 9);
-        DAMAGE_NORMAL = CONFIG.getOrDefault("area_damage_normal", 15);
-        DAMAGE_HARD = CONFIG.getOrDefault("area_damage_hard", 22.5);
-        EXPERIENCE_LEVEL = CONFIG.getOrDefault("area_experience_level", 5);
-        REMOVE_EXPERIENCE = CONFIG.getOrDefault("area_remove_experience", -55);
-        DAMAGE = CONFIG.getOrDefault("range_damage", 7.0);
+        AREA_RADIUS = CONFIG.getOrDefault("area_radius", 3.5);
+        AREA_COOLDOWN = CONFIG.getOrDefault("area_cooldown", 300);
+        AREA_DAMAGE_EASY = CONFIG.getOrDefault("area_damage_easy", 9);
+        AREA_DAMAGE_NORMAL = CONFIG.getOrDefault("area_damage_normal", 15);
+        AREA_DAMAGE_HARD = CONFIG.getOrDefault("area_damage_hard", 22.5);
+        AREA_EXPERIENCE_LEVEL = CONFIG.getOrDefault("area_experience_level", 5);
+        AREA_REMOVE_EXPERIENCE = CONFIG.getOrDefault("area_remove_experience", -55);
+        RANGE_DAMAGE = CONFIG.getOrDefault("range_damage", 7.0);
         RANGE_EXPERIENCE_LEVEL = CONFIG.getOrDefault("range_experience_level", 5);
         RANGE_REMOVE_EXPERIENCE = CONFIG.getOrDefault("range_remove_experience", -55);
-        DISTANCE = CONFIG.getOrDefault("range_distance", 16);
+        RANGE_DISTANCE = CONFIG.getOrDefault("range_distance", 16);
+        AREA_DURABILITY = CONFIG.getOrDefault("area_durability",350);
+        RANGE_DURABILITY = CONFIG.getOrDefault("range_durability",500);
 
         System.out.println("All " + configs.getConfigsList().size() + " have been set properly");
     }
