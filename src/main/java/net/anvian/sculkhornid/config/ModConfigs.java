@@ -39,7 +39,7 @@ public class ModConfigs {
         configs.addKeyValuePair(new Pair<>("area_experience_level_required",5),"int");
         removeExperience();
         configs.addKeyValuePair(new Pair<>("area_remove_experience", -55),"int");
-        configs.addKeyValuePair(new Pair<>("range_damage", 7.0),"double");
+        configs.addKeyValuePair(new Pair<>("range_damage", 12.0),"double");
         configs.addKeyValuePair(new Pair<>("range_experience_level_required",5),"int");
         removeExperience();
         configs.addKeyValuePair(new Pair<>("range_remove_experience",-55),"int");
@@ -57,7 +57,7 @@ public class ModConfigs {
         AREA_DAMAGE_HARD = CONFIG.getOrDefault("area_damage_hard", 22.5);
         AREA_EXPERIENCE_LEVEL = CONFIG.getOrDefault("area_experience_level", 5);
         AREA_REMOVE_EXPERIENCE = CONFIG.getOrDefault("area_remove_experience", -55);
-        RANGE_DAMAGE = CONFIG.getOrDefault("range_damage", 7.0);
+        RANGE_DAMAGE = CONFIG.getOrDefault("range_damage", 12.0);
         RANGE_EXPERIENCE_LEVEL = CONFIG.getOrDefault("range_experience_level", 5);
         RANGE_REMOVE_EXPERIENCE = CONFIG.getOrDefault("range_remove_experience", -55);
         RANGE_DISTANCE = CONFIG.getOrDefault("range_distance", 16);
