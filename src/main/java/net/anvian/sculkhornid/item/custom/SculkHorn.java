@@ -1,84 +1,75 @@
 package net.anvian.sculkhornid.item.custom;
 
 import net.anvian.sculkhornid.api.Helper;
-import net.anvian.sculkhornid.config.ModConfigs;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.AreaEffectCloudEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SculkHorn extends Item{
-    public SculkHorn(Settings settings) {
-        super(settings);
-    }
+public class SculkHorn extends Item {
+    public SculkHorn(Properties properties) {super(properties);}
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("tootip_sculkhorn_area"));
+    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
+        list.add(Component.translatable("tootip_sculkhorn_range"));
+        super.appendHoverText(itemStack,level,list,tooltipFlag);
     }
-
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+        ItemStack itemstack = player.getItemInHand(interactionHand);
 
-        float RADIUS = (float) ModConfigs.AREA_RADIUS;//3.5
-        int COOLDOWN = ModConfigs.AREA_COOLDOWN;//300
-        float DAMAGE_EASY = (float) ModConfigs.AREA_DAMAGE_EASY;//9
-        float DAMAGE_NORMAL = (float) ModConfigs.AREA_DAMAGE_NORMAL;//15
-        float DAMAGE_HARD = (float) ModConfigs.AREA_DAMAGE_HARD;//22.5
-
-        if (!world.isClient) {
-            if(user.experienceLevel >= ModConfigs.AREA_EXPERIENCE_LEVEL || user.isCreative()){ //5
-                if(!user.isCreative()){
-                    user.addExperience(ModConfigs.AREA_REMOVE_EXPERIENCE); //-55
-                    itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
+        if(!level.isClientSide){
+            if(player.experienceLevel >= 5 || player.isCreative()){
+                if(player.isCreative()){
+                    player.giveExperienceLevels(-55);
+                    itemstack.setCount(itemstack.getCount()-1);
                 }
-                sonicBoom(user, user, RADIUS);
-                if(world.getDifficulty() == Difficulty.EASY){
-                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_EASY, RADIUS);
-                }else if(world.getDifficulty() == Difficulty.HARD){
-                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_HARD, RADIUS);
+                sonicBoom(player, player, 3.5f);
+                if(level.getDifficulty() == Difficulty.EASY){
+                    Helper.causeMagicExplosionAttack(player, player,9,3.5f);
+                }else if(level.getDifficulty() == Difficulty.HARD){
+                    Helper.causeMagicExplosionAttack(player, player,22.5f,3.5f);
                 }else{
-                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_NORMAL, RADIUS);
+                    Helper.causeMagicExplosionAttack(player, player,15,3.5f);
                 }
-                user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,60,0));
-                user.getItemCooldownManager().set(this, COOLDOWN);
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,6010));
+                player.getCooldowns().addCooldown(this,300);
             }
-        }if(world.isClient){
-            if(user.experienceLevel >= ModConfigs.AREA_EXPERIENCE_LEVEL || user.isCreative()){
-                world.playSoundFromEntity(user, user, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.RECORDS, 1.0f, 1.0f);
+        }if(level.isClientSide){
+            if (player.experienceLevel >= 5 || player.isCreative()){
+                level.playSound(player, player, SoundEvents.WARDEN_SONIC_BOOM, SoundSource.RECORDS,1.0f,1.0f);
             }
         }
 
-        if(user.experienceLevel < ModConfigs.RANGE_EXPERIENCE_LEVEL && !user.isCreative()){
-            return super.use(world, user, hand);
+        if(player.experienceLevel < 5 && player.isCreative()){
+            return super.use(level, player,interactionHand);
         }else{
-            return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
+            return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
         }
-
     }
 
     private static void sonicBoom(LivingEntity attacker, LivingEntity victim, float radius){
-        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(victim.world, victim.getX(), victim.getY()+0.25f, victim.getZ());
-        areaEffectCloudEntity.setOwner(attacker);
-        areaEffectCloudEntity.setParticleType(ParticleTypes.SONIC_BOOM);
-        areaEffectCloudEntity.setRadius(radius);
-        areaEffectCloudEntity.setDuration(0);
-        attacker.world.spawnEntity(areaEffectCloudEntity);
+        AreaEffectCloud areaEffectCloud = new AreaEffectCloud(victim.level, victim.getX(), victim.getY()+0.25f, victim.getZ());
+        areaEffectCloud.setOwner(attacker);
+        areaEffectCloud.setParticle(ParticleTypes.SONIC_BOOM);
+        areaEffectCloud.setRadius(radius);
+        areaEffectCloud.setDuration(0);
+        attacker.level.addFreshEntity(areaEffectCloud);
     }
 }

@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+license="MIT"
+issueTrackerURL="https://github.com/anviaan/SculkHorn/issues"
+
+[[mods]]
+modId="sculkhornid"
+version="1.1.0-1.19.2"
+displayName="Sculk Horn Mod"
+#updateJSONURL="https://change.me.example.invalid/updates.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/sculk-horn"
+logoFile="examplemod.png"
+authors="anvian"
+description="Create a Sonic Shock from a Area Sculk Horn and create a Sonic Boom from a Range Sculk Horn"
+[[dependencies.examplemod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[43,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.examplemod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2,1.20)"
+    ordering="NONE"
+    side="BOTH"

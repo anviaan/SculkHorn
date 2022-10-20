@@ -1,22 +1,33 @@
 package net.anvian.sculkhornid;
 
-import net.anvian.sculkhornid.config.ModConfigs;
+import com.mojang.logging.LogUtils;
 import net.anvian.sculkhornid.item.ModItems;
-import net.fabricmc.api.ModInitializer;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class SculkHornMod implements ModInitializer {
-	public static final String MOD_ID = "sculkhornid";
-	public static final Logger LOGGER = LoggerFactory.getLogger("sculkhornid");
+@Mod(SculkHornMod.MOD_ID)
+public class SculkHornMod
+{
+    public static final String MOD_ID = "sculkhornid";
+    private static final Logger LOGGER = LogUtils.getLogger();
+    public SculkHornMod()
+    {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-	@Override
-	public void onInitialize() {
+        ModItems.register(modEventBus);
 
-		ModConfigs.registerConfigs();
+        MinecraftForge.EVENT_BUS.register(this);
+    }
 
-		ModItems.registerModItems();
-
-		LOGGER.info("Hello Fabric world!");
-	}
+    private void commonSetup(final FMLCommonSetupEvent event)
+    {
+        LOGGER.info("HELLO FROM COMMON SETUP");
+        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
+    }
 }

@@ -1,11 +1,9 @@
 {
-  "itemGroup.sculkhornid.sculkhorngroup": "Sculk Horn Mod",
-
-  "item.sculkhornid.sculkhorn": "Sculk Horn",
-  "item.sculkhornid.sculkhorn_sonicboom": "Sculk Horn",
+  "itemGroup.sculkhorn": "Sculk Horn Mod",
 
   "tootip_sculkhorn_range" : "§7Range",
   "tootip_sculkhorn_area" : "§7Area",
 
-  "tooltip_info_item.sculkhorn_shif": "Press §lSHIFT§r for more Information"
+  "item.sculkhornid.sculkhorn": "Sculk Horn",
+  "item.sculkhornid.sculkhorn_sonicboom": "Sculk Horn"
 }

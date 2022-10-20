@@ -1,39 +1,34 @@
 package net.anvian.sculkhornid.item;
 
 import net.anvian.sculkhornid.SculkHornMod;
-import net.anvian.sculkhornid.config.ModConfigs;
 import net.anvian.sculkhornid.item.custom.SculkHorn;
-import net.anvian.sculkhornid.item.custom.SculkHornSonicBoom;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
+    public static final DeferredRegister<Item> ITEMS =
+            DeferredRegister.create(ForgeRegistries.ITEMS, SculkHornMod.MOD_ID);
 
-    private static final float RANGE_DAMAGE = ((float) ModConfigs.RANGE_DAMAGE)-1;
-
-    public static final Item SCULKHORN =registerItem("sculkhorn", new SculkHorn(
-            new FabricItemSettings()
+    public static final RegistryObject<Item> SCULKHORN = ITEMS.register("sculkhorn",
+            () -> new SculkHorn(new Item.Properties()
                     .rarity(Rarity.EPIC)
-                    .maxCount(1)
-                    .maxDamage(ModConfigs.AREA_DURABILITY)//350
-                    .group(ModItemGroup.SCULKHORNGROUP)));
+                    .stacksTo(1)
+                    .durability(350)
+                    .tab(ItemGroup.SCULKHORN)));
 
-    public static final Item SCULKHORN_SONICBOOM = registerItem("sculkhorn_sonicboom", new SculkHornSonicBoom(
-            new FabricItemSettings()
+    public static final RegistryObject<Item> SCULKHORN_SONICBOOM = ITEMS.register("sculkhorn_sonicboom",
+            () -> new Item(new Item.Properties()
                     .rarity(Rarity.EPIC)
-                    .maxCount(1)
-                    .maxDamage(ModConfigs.RANGE_DURABILITY)//500
-                    .group(ModItemGroup.SCULKHORNGROUP)
-            ,RANGE_DAMAGE));//7.0f
+                    .stacksTo(1)
+                    .durability(500)
+                    .tab(ItemGroup.SCULKHORN)));
 
-    public static Item registerItem(String name, Item item){
-        return Registry.register(Registry.ITEM, new Identifier(SculkHornMod.MOD_ID, name), item);
-    }
-
-    public static void registerModItems(){
-        System.out.println("Registering Mod Items for " + SculkHornMod.MOD_ID);
+    public static void register(IEventBus eventBus){
+        ITEMS.register(eventBus);
     }
 }
