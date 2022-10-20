@@ -26,7 +26,7 @@ public class SculkHorn extends Item {
     public SculkHorn(Properties properties) {super(properties);}
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Component.translatable("tootip_sculkhorn_range"));
+        list.add(Component.translatable("tootip_sculkhorn_area"));
         super.appendHoverText(itemStack,level,list,tooltipFlag);
     }
     @Override
