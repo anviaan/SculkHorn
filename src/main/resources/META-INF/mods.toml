@@ -7,18 +7,18 @@ issueTrackerURL="https://github.com/anviaan/SculkHorn/issues"
 modId="sculkhornid"
 version="1.1.0-1.19.2"
 displayName="Sculk Horn Mod"
-#updateJSONURL="https://change.me.example.invalid/updates.json"
+updateJSONURL="https://anvian-page.netlify.app/forge/sculkhornid.json"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/sculk-horn"
-logoFile="examplemod.png"
+logoFile="icon.png"
 authors="anvian"
 description="Create a Sonic Shock from a Area Sculk Horn and create a Sonic Boom from a Range Sculk Horn"
-[[dependencies.examplemod]]
+[[dependencies.sculkhornid]]
     modId="forge"
     mandatory=true
     versionRange="[43,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.examplemod]]
+[[dependencies.sculkhornid]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.19.2,1.20)"
