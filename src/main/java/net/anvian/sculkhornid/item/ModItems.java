@@ -2,8 +2,8 @@ package net.anvian.sculkhornid.item;
 
 import net.anvian.sculkhornid.SculkHornMod;
 import net.anvian.sculkhornid.item.custom.SculkHorn;
+import net.anvian.sculkhornid.item.custom.SculkHornSonicBoom;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,11 +22,11 @@ public class ModItems {
                     .tab(ItemGroup.SCULKHORN)));
 
     public static final RegistryObject<Item> SCULKHORN_SONICBOOM = ITEMS.register("sculkhorn_sonicboom",
-            () -> new Item(new Item.Properties()
+            () -> new SculkHornSonicBoom(new Item.Properties()
                     .rarity(Rarity.EPIC)
                     .stacksTo(1)
                     .durability(500)
-                    .tab(ItemGroup.SCULKHORN)));
+                    .tab(ItemGroup.SCULKHORN),7.0f));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
