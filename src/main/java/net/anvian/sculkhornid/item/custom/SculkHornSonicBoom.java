@@ -108,7 +108,6 @@ public class SculkHornSonicBoom extends Item {
     private void spawnSonicBoom(World world, LivingEntity user) {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
-        // Raycast out for sonic boom effect
         int distance = ModConfigs.RANGE_DISTANCE;
         Vec3d target = user.getPos().add(user.getRotationVector().multiply(distance)); //distance = 16
         Vec3d source = user.getPos().add(0.0, 1.6f, 0.0);
@@ -134,7 +133,9 @@ public class SculkHornSonicBoom extends Item {
         for (Entity hitTarget : hit) {
             if(hitTarget instanceof LivingEntity living) {
                 living.damage(DamageSource.sonicBoom(user), 10.0f);
-                living.addVelocity(normalized.getX(), normalized.getY(), normalized.getZ());
+                double vertical = 0.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
+                double horizontal = 2.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
+                living.addVelocity(normalized.getX()*horizontal, normalized.getY()*vertical, normalized.getZ()*horizontal);
 
             }
         }
