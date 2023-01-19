@@ -1,5 +1,6 @@
 package net.anvian.sculkhornid;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.anvian.sculkhornid.config.ModConfigs;
 import net.anvian.sculkhornid.item.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -13,7 +14,7 @@ public class SculkHornMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-		ModConfigs.registerConfigs();
+		MidnightConfig.init(MOD_ID, ModConfigs.class);
 
 		ModItems.registerModItems();
 
