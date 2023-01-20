@@ -95,7 +95,7 @@ public class SculkHornSonicBoom extends Item {
                         player.addExperience(ModConfigs.RANGE_REMOVE_EXPERIENCE);//-55
                         stack.damage(1, user, x -> x.sendToolBreakStatus(Hand.MAIN_HAND));
                     }
-                    player.getItemCooldownManager().set(this, 200);
+                    player.getItemCooldownManager().set(this, ModConfigs.RANGE_COOLDOWN);//200
                     spawnSonicBoom(world, user);
                 }
             }

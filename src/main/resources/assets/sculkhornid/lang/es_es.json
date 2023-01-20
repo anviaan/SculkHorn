@@ -7,5 +7,24 @@
   "tootip_sculkhorn_range" : "§7Rango",
   "tootip_sculkhorn_area" : "§7Area",
 
-  "tooltip_info_item.sculkhorn_shif": "Presione §lSHIFT§r para mas información."
+  "tooltip_info_item.sculkhorn_shif": "Presione §lSHIFT§r para mas información.",
+
+  "sculkhornid.midnightconfig.title": "Sculk Horn Mod",
+  "sculkhornid.midnightconfig.warning": "Todos los cambios necesita un reinicio del cliente",
+
+  "sculkhornid.midnightconfig.AREA_RADIUS": "Sculk Horn Area Radio",
+  "sculkhornid.midnightconfig.AREA_COOLDOWN": "Sculk Horn Area Enfriamiento",
+  "sculkhornid.midnightconfig.AREA_DAMAGE_EASY": "Sculk Horn Area Daño en Facil",
+  "sculkhornid.midnightconfig.AREA_DAMAGE_NORMAL": "Sculk Horn Area Daño en Normal",
+  "sculkhornid.midnightconfig.AREA_DAMAGE_HARD": "Sculk Horn Area Daño en Dificil",
+  "sculkhornid.midnightconfig.AREA_EXPERIENCE_LEVEL": "Sculk Horn Area Nivel requerido de Xp",
+  "sculkhornid.midnightconfig.AREA_REMOVE_EXPERIENCE": "Sculk Horn Area Costo de Xp",
+  "sculkhornid.midnightconfig.AREA_DURABILITY": "Sculk Horn Area Durabilidad",
+
+  "sculkhornid.midnightconfig.RANGE_DAMAGE": "Sculk Horn Range Damage",
+  "sculkhornid.midnightconfig.RANGE_COOLDOWN": "Sculk Horn Range Cooldown",
+  "sculkhornid.midnightconfig.RANGE_EXPERIENCE_LEVEL": "Sculk Horn Range Nivel requerido de Xp",
+  "sculkhornid.midnightconfig.RANGE_REMOVE_EXPERIENCE": "Sculk HornRange Costo de Xp",
+  "sculkhornid.midnightconfig.RANGE_DISTANCE": "Sculk Horn Range Distancia",
+  "sculkhornid.midnightconfig.RANGE_DURABILITY": "Sculk Horn Range Durabilidad"
 }
