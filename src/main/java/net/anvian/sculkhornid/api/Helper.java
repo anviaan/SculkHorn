@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Helper {
     public static void causeMagicExplosionAttack(LivingEntity user, LivingEntity victim, float damageAmount, float distance){
-        DamageSource magicExplosion = DamageSource.explosion(user).setExplosion();
+        DamageSource magicExplosion = DamageSource.explosion(user, user).setExplosion();
         for(LivingEntity nearbyEntity : getAoeTargets(victim, user, distance)){
             nearbyEntity.hurt(magicExplosion, damageAmount);
         }
