@@ -18,7 +18,7 @@ public class ItemGroup {
         SCULKHORN = event.registerCreativeModeTab(new ResourceLocation(SculkHornMod.MOD_ID, "sculkhorn"),
                 builder -> builder
                         .icon(()-> new ItemStack(ModItems.SCULKHORN.get()))
-                        .title(Component.literal("ScuclkHorn Tab"))
+                        .title(Component.translatable("itemGroup.sculkhorn"))
                         .build());
     }
 }
