@@ -1,7 +1,7 @@
 package net.anvian.sculkhornid.item.custom;
 
+import net.anvian.sculkhornid.SculkHornMod;
 import net.anvian.sculkhornid.api.Helper;
-import net.anvian.sculkhornid.config.ModConfigs;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.LivingEntity;
@@ -36,16 +36,16 @@ public class SculkHorn extends Item{
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
 
-        float RADIUS = (float) ModConfigs.AREA_RADIUS;//3.5
-        int COOLDOWN = ModConfigs.AREA_COOLDOWN;//300
-        float DAMAGE_EASY = (float) ModConfigs.AREA_DAMAGE_EASY;//9
-        float DAMAGE_NORMAL = (float) ModConfigs.AREA_DAMAGE_NORMAL;//15
-        float DAMAGE_HARD = (float) ModConfigs.AREA_DAMAGE_HARD;//22.5
+        float RADIUS = (float) SculkHornMod.CONFIG.AREA_RADIUS();//3.5
+        int COOLDOWN = SculkHornMod.CONFIG.AREA_COOLDOWN();//300
+        float DAMAGE_EASY = (float) SculkHornMod.CONFIG.AREA_DAMAGE_EASY();//9
+        float DAMAGE_NORMAL = (float) SculkHornMod.CONFIG.AREA_DAMAGE_NORMAL();//15
+        float DAMAGE_HARD = (float) SculkHornMod.CONFIG.AREA_DAMAGE_HARD();//22.5
 
         if (!world.isClient) {
-            if(user.experienceLevel >= ModConfigs.AREA_EXPERIENCE_LEVEL || user.isCreative()){ //5
+            if(user.experienceLevel >= SculkHornMod.CONFIG.AREA_EXPERIENCE_LEVEL() || user.isCreative()){ //5
                 if(!user.isCreative()){
-                    user.addExperience(ModConfigs.AREA_REMOVE_EXPERIENCE); //-55
+                    user.addExperience(SculkHornMod.CONFIG.AREA_REMOVE_EXPERIENCE()); //-55
                     itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
                 sonicBoom(user, user, RADIUS);
@@ -60,12 +60,12 @@ public class SculkHorn extends Item{
                 user.getItemCooldownManager().set(this, COOLDOWN);
             }
         }if(world.isClient){
-            if(user.experienceLevel >= ModConfigs.AREA_EXPERIENCE_LEVEL || user.isCreative()){
+            if(user.experienceLevel >= SculkHornMod.CONFIG.AREA_EXPERIENCE_LEVEL() || user.isCreative()){
                 world.playSoundFromEntity(user, user, SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.RECORDS, 1.0f, 1.0f);
             }
         }
 
-        if(user.experienceLevel < ModConfigs.RANGE_EXPERIENCE_LEVEL && !user.isCreative()){
+        if(user.experienceLevel < SculkHornMod.CONFIG.RANGE_EXPERIENCE_LEVEL() && !user.isCreative()){
             return super.use(world, user, hand);
         }else{
             return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);

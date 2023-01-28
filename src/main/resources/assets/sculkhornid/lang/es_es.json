@@ -9,22 +9,25 @@
 
   "tooltip_info_item.sculkhorn_shif": "Presione §lSHIFT§r para mas información.",
 
-  "sculkhornid.midnightconfig.title": "Sculk Horn Mod",
-  "sculkhornid.midnightconfig.warning": "Todos los cambios necesita un reinicio del cliente",
+  "text.config.sculk-config.title": "Sculk Horn Mod",
 
-  "sculkhornid.midnightconfig.AREA_RADIUS": "Sculk Horn Area Radio",
-  "sculkhornid.midnightconfig.AREA_COOLDOWN": "Sculk Horn Area Enfriamiento",
-  "sculkhornid.midnightconfig.AREA_DAMAGE_EASY": "Sculk Horn Area Daño en Facil",
-  "sculkhornid.midnightconfig.AREA_DAMAGE_NORMAL": "Sculk Horn Area Daño en Normal",
-  "sculkhornid.midnightconfig.AREA_DAMAGE_HARD": "Sculk Horn Area Daño en Dificil",
-  "sculkhornid.midnightconfig.AREA_EXPERIENCE_LEVEL": "Sculk Horn Area Nivel requerido de Xp",
-  "sculkhornid.midnightconfig.AREA_REMOVE_EXPERIENCE": "Sculk Horn Area Costo de Xp",
-  "sculkhornid.midnightconfig.AREA_DURABILITY": "Sculk Horn Area Durabilidad",
+  "text.config.sculk-config.section.area": "Cuerno Sculk Area",
 
-  "sculkhornid.midnightconfig.RANGE_DAMAGE": "Sculk Horn Range Damage",
-  "sculkhornid.midnightconfig.RANGE_COOLDOWN": "Sculk Horn Range Cooldown",
-  "sculkhornid.midnightconfig.RANGE_EXPERIENCE_LEVEL": "Sculk Horn Range Nivel requerido de Xp",
-  "sculkhornid.midnightconfig.RANGE_REMOVE_EXPERIENCE": "Sculk HornRange Costo de Xp",
-  "sculkhornid.midnightconfig.RANGE_DISTANCE": "Sculk Horn Range Distancia",
-  "sculkhornid.midnightconfig.RANGE_DURABILITY": "Sculk Horn Range Durabilidad"
+  "text.config.sculk-config.option.AREA_RADIUS": "Radio",
+  "text.config.sculk-config.option.AREA_COOLDOWN": "Enfriamiento",
+  "text.config.sculk-config.option.AREA_DAMAGE_EASY": "Daño en Facil",
+  "text.config.sculk-config.option.AREA_DAMAGE_NORMAL": "Daño en Normal",
+  "text.config.sculk-config.option.AREA_DAMAGE_HARD": "Daño en Dificil",
+  "text.config.sculk-config.option.AREA_EXPERIENCE_LEVEL": "Nivel requerido de Xp",
+  "text.config.sculk-config.option.AREA_REMOVE_EXPERIENCE": "Costo de Xp",
+  "text.config.sculk-config.option.AREA_DURABILITY": "Durabilidad",
+
+  "text.config.sculk-config.section.range": "Cuerno Sculk Rango",
+
+  "text.config.sculk-config.option.RANGE_DAMAGE": "Daño",
+  "text.config.sculk-config.option.RANGE_COOLDOWN": "Enfriamiento",
+  "text.config.sculk-config.option.RANGE_EXPERIENCE_LEVEL": "Nivel requerido de Xp",
+  "text.config.sculk-config.option.RANGE_REMOVE_EXPERIENCE": "Costo de Xp",
+  "text.config.sculk-config.option.RANGE_DISTANCE": "Distancia",
+  "text.config.sculk-config.option.RANGE_DURABILITY": "Durabilidad"
 }

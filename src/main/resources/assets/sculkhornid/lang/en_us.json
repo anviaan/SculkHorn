@@ -9,22 +9,25 @@
 
   "tooltip_info_item.sculkhorn_shif": "Press §lSHIFT§r for more Information",
 
-  "sculkhornid.midnightconfig.title": "Sculk Horn Mod",
-  "sculkhornid.midnightconfig.warning": "All changes made require a restart of the client",
+  "text.config.sculk-config.title": "Sculk Horn Mod",
 
-  "sculkhornid.midnightconfig.AREA_RADIUS": "Sculk Horn Area Radius",
-  "sculkhornid.midnightconfig.AREA_COOLDOWN": "Sculk Horn Area Cooldown",
-  "sculkhornid.midnightconfig.AREA_DAMAGE_EASY": "Sculk Horn Area Damage in Easy",
-  "sculkhornid.midnightconfig.AREA_DAMAGE_NORMAL": "Sculk Horn Area Damage in Normal",
-  "sculkhornid.midnightconfig.AREA_DAMAGE_HARD": "Sculk Horn Area Damage in Hard",
-  "sculkhornid.midnightconfig.AREA_EXPERIENCE_LEVEL": "Sculk Horn Area Xp Require level",
-  "sculkhornid.midnightconfig.AREA_REMOVE_EXPERIENCE": "Sculk Horn Area Xp Cost",
-  "sculkhornid.midnightconfig.AREA_DURABILITY": "Sculk Horn Area Durability",
+  "text.config.sculk-config.section.area": "Sculk Horn Area",
 
-  "sculkhornid.midnightconfig.RANGE_DAMAGE": "Sculk Horn Range Damage",
-  "sculkhornid.midnightconfig.RANGE_COOLDOWN": "Sculk Horn Range Cooldown",
-  "sculkhornid.midnightconfig.RANGE_EXPERIENCE_LEVEL": "Sculk Horn Range Xp Require level",
-  "sculkhornid.midnightconfig.RANGE_REMOVE_EXPERIENCE": "Sculk HornRange Xp Cost",
-  "sculkhornid.midnightconfig.RANGE_DISTANCE": "Sculk Horn Range Distance",
-  "sculkhornid.midnightconfig.RANGE_DURABILITY": "Sculk Horn Range Durability"
+  "text.config.sculk-config.option.AREA_RADIUS": "Radius",
+  "text.config.sculk-config.option.AREA_COOLDOWN": "Cooldown",
+  "text.config.sculk-config.option.AREA_DAMAGE_EASY": "Damage in Easy",
+  "text.config.sculk-config.option.AREA_DAMAGE_NORMAL": "Damage in Normal",
+  "text.config.sculk-config.option.AREA_DAMAGE_HARD": "Damage in Hard",
+  "text.config.sculk-config.option.AREA_EXPERIENCE_LEVEL": "Xp Require level",
+  "text.config.sculk-config.option.AREA_REMOVE_EXPERIENCE": "Xp Cost",
+  "text.config.sculk-config.option.AREA_DURABILITY": "Durability",
+
+  "text.config.sculk-config.section.range": "Sculk Horn Range",
+
+  "text.config.sculk-config.option.RANGE_DAMAGE": "Damage",
+  "text.config.sculk-config.option.RANGE_COOLDOWN": "SCooldown",
+  "text.config.sculk-config.option.RANGE_EXPERIENCE_LEVEL": "Xp Require level",
+  "text.config.sculk-config.option.RANGE_REMOVE_EXPERIENCE": "Xp Cost",
+  "text.config.sculk-config.option.RANGE_DISTANCE": "Distance",
+  "text.config.sculk-config.option.RANGE_DURABILITY": "Durability"
 }

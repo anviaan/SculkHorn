@@ -2,7 +2,7 @@ package net.anvian.sculkhornid.item.custom;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import net.anvian.sculkhornid.config.ModConfigs;
+import net.anvian.sculkhornid.SculkHornMod;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -65,7 +65,7 @@ public class SculkHornSonicBoom extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (user.experienceLevel >= ModConfigs.RANGE_EXPERIENCE_LEVEL || user.isCreative()) {
+        if (user.experienceLevel >= SculkHornMod.CONFIG.RANGE_EXPERIENCE_LEVEL() || user.isCreative()) {
             user.setCurrentHand(hand);
         }
         return super.use(world, user, hand);
@@ -90,12 +90,12 @@ public class SculkHornSonicBoom extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if(!world.isClient) {
             if(user instanceof PlayerEntity player) {
-                if(player.experienceLevel >= ModConfigs.RANGE_EXPERIENCE_LEVEL || player.isCreative()){//5
+                if(player.experienceLevel >= SculkHornMod.CONFIG.RANGE_EXPERIENCE_LEVEL() || player.isCreative()){//5
                     if(!player.isCreative()){
-                        player.addExperience(ModConfigs.RANGE_REMOVE_EXPERIENCE);//-55
+                        player.addExperience(SculkHornMod.CONFIG.RANGE_REMOVE_EXPERIENCE());//-55
                         stack.damage(1, user, x -> x.sendToolBreakStatus(Hand.MAIN_HAND));
                     }
-                    player.getItemCooldownManager().set(this, ModConfigs.RANGE_COOLDOWN);//200
+                    player.getItemCooldownManager().set(this, SculkHornMod.CONFIG.RANGE_COOLDOWN());//200
                     spawnSonicBoom(world, user);
                 }
             }
@@ -108,7 +108,7 @@ public class SculkHornSonicBoom extends Item {
     private void spawnSonicBoom(World world, LivingEntity user) {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
-        int distance = ModConfigs.RANGE_DISTANCE;
+        int distance = SculkHornMod.CONFIG.RANGE_DISTANCE();
         Vec3d target = user.getPos().add(user.getRotationVector().multiply(distance)); //distance = 16
         Vec3d source = user.getPos().add(0.0, 1.6f, 0.0);
         Vec3d offsetToTarget = target.subtract(source);
