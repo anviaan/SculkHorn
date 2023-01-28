@@ -15,9 +15,7 @@ public class Helper {
     public static void causeMagicExplosionAttack(LivingEntity user, LivingEntity victim, float damageAmount, float distance){
         DamageSource magicExplosion = DamageSource.explosion(user, user).setExplosive();
         for (LivingEntity nearbyEntity : getAoeTargets(victim, user, distance)) {
-            if (!(victim instanceof AllayEntity || victim instanceof WolfEntity || victim instanceof VillagerEntity)) {
-                nearbyEntity.damage(magicExplosion, damageAmount);
-            }
+            nearbyEntity.damage(magicExplosion, damageAmount);
         }
     }
 
@@ -41,7 +39,8 @@ public class Helper {
     }
     private static boolean exludeFromDamage(LivingEntity nearbyEntity) {
         return (nearbyEntity instanceof WolfEntity) ||
-                (nearbyEntity instanceof VillagerEntity);
+                (nearbyEntity instanceof VillagerEntity) ||
+                (nearbyEntity instanceof AllayEntity);
     }
     private static boolean isUnaffected(LivingEntity entity) {
         if (entity instanceof PlayerEntity)
