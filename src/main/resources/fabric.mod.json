@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Sculk Horn Mod",
-  "description": "Creates an area or distance sonic attack with 2 new horns ",
+  "description": "Creates an area or distance sonic attack with 2 new horns.",
   "authors": [
     "anvian"
   ],
