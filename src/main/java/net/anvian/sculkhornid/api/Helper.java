@@ -2,6 +2,7 @@ package net.anvian.sculkhornid.api;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +15,9 @@ public class Helper {
     public static void causeMagicExplosionAttack(LivingEntity user, LivingEntity victim, float damageAmount, float distance){
         DamageSource magicExplosion = DamageSource.explosion(user, user).setExplosive();
         for (LivingEntity nearbyEntity : getAoeTargets(victim, user, distance)) {
-            nearbyEntity.damage(magicExplosion, damageAmount);
+            if (!(victim instanceof AllayEntity || victim instanceof WolfEntity || victim instanceof VillagerEntity)) {
+                nearbyEntity.damage(magicExplosion, damageAmount);
+            }
         }
     }
 
