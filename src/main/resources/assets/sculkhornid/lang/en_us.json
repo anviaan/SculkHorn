@@ -4,7 +4,7 @@
   "item.sculkhornid.sculkhorn": "Sculk Horn",
   "item.sculkhornid.sculkhorn_sonicboom": "Sculk Horn",
 
-  "tootip_sculkhorn_range" : "§7Range",
+  "tootip_sculkhorn_range" : "§7Distance",
   "tootip_sculkhorn_area" : "§7Area",
 
   "tooltip_info_item.sculkhorn_shif": "Press §lSHIFT§r for more Information",
@@ -22,7 +22,7 @@
   "text.config.sculk-config.option.AREA_REMOVE_EXPERIENCE": "Xp Cost",
   "text.config.sculk-config.option.AREA_DURABILITY": "Durability",
 
-  "text.config.sculk-config.section.range": "Sculk Horn Range",
+  "text.config.sculk-config.section.range": "Sculk Horn Distance",
 
   "text.config.sculk-config.option.RANGE_DAMAGE": "Damage",
   "text.config.sculk-config.option.RANGE_COOLDOWN": "SCooldown",

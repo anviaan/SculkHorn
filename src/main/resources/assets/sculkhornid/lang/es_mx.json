@@ -4,7 +4,7 @@
   "item.sculkhornid.sculkhorn": "Cuerno Sculk",
   "item.sculkhornid.sculkhorn_sonicboom": "Cuerno Sculk",
 
-  "tootip_sculkhorn_range" : "§7Rango",
+  "tootip_sculkhorn_range" : "§7Distancia",
   "tootip_sculkhorn_area" : "§7Area",
 
   "tooltip_info_item.sculkhorn_shif": "Presione §lSHIFT§r para mas información.",
@@ -22,7 +22,7 @@
   "text.config.sculk-config.option.AREA_REMOVE_EXPERIENCE": "Costo de Xp",
   "text.config.sculk-config.option.AREA_DURABILITY": "Durabilidad",
 
-  "text.config.sculk-config.section.range": "Cuerno Sculk Rango",
+  "text.config.sculk-config.section.range": "Cuerno Sculk Distance",
 
   "text.config.sculk-config.option.RANGE_DAMAGE": "Daño",
   "text.config.sculk-config.option.RANGE_COOLDOWN": "Enfriamiento",
