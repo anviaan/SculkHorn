@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Sculk Horn Mod",
-  "description": "Create a Sonic Shock from a Area Sculk Horn and create a Sonic Boom from a Range Sculk Horn",
+  "description": "Creates an area or distance sonic attack with 2 new horns ",
   "authors": [
     "anvian"
   ],
