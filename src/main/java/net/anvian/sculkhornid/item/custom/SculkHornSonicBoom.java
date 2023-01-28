@@ -11,6 +11,7 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -123,7 +124,7 @@ public class SculkHornSonicBoom extends Item {
             // Locate entities around the particle location for damage
             hit.addAll(world.getEntitiesByClass(LivingEntity.class,
                     new Box(new BlockPos(particlePos.getX(), particlePos.getY(), particlePos.getZ())).expand(2),
-                    it -> !(it instanceof WolfEntity || it instanceof VillagerEntity)));
+                    it -> !(it instanceof WolfEntity || it instanceof VillagerEntity || it instanceof AllayEntity)));
         }
 
         // Don't hit ourselves
