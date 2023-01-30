@@ -25,7 +25,7 @@
   "text.config.sculk-config.section.range": "Sculk Horn Distance",
 
   "text.config.sculk-config.option.RANGE_DAMAGE": "Damage",
-  "text.config.sculk-config.option.RANGE_COOLDOWN": "SCooldown",
+  "text.config.sculk-config.option.RANGE_COOLDOWN": "Cooldown",
   "text.config.sculk-config.option.RANGE_EXPERIENCE_LEVEL": "Xp Require level",
   "text.config.sculk-config.option.RANGE_REMOVE_EXPERIENCE": "Xp Cost",
   "text.config.sculk-config.option.RANGE_DISTANCE": "Distance",
