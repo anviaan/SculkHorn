@@ -2,13 +2,10 @@ package net.anvian.sculkhornid.config;
 
 import io.wispforest.owo.config.Option;
 import io.wispforest.owo.config.annotation.Config;
-import io.wispforest.owo.config.annotation.Modmenu;
 import io.wispforest.owo.config.annotation.SectionHeader;
 import io.wispforest.owo.config.annotation.Sync;
-import net.anvian.sculkhornid.SculkHornMod;
 
 @Config(name = "sculk-config", wrapperName = "SculkConfig")
-@Modmenu(modId = SculkHornMod.MOD_ID)
 @Sync(Option.SyncMode.OVERRIDE_CLIENT)
 public class ModConfigs{
     //sculk horn area
