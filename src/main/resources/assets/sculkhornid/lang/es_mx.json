@@ -1,7 +1,7 @@
 {
-  "itemGroup.mango": "Sculk Horn Mod",
+  "itemGroup.sculkhorn": "Sculk Horn Mod",
 
-  "tootip_sculkhorn_range" : "§7Rango",
+  "tootip_sculkhorn_range" : "§7Distancia",
   "tootip_sculkhorn_area" : "§7Area",
 
   "item.sculkhornid.sculkhorn": "Sculk Horn",
