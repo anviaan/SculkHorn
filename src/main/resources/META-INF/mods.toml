@@ -11,7 +11,8 @@ updateJSONURL="https://anvian-page.netlify.app/forge/sculkhornid.json"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/sculk-horn"
 logoFile="icon.png"
 authors="anvian"
-description="Create a Sonic Shock from a Area Sculk Horn and create a Sonic Boom from a Range Sculk Horn"
+description="Creates an area or distance sonic attack with 2 new horns."
+displayTest="MATCH_VERSION"
 [[dependencies.sculkhornid]]
     modId="forge"
     mandatory=true
