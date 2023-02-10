@@ -18,7 +18,7 @@ public class ModConfigs{
     public int AREA_DURABILITY = 350;
 
     //sculk horn distance
-    public double DISTANCE_DAMAGE_EASY = 4;
+    public double DISTANCE_DAMAGE_EASY = 4.5;
     public double DISTANCE_DAMAGE_NORMAL = 7.5;
     public double DISTANCE_DAMAGE_HARD = 11.25;
     public int DISTANCE_COOLDOWN = 200;
