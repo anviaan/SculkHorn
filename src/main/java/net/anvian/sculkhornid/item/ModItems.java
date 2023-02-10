@@ -12,9 +12,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 public class ModItems {
-
-    private static final float RANGE_DAMAGE = ((float) SculkHornMod.CONFIG.RANGE_DAMAGE())-1;
-
     public static final Item SCULKHORN =registerItem("sculkhorn", new SculkHorn(
             new FabricItemSettings()
                     .rarity(Rarity.EPIC)
@@ -26,8 +23,8 @@ public class ModItems {
             new FabricItemSettings()
                     .rarity(Rarity.EPIC)
                     .maxCount(1)
-                    .maxDamage(SculkHornMod.CONFIG.RANGE_DURABILITY())//500
-            ,RANGE_DAMAGE));//7.0f
+                    .maxDamage(SculkHornMod.CONFIG.DISTANCE_DURABILITY())//500
+            ));
 
     public static Item registerItem(String name, Item item){
         ItemGroupEvents.modifyEntriesEvent(ModItemGroup.SCULKHORNGROUP).register(entries -> entries.add(SCULKHORN));

@@ -65,7 +65,7 @@ public class SculkHorn extends Item{
             }
         }
 
-        if(user.experienceLevel < SculkHornMod.CONFIG.RANGE_EXPERIENCE_LEVEL() && !user.isCreative()){
+        if(user.experienceLevel < SculkHornMod.CONFIG.AREA_EXPERIENCE_LEVEL() && !user.isCreative()){
             return super.use(world, user, hand);
         }else{
             return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
