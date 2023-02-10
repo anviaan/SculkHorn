@@ -8,7 +8,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -16,7 +17,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,9 +38,7 @@ public class SculkHorn extends Item{
 
         float RADIUS = (float) SculkHornMod.CONFIG.AREA_RADIUS();//3.5
         int COOLDOWN = SculkHornMod.CONFIG.AREA_COOLDOWN();//300
-        float DAMAGE_EASY = (float) SculkHornMod.CONFIG.AREA_DAMAGE_EASY();//9
-        float DAMAGE_NORMAL = (float) SculkHornMod.CONFIG.AREA_DAMAGE_NORMAL();//15
-        float DAMAGE_HARD = (float) SculkHornMod.CONFIG.AREA_DAMAGE_HARD();//22.5
+        float DAMAGE= (float) SculkHornMod.CONFIG.AREA_DAMAGE();//11.5
 
         if (!world.isClient) {
             if(user.experienceLevel >= SculkHornMod.CONFIG.AREA_EXPERIENCE_LEVEL() || user.isCreative()){ //5
@@ -49,13 +47,7 @@ public class SculkHorn extends Item{
                     itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
                 sonicBoom(user, user, RADIUS);
-                if(world.getDifficulty() == Difficulty.EASY){
-                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_EASY, RADIUS);
-                }else if(world.getDifficulty() == Difficulty.HARD){
-                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_HARD, RADIUS);
-                }else{
-                    Helper.causeMagicExplosionAttack(user, user, DAMAGE_NORMAL, RADIUS);
-                }
+                Helper.causeMagicExplosionAttack(user, user, DAMAGE, RADIUS);
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,60,0));
                 user.getItemCooldownManager().set(this, COOLDOWN);
             }

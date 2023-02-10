@@ -24,7 +24,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -90,9 +89,7 @@ public class SculkHornSonicBoom extends Item{
     private void spawnSonicBoom(World world, LivingEntity user) {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
-        float DAMAGE_EASY = (float) SculkHornMod.CONFIG.DISTANCE_DAMAGE_EASY();//4
-        float DAMAGE_NORMAL = (float) SculkHornMod.CONFIG.DISTANCE_DAMAGE_NORMAL();//7.5
-        float DAMAGE_HARD = (float) SculkHornMod.CONFIG.DISTANCE_DAMAGE_HARD();//11.25
+        float DAMAGE = (float) SculkHornMod.CONFIG.DISTANCE_DAMAGE();//7.75
 
         int distance = SculkHornMod.CONFIG.DISTANCE_DISTANCE();
         Vec3d target = user.getPos().add(user.getRotationVector().multiply(distance)); //distance = 16
@@ -118,13 +115,7 @@ public class SculkHornSonicBoom extends Item{
         // Find
         for (Entity hitTarget : hit) {
             if(hitTarget instanceof LivingEntity living) {
-                if(world.getDifficulty() == Difficulty.EASY){
-                    living.damage(DamageSource.sonicBoom(user), DAMAGE_EASY);//4.5
-                }else if(world.getDifficulty() == Difficulty.HARD){
-                    living.damage(DamageSource.sonicBoom(user), DAMAGE_HARD);//11.25
-                }else{
-                    living.damage(DamageSource.sonicBoom(user), DAMAGE_NORMAL);//7.5
-                }
+                living.damage(DamageSource.sonicBoom(user), DAMAGE);//7.75
                 double vertical = 0.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
                 double horizontal = 2.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
                 living.addVelocity(normalized.getX()*horizontal, normalized.getY()*vertical, normalized.getZ()*horizontal);
