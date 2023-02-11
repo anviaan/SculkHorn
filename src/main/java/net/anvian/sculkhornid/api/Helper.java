@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Helper {
     public static float ticksToSeconds(int cooldown){
-        return (float)cooldown / 40;
+        return (float)cooldown / 20;
     }
 
     public static void causeSonicBoomAttack(LivingEntity user, LivingEntity victim, float damageAmount, float distance){
