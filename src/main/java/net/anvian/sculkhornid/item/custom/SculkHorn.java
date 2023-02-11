@@ -59,7 +59,7 @@ public class SculkHorn extends Item{
                 }
                 sonicBoom(user, user, RADIUS);
                 Helper.causeSonicBoomAttack(user, user, DAMAGE, RADIUS);
-                user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,60,0));
+                user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,30,0));
                 user.getItemCooldownManager().set(this, COOLDOWN);
             }
         }if(world.isClient){
