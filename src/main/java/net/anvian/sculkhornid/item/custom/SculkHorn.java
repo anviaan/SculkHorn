@@ -7,7 +7,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -51,10 +50,10 @@ public class SculkHorn extends Item {
                     player.giveExperienceLevels(-55);
                     itemstack.setCount(itemstack.getCount()-1);
                 }
-                sonicBoom(player, player, 3.5f);
+                sonicBoom(player, player, RADIUS);
                 Helper.causeMagicExplosionAttack(player, player,DAMAGE,RADIUS);
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,30,0));
-                player.getCooldowns().addCooldown(this,300);
+                player.getCooldowns().addCooldown(this,COOLDOWN);
             }
         }if(level.isClientSide){
             if (player.experienceLevel >= 5 || player.isCreative()){
