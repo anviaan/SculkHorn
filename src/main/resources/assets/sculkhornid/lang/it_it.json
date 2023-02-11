@@ -2,7 +2,14 @@
     "itemGroup.sculkhornid.sculkhorngroup": "SCULK HORN MOD",
     "item.sculkhornid.sculkhorn": "Corno scolk",
     "item.sculkhornid.sculkhorn_sonicboom": "Corno scolk",
-    "tootip_sculkhorn_distance": "§7Distanza",
+    "tooltip_info_item.sculkhorn_shif": "§7Premere Shift per ulteriori informazioni",
+    "null": "",
     "tootip_sculkhorn_area": "§7La zona",
-    "tooltip_info_item.sculkhorn_shif": "Premere §lshift§r per ulteriori informazioni"
+    "tooltip.damage.area": "§2%d Danno di attacco",
+    "tooltip.cooldown.area": "§2%ds Raffreddare",
+    "tooltip.radius": "§2%d Raggio",
+    "tootip_sculkhorn_distance": "§7Distanza",
+    "tooltip.damage.distance": "§2%d Danno di attacco",
+    "tooltip.cooldown.distance": "§2%ds Raffreddare",
+    "tooltip.distance": "§2%d Distanza"
 }

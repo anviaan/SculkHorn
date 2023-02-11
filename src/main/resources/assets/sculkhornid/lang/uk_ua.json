@@ -2,7 +2,14 @@
     "itemGroup.sculkhornid.sculkhorngroup": "Sculk Horn Mod",
     "item.sculkhornid.sculkhorn": "Скульптурний ріг",
     "item.sculkhornid.sculkhorn_sonicboom": "Скульптурний ріг",
+    "tooltip_info_item.sculkhorn_shif": "§7Натисніть Shift для отримання додаткової інформації",
+    "null": "",
+    "tootip_sculkhorn_area": "§7Область",
+    "tooltip.damage.area": "§2%dПошкодження нападу",
+    "tooltip.cooldown.area": "§2%ds Заспокойся",
+    "tooltip.radius": "§2%d Радіус",
     "tootip_sculkhorn_distance": "§7Відстань",
-    "tootip_sculkhorn_area": "§7Площа",
-    "tooltip_info_item.sculkhorn_shif": "Натисніть §lshift§r для отримання додаткової інформації"
+    "tooltip.damage.distance": "§2%d Пошкодження нападу",
+    "tooltip.cooldown.distance": "§2%ds Заспокойся",
+    "tooltip.distance": "§2%d Відстань"
 }

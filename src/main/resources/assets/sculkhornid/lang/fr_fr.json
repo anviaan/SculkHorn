@@ -2,7 +2,14 @@
     "itemGroup.sculkhornid.sculkhorngroup": "Mod de corne de scincaux",
     "item.sculkhornid.sculkhorn": "Corne de scics",
     "item.sculkhornid.sculkhorn_sonicboom": "Corne de scics",
-    "tootip_sculkhorn_distance": "§7Distance",
-    "tootip_sculkhorn_area": "§7Zone",
-    "tooltip_info_item.sculkhorn_shif": "Appuyez sur §LShift§r pour plus d'informations"
+    "tooltip_info_item.sculkhorn_shif": "§7 Appuyez sur Shift pour plus d'informations",
+    "null": "",
+    "tootip_sculkhorn_area": "§7 Zone",
+    "tooltip.damage.area": "§2%d Dégâts d'attaque",
+    "tooltip.cooldown.area": "§2%d Refroidir",
+    "tooltip.radius": "§2%d Rayon",
+    "tootip_sculkhorn_distance": "§7 Distance",
+    "tooltip.damage.distance": "§2%d Dégâts d'attaque",
+    "tooltip.cooldown.distance": "§2%ds Refroidir",
+    "tooltip.distance": "§2%d Distance"
 }

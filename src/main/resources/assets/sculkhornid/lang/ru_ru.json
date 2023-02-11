@@ -2,7 +2,14 @@
     "itemGroup.sculkhornid.sculkhorngroup": "Sculk Horn Mod",
     "item.sculkhornid.sculkhorn": "Скулк Рог",
     "item.sculkhornid.sculkhorn_sonicboom": "Скулк Рог",
-    "tootip_sculkhorn_distance": "§7Расстояние",
+    "tooltip_info_item.sculkhorn_shif": "§7Нажмите сдвиг для получения дополнительной информации",
+    "null": "",
     "tootip_sculkhorn_area": "§7Область",
-    "tooltip_info_item.sculkhorn_shif": "Нажмите §lshift§r для получения дополнительной информации"
+    "tooltip.damage.area": "§2%d Урон от атаки",
+    "tooltip.cooldown.area": "§2%ds Остывать",
+    "tooltip.radius": "§2%d Радиус",
+    "tootip_sculkhorn_distance": "§7Расстояние",
+    "tooltip.damage.distance": "§2%d Урон от атаки",
+    "tooltip.cooldown.distance": "§2%ds Остывать",
+    "tooltip.distance": "§2%d Расстояние"
 }

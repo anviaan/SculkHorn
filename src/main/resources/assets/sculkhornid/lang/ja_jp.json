@@ -2,7 +2,14 @@
     "itemGroup.sculkhornid.sculkhorngroup": "Sculk Horn mod",
     "item.sculkhornid.sculkhorn": "スカルクホーン",
     "item.sculkhornid.sculkhorn_sonicboom": "スカルクホーン",
+    "tooltip_info_item.sculkhorn_shif": "§7詳細については、Shiftを押してください",
+    "null": "",
+    "tootip_sculkhorn_area": "§7エリア",
+    "tooltip.damage.area": "§2%ds 攻撃ダメージ",
+    "tooltip.cooldown.area": "§2%d クールダウン",
+    "tooltip.radius": "§2%d 半径",
     "tootip_sculkhorn_distance": "§7距離",
-    "tootip_sculkhorn_area": "§7範囲",
-    "tooltip_info_item.sculkhorn_shif": "詳細については、§lshift§rを押してください"
+    "tooltip.damage.distance": "§2%d 攻撃ダメージ",
+    "tooltip.cooldown.distance": "§2%ds クールダウン",
+    "tooltip.distance": "§2%d 距離"
 }

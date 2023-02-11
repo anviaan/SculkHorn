@@ -1,7 +1,10 @@
 package net.anvian.sculkhornid.item.custom;
 
 import net.anvian.sculkhornid.SculkHornMod;
+import net.anvian.sculkhornid.api.Helper;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -36,6 +39,10 @@ public class SculkHornSonicBoom extends Item{
         super(settings);
     }
 
+    float DAMAGE = (float) SculkHornMod.CONFIG.DISTANCE_DAMAGE();//7.75
+    int DISTANCE = SculkHornMod.CONFIG.DISTANCE_DISTANCE();//16
+    int COOLDOWN =  SculkHornMod.CONFIG.DISTANCE_COOLDOWN();//200
+
     @Override
     public boolean hasGlint(ItemStack stack) {
         return true;
@@ -43,7 +50,15 @@ public class SculkHornSonicBoom extends Item{
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("tootip_sculkhorn_distance"));
+        if (Screen.hasShiftDown()){
+            tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tooltip.distance", DISTANCE)));
+            tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tooltip.cooldown.distance", Helper.ticksToSeconds(COOLDOWN))));
+            tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tooltip.damage.distance", DAMAGE)));
+        }else {
+            tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tooltip_info_item.sculkhorn_shif")));
+        }
+        tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("null")));
+        tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tootip_sculkhorn_distance")));
     }
 
     @Override
@@ -78,7 +93,7 @@ public class SculkHornSonicBoom extends Item{
                         player.addExperience(SculkHornMod.CONFIG.DISTANCE_REMOVE_EXPERIENCE());//-55
                         stack.damage(1, user, x -> x.sendToolBreakStatus(Hand.MAIN_HAND));
                     }
-                    player.getItemCooldownManager().set(this, SculkHornMod.CONFIG.DISTANCE_COOLDOWN());//200
+                    player.getItemCooldownManager().set(this,COOLDOWN);//200
                     spawnSonicBoom(world, user);
                 }
             }
@@ -89,10 +104,7 @@ public class SculkHornSonicBoom extends Item{
     private void spawnSonicBoom(World world, LivingEntity user) {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_WARDEN_SONIC_BOOM, SoundCategory.PLAYERS, 1.0f, 1.0f);
 
-        float DAMAGE = (float) SculkHornMod.CONFIG.DISTANCE_DAMAGE();//7.75
-
-        int distance = SculkHornMod.CONFIG.DISTANCE_DISTANCE();
-        Vec3d target = user.getPos().add(user.getRotationVector().multiply(distance)); //distance = 16
+        Vec3d target = user.getPos().add(user.getRotationVector().multiply(DISTANCE)); //DISTANCE = 16
         Vec3d source = user.getPos().add(0.0, 1.6f, 0.0);
         Vec3d offsetToTarget = target.subtract(source);
         Vec3d normalized = offsetToTarget.normalize();

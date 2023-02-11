@@ -4,8 +4,17 @@
   "item.sculkhornid.sculkhorn": "Cuerno Sculk",
   "item.sculkhornid.sculkhorn_sonicboom": "Cuerno Sculk",
 
-  "tootip_sculkhorn_distance" : "§7Distancia",
-  "tootip_sculkhorn_area" : "§7Area",
+  "tooltip_info_item.sculkhorn_shif": "§7 Presione SHIFT para mas información.",
 
-  "tooltip_info_item.sculkhorn_shif": "Presione §lSHIFT§r para mas información."
+  "null" : "",
+
+  "tootip_sculkhorn_area" : "§7Area",
+  "tooltip.damage.area" : "§2%d Daño por golpe",
+  "tooltip.cooldown.area" : "§2%ds Enfriamento",
+  "tooltip.radius" : "§2%d Radio",
+
+  "tootip_sculkhorn_distance" : "§7Distancia",
+  "tooltip.damage.distance" : "§2%d Daño por golpe",
+  "tooltip.cooldown.distance" : "§2%ds Enfriamento",
+  "tooltip.distance" : "§2%d Distancia"
 }
