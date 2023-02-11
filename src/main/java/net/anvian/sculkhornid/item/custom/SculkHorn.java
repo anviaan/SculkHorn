@@ -53,7 +53,7 @@ public class SculkHorn extends Item {
                 }
                 sonicBoom(player, player, 3.5f);
                 Helper.causeMagicExplosionAttack(player, player,DAMAGE,RADIUS);
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,6010));
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,30,0));
                 player.getCooldowns().addCooldown(this,300);
             }
         }if(level.isClientSide){
