@@ -14,6 +14,9 @@ public class ModConfigs{
     public int AREA_EXPERIENCE_LEVEL = 5;
     public int AREA_REMOVE_EXPERIENCE = -55;
     public int AREA_DURABILITY = 350;
+    public boolean AREA_SPEED = true;
+    public int AREA_SPEED_DURATION = 30;
+    public int AREA_SPEED_AMPLIFIER = 0;
 
     //sculk horn distance
     public double DISTANCE_DAMAGE = 8;
