@@ -1,19 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "SGS",
+    "#S#"
+  ],
   "key": {
     "#": {
       "item": "minecraft:echo_shard"
     },
-    "@": {
+    "S": {
+      "item": "minecraft:sculk_catalyst"
+    },
+    "G": {
       "item": "minecraft:goat_horn"
     }
   },
-  "pattern": [
-    "###",
-    "#@#",
-    "###"
-  ],
   "result": {
-    "item": "sculkhornid:sculkhorn"
+    "item": "sculkhornid:sculkhorn",
+    "count": 1
   }
 }
