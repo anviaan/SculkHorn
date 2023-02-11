@@ -47,7 +47,7 @@ public class SculkHorn extends Item{
                     itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
                 sonicBoom(user, user, RADIUS);
-                Helper.causeMagicExplosionAttack(user, user, DAMAGE, RADIUS);
+                Helper.causeSonicBoomAttack(user, user, DAMAGE, RADIUS);
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,60,0));
                 user.getItemCooldownManager().set(this, COOLDOWN);
             }
