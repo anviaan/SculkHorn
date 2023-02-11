@@ -15,10 +15,10 @@ public class ItemGroup {
 
     @SubscribeEvent
     public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
-        SCULKHORN = event.registerCreativeModeTab(new ResourceLocation(SculkHornMod.MOD_ID, "sculkhorn"),
+        SCULKHORN = event.registerCreativeModeTab(new ResourceLocation(SculkHornMod.MOD_ID, "sculkhorngroup"),
                 builder -> builder
                         .icon(()-> new ItemStack(ModItems.SCULKHORN.get()))
-                        .title(Component.translatable("itemGroup.sculkhorn"))
+                        .title(Component.translatable("itemGroup.sculkhorngroup"))
                         .build());
     }
 }

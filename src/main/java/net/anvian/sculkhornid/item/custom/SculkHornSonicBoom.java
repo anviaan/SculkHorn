@@ -1,7 +1,8 @@
 package net.anvian.sculkhornid.item.custom;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
+import net.anvian.sculkhornid.api.Helper;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -13,12 +14,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -35,29 +34,27 @@ import java.util.List;
 import java.util.Set;
 
 public class SculkHornSonicBoom extends Item {
-    private final Multimap<Attribute, AttributeModifier> attributeModifiers;
-
-    public SculkHornSonicBoom(Properties properties, float attackDamage) {
+    public SculkHornSonicBoom(Properties properties) {
         super(properties);
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", attackDamage, AttributeModifier.Operation.ADDITION));
-        this.attributeModifiers = builder.build();
     }
-    @Override
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        if(slot == EquipmentSlot.MAINHAND) {
-            return attributeModifiers;
-        }
-        return super.getDefaultAttributeModifiers(slot);
-    }
+    float DAMAGE = (float) 8.0;
+    int DISTANCE = 16;
+    int COOLDOWN =  200;
     @Override
     public boolean isFoil(ItemStack itemStack) {
         return true;
     }
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Component.translatable("tootip_sculkhorn_range"));
-        super.appendHoverText(itemStack,level,list,tooltipFlag);
+        if (Screen.hasShiftDown()){
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.distance", DISTANCE)));
+            list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("tooltip.cooldown.distance", Helper.ticksToSeconds(COOLDOWN))));
+            list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("tooltip.damage.distance", DAMAGE)));
+        }else {
+            list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("tooltip_info_item.sculkhorn_shif")));
+        }
+        list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("null")));
+        list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("tootip_sculkhorn_distance")));
     }
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -90,7 +87,7 @@ public class SculkHornSonicBoom extends Item {
                         player.giveExperienceLevels(-55);
                         stack.setCount(stack.getCount()-1);
                     }
-                    player.getCooldowns().addCooldown(this,200);
+                    player.getCooldowns().addCooldown(this,COOLDOWN);
                     spawnSonicBoom(level, user);
                 }
             }
@@ -101,7 +98,7 @@ public class SculkHornSonicBoom extends Item {
     private void spawnSonicBoom(Level level, LivingEntity user){
         level.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 1.0f,1.0f);
 
-        Vec3 target = user.position().add(user.getLookAngle().scale(16));//distance
+        Vec3 target = user.position().add(user.getLookAngle().scale(DISTANCE));//distance
         Vec3 source = user.position().add(0.0,1.6f,0.0);
         Vec3 offSetToTarget = target.subtract(source);
         Vec3 normalizes = offSetToTarget.normalize();
@@ -113,14 +110,16 @@ public class SculkHornSonicBoom extends Item {
 
             hit.addAll(level.getEntitiesOfClass(LivingEntity.class,
                     new AABB(new BlockPos(particlePos.x, particlePos.y, particlePos.z)).inflate(2),
-                    it -> !(it instanceof Wolf || it instanceof Villager)));
+                    it -> !(it instanceof Wolf || it instanceof Villager || it instanceof Allay)));
 
             hit.remove(user);
 
             for (Entity hitTarget : hit){
                 if(hitTarget instanceof  LivingEntity living){
-                    living.hurt(DamageSource.sonicBoom(user),10.0f);
-                    living.push(normalizes.x(), normalizes.y(), normalizes.z());
+                    living.hurt(DamageSource.sonicBoom(user),DAMAGE);
+                    double vertical = 0.5 * (1.0 - living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+                    double horizontal = 2.5 * (1.0 - living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+                    living.push(normalizes.x()*horizontal, normalizes.y()*vertical, normalizes.z()*horizontal);
                 }
             }
         }

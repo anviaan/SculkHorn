@@ -11,6 +11,9 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 
 public class Helper {
+    public static float ticksToSeconds(int cooldown){
+        return (float)cooldown / 20;
+    }
     public static void causeMagicExplosionAttack(LivingEntity user, LivingEntity victim, float damageAmount, float distance){
         DamageSource magicExplosion = DamageSource.explosion(user, user).setExplosion();
         for(LivingEntity nearbyEntity : getAoeTargets(victim, user, distance)){

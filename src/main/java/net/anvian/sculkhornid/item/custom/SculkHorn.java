@@ -1,6 +1,8 @@
 package net.anvian.sculkhornid.item.custom;
 
 import net.anvian.sculkhornid.api.Helper;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -24,10 +26,20 @@ import java.util.List;
 
 public class SculkHorn extends Item {
     public SculkHorn(Properties properties) {super(properties);}
+    float DAMAGE= (float) 12.0;
+    int COOLDOWN = 300;
+    float RADIUS = (float) 3.5;
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(Component.translatable("tootip_sculkhorn_area"));
-        super.appendHoverText(itemStack,level,list,tooltipFlag);
+        if (Screen.hasShiftDown()){
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.radius", RADIUS)));
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown.area", Helper.ticksToSeconds(COOLDOWN))));
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.damage.area", DAMAGE)));
+        }else {
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip_info_item.sculkhorn_shif")));
+        }
+        list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("null")));
+        list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tootip_sculkhorn_area")));
     }
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
@@ -40,13 +52,7 @@ public class SculkHorn extends Item {
                     itemstack.setCount(itemstack.getCount()-1);
                 }
                 sonicBoom(player, player, 3.5f);
-                if(level.getDifficulty() == Difficulty.EASY){
-                    Helper.causeMagicExplosionAttack(player, player,9,3.5f);
-                }else if(level.getDifficulty() == Difficulty.HARD){
-                    Helper.causeMagicExplosionAttack(player, player,22.5f,3.5f);
-                }else{
-                    Helper.causeMagicExplosionAttack(player, player,15,3.5f);
-                }
+                Helper.causeMagicExplosionAttack(player, player,DAMAGE,RADIUS);
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,6010));
                 player.getCooldowns().addCooldown(this,300);
             }

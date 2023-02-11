@@ -1,9 +1,20 @@
 {
-  "itemGroup.sculkhorn": "Sculk Horn Mod",
+  "itemGroup.sculkhorngroup": "Sculk Horn Mod",
 
-  "tootip_sculkhorn_range" : "§7Distancia",
+  "item.sculkhornid.sculkhorn": "Cuerno Sculk",
+  "item.sculkhornid.sculkhorn_sonicboom": "Cuerno Sculk",
+
+  "tooltip_info_item.sculkhorn_shif": "§7 Presione SHIFT para mas información.",
+
+  "null" : "",
+
   "tootip_sculkhorn_area" : "§7Area",
+  "tooltip.damage.area" : "§2%d Daño de ataque",
+  "tooltip.cooldown.area" : "§2%ds Enfriamento",
+  "tooltip.radius" : "§2%d Radio",
 
-  "item.sculkhornid.sculkhorn": "Sculk Horn",
-  "item.sculkhornid.sculkhorn_sonicboom": "Sculk Horn"
+  "tootip_sculkhorn_distance" : "§7Distancia",
+  "tooltip.damage.distance" : "§2%d Daño de ataque",
+  "tooltip.cooldown.distance" : "§2%ds Enfriamento",
+  "tooltip.distance" : "§2%d Distancia"
 }
