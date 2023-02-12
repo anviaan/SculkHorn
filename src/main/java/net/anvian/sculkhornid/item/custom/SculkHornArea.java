@@ -1,6 +1,7 @@
 package net.anvian.sculkhornid.item.custom;
 
 import net.anvian.sculkhornid.api.Helper;
+import net.anvian.sculkhornid.config.ModConfigArea;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,11 +24,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SculkHorn extends Item {
-    public SculkHorn(Properties properties) {super(properties);}
-    float DAMAGE= (float) 12.0;
-    int COOLDOWN = 300;
-    float RADIUS = (float) 3.5;
+public class SculkHornArea extends Item {
+    public SculkHornArea(Properties properties) {super(properties);}
+    float DAMAGE= ModConfigArea.AREA_DAMAGE.get().floatValue();
+    int COOLDOWN = ModConfigArea.AREA_COOLDOWN.get();
+    float RADIUS = ModConfigArea.AREA_RADIUS.get().floatValue();
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()){
@@ -45,23 +46,26 @@ public class SculkHorn extends Item {
         ItemStack itemstack = player.getItemInHand(interactionHand);
 
         if(!level.isClientSide){
-            if(player.experienceLevel >= 5 || player.isCreative()){
+            if(player.experienceLevel >= ModConfigArea.AREA_EXPERIENCE_LEVEL.get() || player.isCreative()){
                 if(player.isCreative()){
-                    player.giveExperienceLevels(-55);
+                    player.giveExperienceLevels(ModConfigArea.AREA_REMOVE_EXPERIENCE.get());
                     itemstack.setCount(itemstack.getCount()-1);
                 }
                 sonicBoom(player, player, RADIUS);
                 Helper.causeMagicExplosionAttack(player, player,DAMAGE,RADIUS);
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,30,0));
+                if(ModConfigArea.AREA_SPEED.get()){
+                    player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,
+                            ModConfigArea.AREA_SPEED_DURATION.get(),ModConfigArea.AREA_SPEED_AMPLIFIER.get()));
+                }
                 player.getCooldowns().addCooldown(this,COOLDOWN);
             }
         }if(level.isClientSide){
-            if (player.experienceLevel >= 5 || player.isCreative()){
+            if (player.experienceLevel >= ModConfigArea.AREA_EXPERIENCE_LEVEL.get() || player.isCreative()){
                 level.playSound(player, player, SoundEvents.WARDEN_SONIC_BOOM, SoundSource.RECORDS,1.0f,1.0f);
             }
         }
 
-        if(player.experienceLevel < 5 && player.isCreative()){
+        if(player.experienceLevel < ModConfigArea.AREA_EXPERIENCE_LEVEL.get() && player.isCreative()){
             return super.use(level, player,interactionHand);
         }else{
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);

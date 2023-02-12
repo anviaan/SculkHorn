@@ -1,6 +1,7 @@
 package net.anvian.sculkhornid.item.custom;
 
 import net.anvian.sculkhornid.api.Helper;
+import net.anvian.sculkhornid.config.ModConfigDistance;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
@@ -33,13 +34,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class SculkHornSonicBoom extends Item {
-    public SculkHornSonicBoom(Properties properties) {
+public class SculkHornDistance extends Item {
+    public SculkHornDistance(Properties properties) {
         super(properties);
     }
-    float DAMAGE = (float) 8.0;
-    int DISTANCE = 16;
-    int COOLDOWN =  200;
+    float DAMAGE = ModConfigDistance.DISTANCE_DAMAGE.get().floatValue();
+    int DISTANCE = ModConfigDistance.DISTANCE_DISTANCE.get();
+    int COOLDOWN =  ModConfigDistance.DISTANCE_COOLDOWN.get();
     @Override
     public boolean isFoil(ItemStack itemStack) {
         return true;
@@ -58,7 +59,7 @@ public class SculkHornSonicBoom extends Item {
     }
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if(player.experienceLevel>= 5 || player.isCreative()){
+        if(player.experienceLevel>= ModConfigDistance.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()){
             player.startUsingItem(hand);
         }
         return super.use(level, player, hand);
@@ -82,9 +83,9 @@ public class SculkHornSonicBoom extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         if(!level.isClientSide) {
             if(user instanceof Player player) {
-                if(player.experienceLevel >= 5 || player.isCreative()){
+                if(player.experienceLevel >= ModConfigDistance.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()){
                     if(!player.isCreative()){
-                        player.giveExperienceLevels(-55);
+                        player.giveExperienceLevels(ModConfigDistance.DISTANCE_REMOVE_EXPERIENCE.get());
                         stack.setCount(stack.getCount()-1);
                     }
                     player.getCooldowns().addCooldown(this,COOLDOWN);

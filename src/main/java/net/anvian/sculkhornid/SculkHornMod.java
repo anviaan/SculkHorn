@@ -1,6 +1,7 @@
 package net.anvian.sculkhornid;
 
 import com.mojang.logging.LogUtils;
+import net.anvian.sculkhornid.config.ModConfigs;
 import net.anvian.sculkhornid.item.ItemGroup;
 import net.anvian.sculkhornid.item.ModItems;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,13 +21,15 @@ public class SculkHornMod
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModConfigs.registerConfig();
+
         ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
-        MinecraftForge.EVENT_BUS.register(this);
-
         modEventBus.addListener(this::addCreative);
+
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
