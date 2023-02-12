@@ -4,6 +4,7 @@ import io.wispforest.owo.config.Option;
 import io.wispforest.owo.config.annotation.Config;
 import io.wispforest.owo.config.annotation.Sync;
 
+@SuppressWarnings("unused")
 @Config(name = "sculk-config", wrapperName = "SculkConfig")
 @Sync(Option.SyncMode.OVERRIDE_CLIENT)
 public class ModConfigs{
@@ -25,4 +26,5 @@ public class ModConfigs{
     public int DISTANCE_EXPERIENCE_LEVEL = 5;
     public int DISTANCE_REMOVE_EXPERIENCE = -55;
     public int DISTANCE_DURABILITY = 500;
+    public int DISTANCE_USE_TIME = 10;
 }

@@ -75,8 +75,11 @@ public class SculkHornDistance extends Item{
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack) {
-        return 10;//x!= 0
+    public int getMaxUseTime(ItemStack stack) { //x!= 0
+        if (SculkHornMod.CONFIG.DISTANCE_USE_TIME() <= 0){
+            return 1;
+        }
+        return SculkHornMod.CONFIG.DISTANCE_USE_TIME();//10
     }
 
     @Override
