@@ -13,6 +13,7 @@ public class ModConfigDistance {
     public static ForgeConfigSpec.IntValue DISTANCE_EXPERIENCE_LEVEL; //5;
     public static ForgeConfigSpec.IntValue DISTANCE_REMOVE_EXPERIENCE; //-55;
     public static ForgeConfigSpec.IntValue DISTANCE_DURABILITY; //500;
+    public static ForgeConfigSpec.IntValue DISTANCE_USE_TIME;//10
 
     private static final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec config;
@@ -31,6 +32,7 @@ public class ModConfigDistance {
         DISTANCE_EXPERIENCE_LEVEL = config.defineInRange("distance_EXPERIENCE_LEVEL", 5, 0, 10000);
         DISTANCE_REMOVE_EXPERIENCE = config.defineInRange("distance_REMOVE_EXPERIENCE", -55, -10000, 10000);
         DISTANCE_DURABILITY = config.defineInRange("distance_DURABILITY", 500, 0, 10000);
+        DISTANCE_USE_TIME = config.defineInRange("distance_USE_TIME", 10,1, 10000);
     }
     public static void loadConfig(ForgeConfigSpec config, String path) {
         final CommentedFileConfig file = CommentedFileConfig.builder(new File(path)).sync().autosave().writingMode(WritingMode.REPLACE).build();

@@ -71,7 +71,7 @@ public class SculkHornDistance extends Item {
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return 10;
+        return ModConfigDistance.DISTANCE_USE_TIME.get();
     }
 
     @Override
