@@ -34,8 +34,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class SculkHornSonicBoom extends Item{
-    public SculkHornSonicBoom(Settings settings) {
+public class SculkHornDistance extends Item{
+    public SculkHornDistance(Settings settings) {
         super(settings);
     }
 

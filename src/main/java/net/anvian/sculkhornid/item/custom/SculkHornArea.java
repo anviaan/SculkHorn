@@ -24,8 +24,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SculkHorn extends Item{
-    public SculkHorn(Settings settings) {
+public class SculkHornArea extends Item{
+    public SculkHornArea(Settings settings) {
         super(settings);
     }
 
