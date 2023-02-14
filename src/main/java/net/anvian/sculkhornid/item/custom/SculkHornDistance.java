@@ -41,10 +41,7 @@ public class SculkHornDistance extends Item {
     float DAMAGE = ModConfigDistance.DISTANCE_DAMAGE.get().floatValue();
     int DISTANCE = ModConfigDistance.DISTANCE_DISTANCE.get();
     int COOLDOWN =  ModConfigDistance.DISTANCE_COOLDOWN.get();
-    @Override
-    public boolean isFoil(ItemStack itemStack) {
-        return true;
-    }
+
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()){
