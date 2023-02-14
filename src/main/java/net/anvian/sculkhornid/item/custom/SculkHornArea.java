@@ -65,7 +65,7 @@ public class SculkHornArea extends Item {
             }
         }
 
-        if(player.experienceLevel < ModConfigArea.AREA_EXPERIENCE_LEVEL.get() && player.isCreative()){
+        if(player.experienceLevel < ModConfigArea.AREA_EXPERIENCE_LEVEL.get() && !player.isCreative()){
             return super.use(level, player,interactionHand);
         }else{
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
