@@ -44,11 +44,6 @@ public class SculkHornDistance extends Item{
     int COOLDOWN =  SculkHornMod.CONFIG.DISTANCE_COOLDOWN();//200
 
     @Override
-    public boolean hasGlint(ItemStack stack) {
-        return true;
-    }
-
-    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (Screen.hasShiftDown()){
             tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tooltip.distance", DISTANCE)));
