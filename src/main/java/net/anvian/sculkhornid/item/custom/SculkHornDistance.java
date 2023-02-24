@@ -117,7 +117,7 @@ public class SculkHornDistance extends Item {
                     living.hurt(DamageSource.sonicBoom(user),DAMAGE);
                     double vertical = 0.5 * (1.0 - living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
                     double horizontal = 2.5 * (1.0 - living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
-                    living.push(normalizes.x()*horizontal, normalizes.y()*vertical, normalizes.z()*horizontal);
+                    living.push(normalizes.x()/horizontal, normalizes.y()/vertical, normalizes.z()/horizontal);
                 }
             }
         }
