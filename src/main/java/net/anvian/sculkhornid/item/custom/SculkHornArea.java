@@ -47,9 +47,11 @@ public class SculkHornArea extends Item {
 
         if(!level.isClientSide){
             if(player.experienceLevel >= ModConfigArea.AREA_EXPERIENCE_LEVEL.get() || player.isCreative()){
-                if(player.isCreative()){
-                    player.giveExperienceLevels(ModConfigArea.AREA_REMOVE_EXPERIENCE.get());
-                    itemstack.setCount(itemstack.getCount()-1);
+                if(!player.isCreative()){
+                    player.giveExperiencePoints(ModConfigArea.AREA_REMOVE_EXPERIENCE.get());
+                    itemstack.hurtAndBreak(1, player, (entity) -> {
+                        entity.broadcastBreakEvent(interactionHand);
+                    });
                 }
                 sonicBoom(player, player, RADIUS);
                 Helper.causeMagicExplosionAttack(player, player,DAMAGE,RADIUS);

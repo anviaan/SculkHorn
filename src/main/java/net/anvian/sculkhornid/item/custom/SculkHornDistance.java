@@ -78,12 +78,16 @@ public class SculkHornDistance extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
+        InteractionHand interactionHand = user.getUsedItemHand();
+
         if(!level.isClientSide) {
             if(user instanceof Player player) {
                 if(player.experienceLevel >= ModConfigDistance.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()){
                     if(!player.isCreative()){
-                        player.giveExperienceLevels(ModConfigDistance.DISTANCE_REMOVE_EXPERIENCE.get());
-                        stack.setCount(stack.getCount()-1);
+                        player.giveExperiencePoints(ModConfigDistance.DISTANCE_REMOVE_EXPERIENCE.get());
+                        stack.hurtAndBreak(1, player, (entity) -> {
+                            entity.broadcastBreakEvent(interactionHand);
+                        });
                     }
                     player.getCooldowns().addCooldown(this,COOLDOWN);
                     spawnSonicBoom(level, user);
