@@ -13,7 +13,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -111,14 +110,14 @@ public class SculkHornDistance extends Item {
             ((ServerLevel) level).sendParticles(ParticleTypes.SONIC_BOOM, particlePos.x, particlePos.y, particlePos.z, 1,0.0, 0.0, 0.0, 0.0);
 
             hit.addAll(level.getEntitiesOfClass(LivingEntity.class,
-                    new AABB(new BlockPos(particlePos.x, particlePos.y, particlePos.z)).inflate(2),
+                    new AABB(new BlockPos((int) particlePos.x, (int) particlePos.y, (int) particlePos.z)).inflate(2),
                     it -> !(it instanceof Wolf || it instanceof Villager || it instanceof Allay)));
 
             hit.remove(user);
 
             for (Entity hitTarget : hit){
                 if(hitTarget instanceof  LivingEntity living){
-                    living.hurt(DamageSource.sonicBoom(user),DAMAGE);
+                    living.hurt(level.damageSources().sonicBoom(user),DAMAGE);
                     double vertical = 0.5 * (1.0 - living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
                     double horizontal = 2.5 * (1.0 - living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
                     living.push(normalizes.x()/horizontal, normalizes.y()/vertical, normalizes.z()/horizontal);

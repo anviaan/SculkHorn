@@ -6,6 +6,7 @@ import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class Helper {
     public static float ticksToSeconds(int cooldown){
         return (float)cooldown / 20;
     }
-    public static void causeMagicExplosionAttack(LivingEntity user, LivingEntity victim, float damageAmount, float distance){
-        DamageSource magicExplosion = DamageSource.explosion(user, user).setExplosion();
+    public static void causeMagicExplosionAttack(Level level, LivingEntity user, LivingEntity victim, float damageAmount, float distance){
+        DamageSource magicExplosion = level.damageSources().explosion(user, user);
         for(LivingEntity nearbyEntity : getAoeTargets(victim, user, distance)){
             nearbyEntity.hurt(magicExplosion, damageAmount);
         }

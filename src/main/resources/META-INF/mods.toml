@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[44,)"
+loaderVersion="[45,)"
 license="MIT"
 issueTrackerURL="https://github.com/anviaan/SculkHorn/issues"
 
@@ -14,15 +14,16 @@ authors="anvian"
 credits="PinhaColada2222"
 description="Creates an area or distance sonic attack with 2 new horns."
 displayTest="MATCH_VERSION"
+
 [[dependencies.sculkhornid]]
     modId="forge"
     mandatory=true
-    versionRange="[44,)"
+    versionRange="[45,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.sculkhornid]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.3,1.20)"
+    versionRange="[1.19.4,1.20)"
     ordering="NONE"
     side="BOTH"
