@@ -58,7 +58,7 @@ public class SculkHornArea extends Item{
                     itemStack.damage(1, user, (entity) -> entity.sendToolBreakStatus(hand));
                 }
                 sonicBoom(user, user, RADIUS);
-                Helper.causeSonicBoomAttack(user, user, DAMAGE, RADIUS);
+                Helper.causeSonicBoomAttack(world, user, user, DAMAGE, RADIUS);
                 if(SculkHornMod.CONFIG.AREA_SPEED()){
                     user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,
                             SculkHornMod.CONFIG.AREA_SPEED_DURATION(),SculkHornMod.CONFIG.AREA_SPEED_AMPLIFIER()));

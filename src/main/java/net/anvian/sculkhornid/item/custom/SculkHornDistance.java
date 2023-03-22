@@ -8,7 +8,6 @@ import net.minecraft.client.resource.language.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.passive.WolfEntity;
@@ -115,7 +114,7 @@ public class SculkHornDistance extends Item{
 
             // Locate entities around the particle location for damage
             hit.addAll(world.getEntitiesByClass(LivingEntity.class,
-                    new Box(new BlockPos(particlePos.getX(), particlePos.getY(), particlePos.getZ())).expand(2),
+                    new Box(new BlockPos((int) particlePos.getX(), (int) particlePos.getY(), (int) particlePos.getZ())).expand(2),
                     it -> !(it instanceof WolfEntity || it instanceof VillagerEntity || it instanceof AllayEntity)));
         }
 
@@ -125,7 +124,7 @@ public class SculkHornDistance extends Item{
         // Find
         for (Entity hitTarget : hit) {
             if(hitTarget instanceof LivingEntity living) {
-                living.damage(DamageSource.sonicBoom(user), DAMAGE);//7.75
+                living.damage(world.getDamageSources().sonicBoom(user), DAMAGE);//7.75
                 double vertical = 0.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
                 double horizontal = 2.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
                 living.addVelocity(normalized.getX()*horizontal, normalized.getY()*vertical, normalized.getZ()*horizontal);

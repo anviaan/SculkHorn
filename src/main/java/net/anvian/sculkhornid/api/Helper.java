@@ -7,6 +7,7 @@ import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Box;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class Helper {
         return (float)cooldown / 20;
     }
 
-    public static void causeSonicBoomAttack(LivingEntity user, LivingEntity victim, float damageAmount, float distance){
-        DamageSource magicExplosion = DamageSource.sonicBoom(user).setExplosive();
+    public static void causeSonicBoomAttack(World world, LivingEntity user, LivingEntity victim, float damageAmount, float distance){
+        DamageSource magicExplosion = world.getDamageSources().sonicBoom(user);
         for (LivingEntity nearbyEntity : getAoeTargets(victim, user, distance)) {
             nearbyEntity.damage(magicExplosion, damageAmount);
         }
