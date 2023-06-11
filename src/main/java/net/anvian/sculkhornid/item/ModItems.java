@@ -27,8 +27,8 @@ public class ModItems {
             ));
 
     public static Item registerItem(String name, Item item){
-        ItemGroupEvents.modifyEntriesEvent(ModItemGroup.SCULKHORNGROUP).register(entries -> entries.add(SCULKHORN));
-        ItemGroupEvents.modifyEntriesEvent(ModItemGroup.SCULKHORNGROUP).register(entries -> entries.add(SCULKHORN_SONICBOOM));
+        ItemGroupEvents.modifyEntriesEvent(SculkHornMod.SCULKHORNGROUP).register(entries -> entries.add(SCULKHORN));
+        ItemGroupEvents.modifyEntriesEvent(SculkHornMod.SCULKHORNGROUP).register(entries -> entries.add(SCULKHORN_SONICBOOM));
         return Registry.register(Registries.ITEM, new Identifier(SculkHornMod.MOD_ID, name), item);
     }
 

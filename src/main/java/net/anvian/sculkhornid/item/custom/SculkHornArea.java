@@ -80,11 +80,11 @@ public class SculkHornArea extends Item{
     }
 
     private static void sonicBoom(LivingEntity attacker, LivingEntity victim, float radius){
-        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(victim.world, victim.getX(), victim.getY()+0.25f, victim.getZ());
+        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(victim.getWorld(), victim.getX(), victim.getY()+0.25f, victim.getZ());
         areaEffectCloudEntity.setOwner(attacker);
         areaEffectCloudEntity.setParticleType(ParticleTypes.SONIC_BOOM);
         areaEffectCloudEntity.setRadius(radius);
         areaEffectCloudEntity.setDuration(0);
-        attacker.world.spawnEntity(areaEffectCloudEntity);
+        attacker.getWorld().spawnEntity(areaEffectCloudEntity);
     }
 }
