@@ -1,8 +1,7 @@
 package net.anvian.sculkhornid.item;
 
 import net.anvian.sculkhornid.SculkHornMod;
-import net.anvian.sculkhornid.config.ModConfigArea;
-import net.anvian.sculkhornid.config.ModConfigDistance;
+import net.anvian.sculkhornid.config.ModConfigs;
 import net.anvian.sculkhornid.item.custom.SculkHornArea;
 import net.anvian.sculkhornid.item.custom.SculkHornDistance;
 import net.minecraft.world.item.Item;
@@ -20,14 +19,14 @@ public class ModItems {
             () -> new SculkHornArea(new Item.Properties()
                     .rarity(Rarity.EPIC)
                     .stacksTo(1)
-                    .durability(ModConfigArea.AREA_COOLDOWN.get())
+                    .durability(ModConfigs.AREA_COOLDOWN.get())
                    ));
 
     public static final RegistryObject<Item> SCULKHORN_SONICBOOM = ITEMS.register("sculkhorn_sonicboom",
             () -> new SculkHornDistance(new Item.Properties()
                     .rarity(Rarity.EPIC)
                     .stacksTo(1)
-                    .durability(ModConfigDistance.DISTANCE_COOLDOWN.get())
+                    .durability(ModConfigs.DISTANCE_COOLDOWN.get())
                     ));
 
     public static void register(IEventBus eventBus){

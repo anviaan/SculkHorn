@@ -1,7 +1,7 @@
 package net.anvian.sculkhornid.item.custom;
 
 import net.anvian.sculkhornid.api.Helper;
-import net.anvian.sculkhornid.config.ModConfigDistance;
+import net.anvian.sculkhornid.config.ModConfigs;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
@@ -37,9 +37,9 @@ public class SculkHornDistance extends Item {
     public SculkHornDistance(Properties properties) {
         super(properties);
     }
-    float DAMAGE = ModConfigDistance.DISTANCE_DAMAGE.get().floatValue();
-    int DISTANCE = ModConfigDistance.DISTANCE_DISTANCE.get();
-    int COOLDOWN =  ModConfigDistance.DISTANCE_COOLDOWN.get();
+    float DAMAGE = ModConfigs.DISTANCE_DAMAGE.get().floatValue();
+    int DISTANCE = ModConfigs.DISTANCE_DISTANCE.get();
+    int COOLDOWN =  ModConfigs.DISTANCE_COOLDOWN.get();
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
@@ -55,7 +55,7 @@ public class SculkHornDistance extends Item {
     }
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if(player.experienceLevel>= ModConfigDistance.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()){
+        if(player.experienceLevel>= ModConfigs.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()){
             player.startUsingItem(hand);
         }
         return super.use(level, player, hand);
@@ -67,7 +67,7 @@ public class SculkHornDistance extends Item {
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return ModConfigDistance.DISTANCE_USE_TIME.get();
+        return ModConfigs.DISTANCE_USE_TIME.get();
     }
 
     @Override
@@ -81,9 +81,9 @@ public class SculkHornDistance extends Item {
 
         if(!level.isClientSide) {
             if(user instanceof Player player) {
-                if(player.experienceLevel >= ModConfigDistance.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()){
+                if(player.experienceLevel >= ModConfigs.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()){
                     if(!player.isCreative()){
-                        player.giveExperiencePoints(ModConfigDistance.DISTANCE_REMOVE_EXPERIENCE.get());
+                        player.giveExperiencePoints(ModConfigs.DISTANCE_REMOVE_EXPERIENCE.get());
                         stack.hurtAndBreak(1, player, (entity) -> {
                             entity.broadcastBreakEvent(interactionHand);
                         });
