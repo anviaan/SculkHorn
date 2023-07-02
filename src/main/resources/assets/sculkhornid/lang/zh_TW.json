@@ -1,0 +1,15 @@
+{
+    "itemGroup.sculkhorngroup": "伏聆号角模组",
+    "item.sculkhornid.sculkhorn": "伏聆号角",
+    "item.sculkhornid.sculkhorn_sonicboom": "伏聆号角",
+    "tooltip_info_item.sculkhorn_shif": "§7按下SHIFT以取得更多讯息",
+    "null": "",
+    "tootip_sculkhorn_area": "§7區域",
+    "tooltip.damage.area": "§2%d 攻擊傷害",
+    "tooltip.cooldown.area": "§2%ds冷卻时间",
+    "tooltip.radius": "§2%d半徑",
+    "tootip_sculkhorn_distance": "§7攻击距離",
+    "tooltip.damage.distance": "§2%d攻擊傷害",
+    "tooltip.cooldown.distance": "§2%ds冷卻时间",
+    "tooltip.distance": "§2%d攻击距離"
+}
