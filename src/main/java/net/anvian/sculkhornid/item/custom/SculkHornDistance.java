@@ -15,7 +15,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.npc.Villager;
@@ -118,9 +117,6 @@ public class SculkHornDistance extends Item {
             for (Entity hitTarget : hit){
                 if(hitTarget instanceof  LivingEntity living){
                     living.hurt(level.damageSources().sonicBoom(user),DAMAGE);
-                    double vertical = 0.5 * (1.0 - living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
-                    double horizontal = 2.5 * (1.0 - living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
-                    living.push(normalizes.x()/horizontal, normalizes.y()/vertical, normalizes.z()/horizontal);
                 }
             }
         }
