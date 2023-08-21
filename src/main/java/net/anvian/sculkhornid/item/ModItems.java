@@ -19,14 +19,14 @@ public class ModItems {
             () -> new SculkHornArea(new Item.Properties()
                     .rarity(Rarity.EPIC)
                     .stacksTo(1)
-                    .durability(ModConfigs.AREA_COOLDOWN.get())
+                    .durability(ModConfigs.AREA_DURABILITY.get())
                    ));
 
     public static final RegistryObject<Item> SCULKHORN_SONICBOOM = ITEMS.register("sculkhorn_sonicboom",
             () -> new SculkHornDistance(new Item.Properties()
                     .rarity(Rarity.EPIC)
                     .stacksTo(1)
-                    .durability(ModConfigs.DISTANCE_COOLDOWN.get())
+                    .durability(ModConfigs.DISTANCE_DURABILITY.get())
                     ));
 
     public static void register(IEventBus eventBus){

@@ -26,7 +26,6 @@ public class SculkHornMod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ModConfigs.SERVER_CONFIG);
         ModConfigs.loadConfig(ModConfigs.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MOD_ID + "-config.toml"));
 
-
         ItemGroup.register(modEventBus);
 
         ModItems.register(modEventBus);
