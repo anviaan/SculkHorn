@@ -13,7 +13,6 @@ public class ModConfigArea {
     public static ForgeConfigSpec.IntValue AREA_EXPERIENCE_LEVEL; //5;
     public static ForgeConfigSpec.IntValue AREA_REMOVE_EXPERIENCE; //-55;
     public static ForgeConfigSpec.IntValue AREA_DURABILITY; //350;
-    public static ForgeConfigSpec.BooleanValue AREA_SPEED; //true;
     public static ForgeConfigSpec.IntValue AREA_SPEED_DURATION; //30;
     public static ForgeConfigSpec.IntValue AREA_SPEED_AMPLIFIER; //0;
 
@@ -34,8 +33,6 @@ public class ModConfigArea {
         AREA_EXPERIENCE_LEVEL = config.defineInRange("area_EXPERIENCE_LEVEL", 5, 0, 10000);
         AREA_REMOVE_EXPERIENCE = config.defineInRange("area_REMOVE_EXPERIENCE", -55, -10000, 10000);
         AREA_DURABILITY = config.defineInRange("area_DURABILITY", 350, 0, 10000);
-        AREA_SPEED = config.comment("Disable or enable the speed given to the player after using the Area Sculk Horn")
-                .define("area_SPEED", true);
         AREA_SPEED_DURATION = config.defineInRange("area_SPEED_DURATION", 30, 0, 10000);
         AREA_SPEED_AMPLIFIER = config.defineInRange("area_SPEED_AMPLIFIER", 0, 0, 10000);
     }

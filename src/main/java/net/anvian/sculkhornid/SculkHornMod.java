@@ -34,7 +34,7 @@ public class SculkHornMod
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        LOGGER.info("HELLO FROM COMMON SETUP");
+        LOGGER.info("Hello from Sculk Horn Mod");
     }
     private void addCreative(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab() == ItemGroup.SCULKHORN) {

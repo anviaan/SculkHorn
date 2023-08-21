@@ -55,10 +55,8 @@ public class SculkHornArea extends Item {
                 }
                 sonicBoom(player, player, RADIUS);
                 Helper.causeMagicExplosionAttack(level, player, player,DAMAGE,RADIUS);
-                if(ModConfigArea.AREA_SPEED.get()){
-                    player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,
-                            ModConfigArea.AREA_SPEED_DURATION.get(),ModConfigArea.AREA_SPEED_AMPLIFIER.get()));
-                }
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,
+                        ModConfigArea.AREA_SPEED_DURATION.get(),ModConfigArea.AREA_SPEED_AMPLIFIER.get()));
                 player.getCooldowns().addCooldown(this,COOLDOWN);
             }
         }if(level.isClientSide){
