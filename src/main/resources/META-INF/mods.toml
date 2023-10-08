@@ -24,6 +24,6 @@ displayTest="MATCH_VERSION"
 [[dependencies.sculkhornid]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.20,1.21)"
+    versionRange="[1.20.2,1.21)"
     ordering="NONE"
     side="BOTH"
