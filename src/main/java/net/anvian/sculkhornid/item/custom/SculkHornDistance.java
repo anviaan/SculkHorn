@@ -15,9 +15,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.entity.animal.allay.Allay;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -36,29 +33,32 @@ public class SculkHornDistance extends Item {
     public SculkHornDistance(Properties properties) {
         super(properties);
     }
+
     float DAMAGE = ModConfigs.DISTANCE_DAMAGE.get().floatValue();
     int DISTANCE = ModConfigs.DISTANCE_DISTANCE.get();
-    int COOLDOWN =  ModConfigs.DISTANCE_COOLDOWN.get();
+    int COOLDOWN = ModConfigs.DISTANCE_COOLDOWN.get();
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-        if (Screen.hasShiftDown()){
+        if (Screen.hasShiftDown()) {
             list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.distance", DISTANCE)));
-            list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("tooltip.cooldown.distance", Helper.ticksToSeconds(COOLDOWN))));
-            list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("tooltip.damage.distance", DAMAGE)));
-        }else {
-            list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("tooltip_info_item.sculkhorn_shif")));
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown.distance", Helper.ticksToSeconds(COOLDOWN))));
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.damage.distance", DAMAGE)));
+        } else {
+            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip_info_item.sculkhorn_shif")));
         }
-        list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("null")));
-        list.add(Math.min(1, list.size()),Component.nullToEmpty(I18n.get("tootip_sculkhorn_distance")));
+        list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("null")));
+        list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tootip_sculkhorn_distance")));
     }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if(player.experienceLevel>= ModConfigs.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()){
+        if (player.experienceLevel >= ModConfigs.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()) {
             player.startUsingItem(hand);
         }
         return super.use(level, player, hand);
     }
+
     @Override
     public UseAnim getUseAnimation(ItemStack itemStack) {
         return UseAnim.BOW;
@@ -78,16 +78,14 @@ public class SculkHornDistance extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         InteractionHand interactionHand = user.getUsedItemHand();
 
-        if(!level.isClientSide) {
-            if(user instanceof Player player) {
-                if(player.experienceLevel >= ModConfigs.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()){
-                    if(!player.isCreative()){
+        if (!level.isClientSide) {
+            if (user instanceof Player player) {
+                if (player.experienceLevel >= ModConfigs.DISTANCE_EXPERIENCE_LEVEL.get() || player.isCreative()) {
+                    if (!player.isCreative()) {
                         player.giveExperiencePoints(ModConfigs.DISTANCE_REMOVE_EXPERIENCE.get());
-                        stack.hurtAndBreak(1, player, (entity) -> {
-                            entity.broadcastBreakEvent(interactionHand);
-                        });
+                        stack.hurtAndBreak(1, player, (entity) -> entity.broadcastBreakEvent(interactionHand));
                     }
-                    player.getCooldowns().addCooldown(this,COOLDOWN);
+                    player.getCooldowns().addCooldown(this, COOLDOWN);
                     spawnSonicBoom(level, user);
                 }
             }
@@ -95,28 +93,28 @@ public class SculkHornDistance extends Item {
         return super.finishUsingItem(stack, level, user);
     }
 
-    private void spawnSonicBoom(Level level, LivingEntity user){
-        level.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 1.0f,1.0f);
+    private void spawnSonicBoom(Level level, LivingEntity user) {
+        level.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 1.0f, 1.0f);
 
         Vec3 target = user.position().add(user.getLookAngle().scale(DISTANCE));//distance
-        Vec3 source = user.position().add(0.0,1.6f,0.0);
+        Vec3 source = user.position().add(0.0, 1.6f, 0.0);
         Vec3 offSetToTarget = target.subtract(source);
         Vec3 normalizes = offSetToTarget.normalize();
 
         Set<Entity> hit = new HashSet<>();
-        for(int particleIndex =1; particleIndex < Mth.floor(offSetToTarget.length()) +7; ++particleIndex){
+        for (int particleIndex = 1; particleIndex < Mth.floor(offSetToTarget.length()) + 7; ++particleIndex) {
             Vec3 particlePos = source.add(normalizes.scale(particleIndex));
-            ((ServerLevel) level).sendParticles(ParticleTypes.SONIC_BOOM, particlePos.x, particlePos.y, particlePos.z, 1,0.0, 0.0, 0.0, 0.0);
+            ((ServerLevel) level).sendParticles(ParticleTypes.SONIC_BOOM, particlePos.x, particlePos.y, particlePos.z, 1, 0.0, 0.0, 0.0, 0.0);
 
             hit.addAll(level.getEntitiesOfClass(LivingEntity.class,
                     new AABB(new BlockPos((int) particlePos.x, (int) particlePos.y, (int) particlePos.z)).inflate(2),
-                    it -> !(it instanceof Wolf || it instanceof Villager || it instanceof Allay)));
+                    it -> !(Helper.isAllOf(user, it))));
 
             hit.remove(user);
 
-            for (Entity hitTarget : hit){
-                if(hitTarget instanceof  LivingEntity living){
-                    living.hurt(level.damageSources().sonicBoom(user),DAMAGE);
+            for (Entity hitTarget : hit) {
+                if (hitTarget instanceof LivingEntity living) {
+                    living.hurt(level.damageSources().sonicBoom(user), DAMAGE);
                 }
             }
         }
