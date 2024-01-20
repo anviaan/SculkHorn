@@ -2,6 +2,7 @@ package net.anvian.sculkhornid.api;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.passive.WolfEntity;
@@ -12,11 +13,11 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class Helper {
-    public static float ticksToSeconds(int cooldown){
-        return (float)cooldown / 20;
+    public static float ticksToSeconds(int cooldown) {
+        return (float) cooldown / 20;
     }
 
-    public static void causeSonicBoomAttack(World world, LivingEntity user, LivingEntity victim, float damageAmount, float distance){
+    public static void causeSonicBoomAttack(World world, LivingEntity user, LivingEntity victim, float damageAmount, float distance) {
         DamageSource magicExplosion = world.getDamageSources().sonicBoom(user);
         for (LivingEntity nearbyEntity : getAoeTargets(victim, user, distance)) {
             nearbyEntity.damage(magicExplosion, damageAmount);
@@ -37,15 +38,19 @@ public class Helper {
                 && !isUnaffected(self)
                 && center.canSee(self);
     }
-    private static boolean isAllyOf(LivingEntity self, LivingEntity other) {
+
+    public static boolean isAllyOf(LivingEntity self, LivingEntity other) {
         return self.isTeammate(other)
                 || exludeFromDamage(other);
     }
+
     private static boolean exludeFromDamage(LivingEntity nearbyEntity) {
-        return (nearbyEntity instanceof WolfEntity) ||
-                (nearbyEntity instanceof VillagerEntity) ||
-                (nearbyEntity instanceof AllayEntity);
+        return (nearbyEntity instanceof VillagerEntity) ||
+                (nearbyEntity instanceof AllayEntity) ||
+                (nearbyEntity instanceof WolfEntity && ((WolfEntity) nearbyEntity).isTamed()) ||
+                (nearbyEntity instanceof AbstractHorseEntity && ((AbstractHorseEntity) nearbyEntity).isTame());
     }
+
     private static boolean isUnaffected(LivingEntity entity) {
         if (entity instanceof PlayerEntity)
             return ((PlayerEntity) entity).isCreative();

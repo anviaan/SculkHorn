@@ -8,9 +8,6 @@ import net.minecraft.client.resource.language.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.passive.AllayEntity;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,22 +30,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class SculkHornDistance extends Item{
+public class SculkHornDistance extends Item {
     public SculkHornDistance(Settings settings) {
         super(settings);
     }
 
     float DAMAGE = (float) SculkHornMod.CONFIG.DISTANCE_DAMAGE();//7.75
     int DISTANCE = SculkHornMod.CONFIG.DISTANCE_DISTANCE();//16
-    int COOLDOWN =  SculkHornMod.CONFIG.DISTANCE_COOLDOWN();//200
+    int COOLDOWN = SculkHornMod.CONFIG.DISTANCE_COOLDOWN();//200
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if (Screen.hasShiftDown()){
+        if (Screen.hasShiftDown()) {
             tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tooltip.distance", DISTANCE)));
             tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tooltip.cooldown.distance", Helper.ticksToSeconds(COOLDOWN))));
             tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tooltip.damage.distance", DAMAGE)));
-        }else {
+        } else {
             tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("tooltip_info_item.sculkhorn_shif")));
         }
         tooltip.add(Math.min(1, tooltip.size()), Text.of(I18n.translate("null")));
@@ -70,7 +67,7 @@ public class SculkHornDistance extends Item{
 
     @Override
     public int getMaxUseTime(ItemStack stack) { //x!= 0
-        if (SculkHornMod.CONFIG.DISTANCE_USE_TIME() <= 0){
+        if (SculkHornMod.CONFIG.DISTANCE_USE_TIME() <= 0) {
             return 1;
         }
         return SculkHornMod.CONFIG.DISTANCE_USE_TIME();//10
@@ -83,14 +80,14 @@ public class SculkHornDistance extends Item{
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if(!world.isClient) {
-            if(user instanceof PlayerEntity player) {
-                if(player.experienceLevel >= SculkHornMod.CONFIG.DISTANCE_EXPERIENCE_LEVEL() || player.isCreative()){//5
-                    if(!player.isCreative()){
+        if (!world.isClient) {
+            if (user instanceof PlayerEntity player) {
+                if (player.experienceLevel >= SculkHornMod.CONFIG.DISTANCE_EXPERIENCE_LEVEL() || player.isCreative()) {//5
+                    if (!player.isCreative()) {
                         player.addExperience(SculkHornMod.CONFIG.DISTANCE_REMOVE_EXPERIENCE());//-55
                         stack.damage(1, user, x -> x.sendToolBreakStatus(Hand.MAIN_HAND));
                     }
-                    player.getItemCooldownManager().set(this,COOLDOWN);//200
+                    player.getItemCooldownManager().set(this, COOLDOWN);//200
                     spawnSonicBoom(world, user);
                 }
             }
@@ -115,7 +112,8 @@ public class SculkHornDistance extends Item{
             // Locate entities around the particle location for damage
             hit.addAll(world.getEntitiesByClass(LivingEntity.class,
                     new Box(new BlockPos((int) particlePos.getX(), (int) particlePos.getY(), (int) particlePos.getZ())).expand(2),
-                    it -> !(it instanceof WolfEntity || it instanceof VillagerEntity || it instanceof AllayEntity)));
+                    it -> !(Helper.isAllyOf(user, it))
+            ));
         }
 
         // Don't hit ourselves
@@ -123,11 +121,11 @@ public class SculkHornDistance extends Item{
 
         // Find
         for (Entity hitTarget : hit) {
-            if(hitTarget instanceof LivingEntity living) {
+            if (hitTarget instanceof LivingEntity living) {
                 living.damage(world.getDamageSources().sonicBoom(user), DAMAGE);//7.75
                 double vertical = 0.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
                 double horizontal = 2.5 * (1.0 - living.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
-                living.addVelocity(normalized.getX()*horizontal, normalized.getY()*vertical, normalized.getZ()*horizontal);
+                living.addVelocity(normalized.getX() * horizontal, normalized.getY() * vertical, normalized.getZ() * horizontal);
 
             }
         }
