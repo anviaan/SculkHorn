@@ -1,0 +1,15 @@
+{
+    "itemGroup.sculkhorngroup": "作为sculk horn mod",
+    "item.sculkhornid.sculkhorn": "作为s作为scul喇叭",
+    "item.sculkhornid.sculkhorn_sonicboom": "作为s作为scul喇叭",
+    "tooltip_info_item.sculkhorn_shif": "§7新闻转移以获取更多信息",
+    "null": "",
+    "tootip_sculkhorn_area": "§7区域",
+    "tooltip.damage.area": "§2%d 攻击伤害",
+    "tooltip.cooldown.area": "§2%ds 冷却",
+    "tooltip.radius": "§2%d 半径",
+    "tootip_sculkhorn_distance": "§7距离",
+    "tooltip.damage.distance": "§2%d 攻击伤害",
+    "tooltip.cooldown.distance": "§2%ds 冷却",
+    "tooltip.distance": "§2%d距离"
+}

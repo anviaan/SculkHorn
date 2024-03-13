@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "SGS",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:echo_shard"
+    },
+    "S": {
+      "item": "minecraft:sculk_shrieker"
+    },
+    "G": {
+      "item": "minecraft:goat_horn"
+    }
+  },
+  "result": {
+    "item": "sculkhornid:sculkhorn_sonicboom",
+    "count": 1
+  }
+}
