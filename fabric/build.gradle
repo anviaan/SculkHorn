@@ -21,6 +21,7 @@ dependencies {
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     modLocalRuntime("com.terraformersmc:modmenu:${mod_menu_version}")
     compileOnly project(":common")
+    modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_version}"
 }
 
 loom {
