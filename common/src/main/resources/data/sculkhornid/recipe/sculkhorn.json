@@ -6,18 +6,19 @@
     "#S#"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:echo_shard"
-    },
-    "S": {
-      "item": "minecraft:sculk_catalyst"
-    },
-    "G": {
-      "item": "minecraft:goat_horn"
-    }
+    "#": [
+      "minecraft:echo_shard"
+    ],
+    "S": [
+      "minecraft:sculk_catalyst"
+    ],
+    "G": [
+      "minecraft:goat_horn"
+    ]
   },
   "result": {
     "id": "sculkhornid:sculkhorn",
     "count": 1
-  }
+  },
+  "show_notification": true
 }

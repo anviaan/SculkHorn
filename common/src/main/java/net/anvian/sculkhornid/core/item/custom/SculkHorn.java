@@ -4,7 +4,7 @@ import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.item.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -31,10 +31,10 @@ public abstract class SculkHorn extends Item {
     public abstract void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag);
 
     @Override
-    public abstract InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand);
+    public abstract InteractionResult use(Level level, Player player, InteractionHand interactionHand);
 
     protected void applyCooldownToBothHorns(Player player) {
-        player.getCooldowns().addCooldown(ModItems.SCULKHORN, ModConfigs.areaCooldown);
-        player.getCooldowns().addCooldown(ModItems.SCULKHORN_SONICBOOM, ModConfigs.distanceCooldown);
+        player.getCooldowns().addCooldown(ModItems.SCULKHORN.getDefaultInstance(), ModConfigs.areaCooldown);
+        player.getCooldowns().addCooldown(ModItems.SCULKHORN_SONICBOOM.getDefaultInstance(), ModConfigs.distanceCooldown);
     }
 }

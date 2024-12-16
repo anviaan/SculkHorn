@@ -10,7 +10,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -46,7 +45,7 @@ public class SculkHornArea extends SculkHorn {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+    public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack itemstack = player.getItemInHand(interactionHand);
 
         if (!level.isClientSide) {
@@ -61,7 +60,7 @@ public class SculkHornArea extends SculkHorn {
                 if (ModConfigs.bothInCooldown) {
                     applyCooldownToBothHorns(player);
                 } else {
-                    player.getCooldowns().addCooldown(this, COOLDOWN);
+                    player.getCooldowns().addCooldown(this.getDefaultInstance(), COOLDOWN);
                 }
             }
         }
@@ -72,9 +71,9 @@ public class SculkHornArea extends SculkHorn {
         }
 
         if (player.experienceLevel < EXPERIENCE_LEVEL && !player.isCreative()) {
-            return new InteractionResultHolder<>(InteractionResult.FAIL, itemstack);
+            return InteractionResult.FAIL;
         } else {
-            return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
+            return InteractionResult.SUCCESS;
         }
     }
 

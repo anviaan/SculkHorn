@@ -12,13 +12,13 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -56,16 +56,16 @@ public class SculkHornDistance extends SculkHorn {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
         if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
-            player.startUsingItem(hand);
+            player.startUsingItem(interactionHand);
         }
-        return InteractionResultHolder.success(player.getItemInHand(hand));
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack itemStack) {
-        return UseAnim.BOW;
+    public ItemUseAnimation getUseAnimation(ItemStack itemStack) {
+        return ItemUseAnimation.BOW;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class SculkHornDistance extends SculkHorn {
                     if (ModConfigs.bothInCooldown) {
                         applyCooldownToBothHorns(player);
                     } else {
-                        player.getCooldowns().addCooldown(this, COOLDOWN);
+                        player.getCooldowns().addCooldown(this.getDefaultInstance(), COOLDOWN);
                     }
                     spawnSonicBoom(level, user);
                 }

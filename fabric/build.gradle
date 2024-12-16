@@ -23,9 +23,9 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
-    modLocalRuntime("com.terraformersmc:modmenu:11.0.1")
+    modLocalRuntime("com.terraformersmc:modmenu:12.0.0")
 
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.0.8"
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.3.3"
 }
 
 loom {

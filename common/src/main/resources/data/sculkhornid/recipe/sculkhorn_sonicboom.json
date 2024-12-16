@@ -6,18 +6,19 @@
     " # "
   ],
   "key": {
-    "#": {
-      "item": "minecraft:echo_shard"
-    },
-    "S": {
-      "item": "minecraft:sculk_shrieker"
-    },
-    "G": {
-      "item": "minecraft:goat_horn"
-    }
+    "#": [
+      "minecraft:echo_shard"
+    ],
+    "S": [
+      "minecraft:sculk_shrieker"
+    ],
+    "G": [
+      "minecraft:goat_horn"
+    ]
   },
   "result": {
     "id": "sculkhornid:sculkhorn_sonicboom",
     "count": 1
-  }
+  },
+  "show_notification": true
 }

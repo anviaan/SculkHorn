@@ -36,6 +36,6 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "forgeconfigapiport"
 type="required"
-versionRange = "[21.0.8,22.0.0)"
+versionRange = "[21.3.3,22.0.0)"
 ordering = "NONE"
 side = "BOTH"

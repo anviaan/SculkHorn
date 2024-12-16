@@ -1,11 +1,11 @@
 plugins {
-    id("fabric-loom") version "1.7-SNAPSHOT" apply false
-    id("net.neoforged.moddev") version "0.1.110" apply false
+    id("fabric-loom") version "1.8-SNAPSHOT" apply false
+    id("net.neoforged.moddev") version "2.0.49-beta" apply false
 }
 
 val MOD_VERSION = project.property("version") as String
 val ARCHIVE_NAME = project.property("mod_name") as String
-val COMPATIBLE_VERSIONS = "[1.21, 1.21.1]"
+val COMPATIBLE_VERSIONS = project.property("minecraft_version_range") as String
 
 tasks.register("printEnv") {
     doLast {
