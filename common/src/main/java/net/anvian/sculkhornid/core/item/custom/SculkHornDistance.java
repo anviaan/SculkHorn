@@ -2,6 +2,7 @@ package net.anvian.sculkhornid.core.item.custom;
 
 import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.util.Helper;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
@@ -44,15 +45,15 @@ public class SculkHornDistance extends SculkHorn {
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.experience", Math.abs(REMOVE_EXPERIENCE))));
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.distance", DISTANCE)));
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown", Helper.ticksToSeconds(COOLDOWN))));
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.damage", DAMAGE)));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(DISTANCE)).append(" ").append(Component.translatable("tooltip.distance")).withStyle(ChatFormatting.DARK_GREEN));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(Helper.ticksToSeconds(COOLDOWN))).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(DAMAGE)).append(" ").append(Component.translatable("tooltip.damage")).withStyle(ChatFormatting.DARK_GREEN));
         } else {
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip_info_item.sculkhorn_shif")));
+            list.add(Math.min(1, list.size()), Component.translatable("tooltip_info_item.sculkhorn_shif"));
         }
-        list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("null")));
-        list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tootip_sculkhorn_distance")));
+        list.add(Math.min(1, list.size()), Component.empty());
+        list.add(Math.min(1, list.size()), Component.translatable("tootip_sculkhorn_distance"));
     }
 
     @Override

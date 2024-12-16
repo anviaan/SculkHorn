@@ -1,14 +1,13 @@
 {
-    "itemGroup.sculkhorngroup": "Sculk Corno Mod",
-    "item.sculkhornid.sculkhorn": "Corno Sculk",
-    "item.sculkhornid.sculkhorn_sonicboom": "Corno Sculk",
-    "tooltip_info_item.sculkhorn_shif": "§7Premere MAIUSC per ulteriori informazioni",
-    "null": "",
-    "tooltip.cooldown": "§2%ds Tempo di recupero",
-    "tooltip.damage": "§2%d Attacco fisico",
-    "tooltip.experience": "§2%d Costo in PE",
-    "tootip_sculkhorn_area": "§7Zona",
-    "tooltip.radius": "§2%d Raggio",
-    "tootip_sculkhorn_distance": "§7Distanza",
-    "tooltip.distance": "§2%d Distanza"
+    "itemGroup.sculkhorngroup": "Mod corno Sculk",
+    "item.sculkhornid.sculkhorn": "Corno di Sculk",
+    "item.sculkhornid.sculkhorn_sonicboom": "Corno di Sculk",
+    "tooltip_info_item.sculkhorn_shif": "Premi MAIUSC per maggiori informazioni",
+    "tooltip.cooldown": "Raffreddare",
+    "tooltip.damage": "Danni da attacco",
+    "tooltip.experience": "Costo XP",
+    "tootip_sculkhorn_area": "Zona",
+    "tooltip.radius": "Raggio",
+    "tootip_sculkhorn_distance": "Distanza",
+    "tooltip.distance": "Distanza"
 }

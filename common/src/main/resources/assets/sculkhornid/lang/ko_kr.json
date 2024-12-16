@@ -1,14 +1,13 @@
 {
-    "itemGroup.sculkhorngroup": "스컬크 혼 모드",
-    "item.sculkhornid.sculkhorn": "스컬크 혼",
-    "item.sculkhornid.sculkhorn_sonicboom": "스컬크 혼",
-    "tooltip_info_item.sculkhorn_shif": "§7자세한 내용은 SHIFT를 누르십시오.",
-    "null": "",
-    "tooltip.cooldown": "§2%ds 쿨다운",
-    "tooltip.damage": "§2%d 공격 데미지",
-    "tooltip.experience": "§2%d 경험치 비용",
-    "tootip_sculkhorn_area": "§7면적",
-    "tooltip.radius": "§2%d 반지름",
-    "tootip_sculkhorn_distance": "§7거리",
-    "tooltip.distance": "§2%d 거리"
+    "itemGroup.sculkhorngroup": "스컬크 호른 모드",
+    "item.sculkhornid.sculkhorn": "스컬크 호른",
+    "item.sculkhornid.sculkhorn_sonicboom": "스컬크 호른",
+    "tooltip_info_item.sculkhorn_shif": "더 많은 정보를 보려면 SHIFT를 누르세요",
+    "tooltip.cooldown": "쿨다운",
+    "tooltip.damage": "공격력",
+    "tooltip.experience": "XP 비용",
+    "tootip_sculkhorn_area": "영역",
+    "tooltip.radius": "반지름",
+    "tootip_sculkhorn_distance": "거리",
+    "tooltip.distance": "거리"
 }

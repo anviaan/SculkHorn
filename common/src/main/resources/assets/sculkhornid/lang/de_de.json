@@ -1,14 +1,13 @@
 {
-    "itemGroup.sculkhorngroup": "Sculk Horn Mod",
+    "itemGroup.sculkhorngroup": "Sculk-Horn-Modifikation",
     "item.sculkhornid.sculkhorn": "Sculk-Horn",
     "item.sculkhornid.sculkhorn_sonicboom": "Sculk-Horn",
-    "tooltip_info_item.sculkhorn_shif": "§7Drücken Sie die UMSCHALTTASTE für weitere Informationen",
-    "null": "",
-    "tooltip.cooldown": "§2%ds Abklingzeit",
-    "tooltip.damage": "§2%d Angriffsschaden",
-    "tooltip.experience": "§2%d XP-Kosten",
-    "tootip_sculkhorn_area": "§7Bereich",
-    "tooltip.radius": "§2%d Radius",
-    "tootip_sculkhorn_distance": "§7Abstand",
-    "tooltip.distance": "§2%d Abstand"
+    "tooltip_info_item.sculkhorn_shif": "Drücken Sie die UMSCHALT-Taste für weitere Informationen",
+    "tooltip.cooldown": "Abklingzeit",
+    "tooltip.damage": "Angriffsschaden",
+    "tooltip.experience": "XP-Kosten",
+    "tootip_sculkhorn_area": "Bereich",
+    "tooltip.radius": "Radius",
+    "tootip_sculkhorn_distance": "Distanz",
+    "tooltip.distance": "Distanz"
 }
