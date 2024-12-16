@@ -51,7 +51,7 @@ public class ModConfigs {
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static void loadConfig(ForgeConfigSpec spec, Path path) {
-        final CommentedFileConfig configData = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.APPEND).build();
+        final CommentedFileConfig configData = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.REPLACE).build();
         configData.load();
         spec.setConfig(configData);
 
