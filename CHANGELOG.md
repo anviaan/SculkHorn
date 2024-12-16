@@ -1,1 +1,3 @@
-- Fixing minecraft Version for fabric
+- pl_pl lang added
+- tr_tr lang added
+- Update tooltip formatting for Sculk Horn Area and Distance items.

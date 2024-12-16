@@ -1,0 +1,13 @@
+{
+    "itemGroup.sculkhorngroup": "Modyfikacja rogu Sculka",
+    "item.sculkhornid.sculkhorn": "Róg Sculka",
+    "item.sculkhornid.sculkhorn_sonicboom": "Róg Sculka",
+    "tooltip_info_item.sculkhorn_shif": "Naciśnij SHIFT, aby uzyskać więcej informacji",
+    "tooltip.cooldown": "Wychłodzenie",
+    "tooltip.damage": "Obrażenia od ataku",
+    "tooltip.experience": "Koszt XP",
+    "tootip_sculkhorn_area": "Obszar",
+    "tooltip.radius": "Promień",
+    "tootip_sculkhorn_distance": "Dystans",
+    "tooltip.distance": "Dystans"
+}

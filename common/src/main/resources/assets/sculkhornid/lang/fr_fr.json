@@ -1,14 +1,13 @@
 {
-    "itemGroup.sculkhorngroup": "Sculk Horn Mod",
-    "item.sculkhornid.sculkhorn": "Klaxon de Sculk",
-    "item.sculkhornid.sculkhorn_sonicboom": "Klaxon de Sculk",
-    "tooltip_info_item.sculkhorn_shif": "§7Appuyez sur MAJ pour plus d’informations",
-    "null": "",
-    "tooltip.cooldown": "§2%ds Temps de recharge",
-    "tooltip.damage": "§2%d Dégâts d’attaque",
-    "tooltip.experience": "§2%d Coût en XP",
-    "tootip_sculkhorn_area": "§7Superficie",
-    "tooltip.radius": "§2%d Rayon",
-    "tootip_sculkhorn_distance": "§7Distance",
-    "tooltip.distance": "§2%d Distance"
+    "itemGroup.sculkhorngroup": "Mod de corne Sculk",
+    "item.sculkhornid.sculkhorn": "Corne de Sculk",
+    "item.sculkhornid.sculkhorn_sonicboom": "Corne de Sculk",
+    "tooltip_info_item.sculkhorn_shif": "Appuyez sur SHIFT pour plus d'informations",
+    "tooltip.cooldown": "Refroidir",
+    "tooltip.damage": "Dégâts d'attaque",
+    "tooltip.experience": "Coût en XP",
+    "tootip_sculkhorn_area": "Zone",
+    "tooltip.radius": "Rayon",
+    "tootip_sculkhorn_distance": "Distance",
+    "tooltip.distance": "Distance"
 }

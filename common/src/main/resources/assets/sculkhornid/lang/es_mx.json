@@ -1,20 +1,13 @@
 {
-  "itemGroup.sculkhorngroup": "Sculk Horn Mod",
-
-  "item.sculkhornid.sculkhorn": "Cuerno Sculk",
-  "item.sculkhornid.sculkhorn_sonicboom": "Cuerno Sculk",
-
-  "tooltip_info_item.sculkhorn_shif": "§7 Presione SHIFT para mas información.",
-
-  "null" : "",
-
-  "tooltip.cooldown" : "§2%ds Enfriamento",
-  "tooltip.damage" : "§2%d Daño de ataque",
-  "tooltip.experience" : "§2%d Costo de xp",
-
-  "tootip_sculkhorn_area" : "§7Area",
-  "tooltip.radius" : "§2%d Radio",
-
-  "tootip_sculkhorn_distance" : "§7Distancia",
-  "tooltip.distance" : "§2%d Distancia"
+    "itemGroup.sculkhorngroup": "Mod de cuerno de sculk",
+    "item.sculkhornid.sculkhorn": "Cuerno de sculk",
+    "item.sculkhornid.sculkhorn_sonicboom": "Cuerno de sculk",
+    "tooltip_info_item.sculkhorn_shif": "Pulse SHIFT para obtener más información",
+    "tooltip.cooldown": "Enfriarse",
+    "tooltip.damage": "Daño de ataque",
+    "tooltip.experience": "Costo de XP",
+    "tootip_sculkhorn_area": "Área",
+    "tooltip.radius": "Radio",
+    "tootip_sculkhorn_distance": "Distancia",
+    "tooltip.distance": "Distancia"
 }

@@ -1,14 +1,13 @@
 {
-    "itemGroup.sculkhorngroup": "Мод Скалк Ріг",
-    "item.sculkhornid.sculkhorn": "Скалк Ріг",
-    "item.sculkhornid.sculkhorn_sonicboom": "Скалк Ріг",
-    "tooltip_info_item.sculkhorn_shif": "§7Натисніть SHIFT для отримання додаткової інформації",
-    "null": "",
-    "tooltip.cooldown": "§2%ds Час зарядки",
-    "tooltip.damage": "§2%d Шкода від атаки",
-    "tooltip.experience": "§2%d Вартість XP",
-    "tootip_sculkhorn_area": "§7Площа",
-    "tooltip.radius": "§2%d Радіус",
-    "tootip_sculkhorn_distance": "§7Відстань",
-    "tooltip.distance": "§2%d Відстань"
+    "itemGroup.sculkhorngroup": "Мод Sculk Horn",
+    "item.sculkhornid.sculkhorn": "Скулк Хорн",
+    "item.sculkhornid.sculkhorn_sonicboom": "Скулк Хорн",
+    "tooltip_info_item.sculkhorn_shif": "Натисніть SHIFT для отримання додаткової інформації",
+    "tooltip.cooldown": "Кулдаун",
+    "tooltip.damage": "Пошкодження від атаки",
+    "tooltip.experience": "Вартість Xp",
+    "tootip_sculkhorn_area": "Площа",
+    "tooltip.radius": "Радіус",
+    "tootip_sculkhorn_distance": "Відстань",
+    "tooltip.distance": "Відстань"
 }
