@@ -1,1 +1,4 @@
 - Port to 1.21.3
+- Update tooltip formatting for Sculk Horn Area and Distance items.
+- pl_pl translation added
+- tr_tr translation added by @RuyaSavascisi
