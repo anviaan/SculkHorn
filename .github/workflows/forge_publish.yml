@@ -1,4 +1,4 @@
-name: FabricPublish
+name: ForgePublish
 
 on: [ workflow_dispatch ]
 
@@ -35,7 +35,7 @@ jobs:
         run: ./gradlew printEnv
 
       - name: Build
-        run: ./gradlew fabric:build
+        run: ./gradlew forge:build
 
       - name: Publish (Modrinth & CurseForge)
         uses: Kir-Antipov/mc-publish@v3.3
@@ -47,7 +47,7 @@ jobs:
           curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
           files: |
-            fabric/build/libs/!(*-@(dev|sources|javadoc)).jar
+            forge/build/libs/!(*-@(dev|sources|javadoc)).jar
 
           name: ${{ env.RELEASE_NAME }}
           version: ${{ env.MOD_VERSION }}
@@ -57,11 +57,9 @@ jobs:
           game-versions: ${{ env.GAME_VERSIONS }}
 
           loaders: |
-            fabric
-            quilt
+            forge
 
           dependencies: |
-            fabric-api
             forge-config-api-port
 
           java: ${{ env.JAVA_VERSION }}
