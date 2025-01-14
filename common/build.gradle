@@ -7,7 +7,7 @@ neoForge {
     neoFormVersion = neo_form_version
     def at = file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
-        accessTransformers.add(at.absolutePath)
+        accessTransformers.from(at.absolutePath)
     }
     parchment {
         minecraftVersion = parchment_minecraft
@@ -28,6 +28,7 @@ dependencies {
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
 
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common-forgeapi:21.0.8"
+    implementation "net.anvian.anvianslib:anvianslib-common-1.21:${anvianslib_version}"
 }
 
 configurations {

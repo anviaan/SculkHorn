@@ -39,3 +39,10 @@ type="required"
 versionRange = "[21.0.8,22.0.0)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "anvianslib"
+type = "required"
+versionRange = "[1.0,)"
+ordering = "NONE"
+side = "BOTH"

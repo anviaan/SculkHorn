@@ -1,5 +1,7 @@
 package net.anvian.sculkhornid.platform.services;
 
+import java.nio.file.Path;
+
 public interface IPlatformHelper {
     /**
      * Gets the name of the current platform
@@ -31,4 +33,11 @@ public interface IPlatformHelper {
     default String getEnvironmentName() {
         return isDevelopmentEnvironment() ? "development" : "production";
     }
+
+    /**
+     * Gets the directory where the game's configuration files are stored.
+     *
+     * @return The directory where the game's configuration files are stored.
+     */
+    Path getGameConfigDirectory();
 }
