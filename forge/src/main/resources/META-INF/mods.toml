@@ -34,3 +34,10 @@ mandatory = true
 versionRange = "[21.3.3,)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "anvianslib"
+mandatory = true
+versionRange = "[1.0,)"
+ordering = "NONE"
+side = "BOTH"
