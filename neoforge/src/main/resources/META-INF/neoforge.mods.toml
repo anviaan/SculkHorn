@@ -1,18 +1,18 @@
 modLoader = "javafml"
 loaderVersion = "${neoforge_loader_version_range}"
 license = "${license}"
-issueTrackerURL="https://github.com/anviaan/SculkHorn/issues"
+issueTrackerURL = "https://github.com/anviaan/SculkHorn/issues"
 
 [[mods]]
 modId = "${mod_id}"
 version = "${version}"
 displayName = "${mod_name}"
-updateJSONURL="https://api.modrinth.com/updates/BfFhIqA7/forge_updates.json"
-displayURL="https://modrinth.com/mod/-sculk-horn"
-logoFile="${mod_id}.png"
-credits="${credits}"
+updateJSONURL = "https://api.modrinth.com/updates/BfFhIqA7/forge_updates.json"
+displayURL = "https://modrinth.com/mod/-sculk-horn"
+logoFile = "${mod_id}.png"
+credits = "${credits}"
 authors = "${mod_author}"
-description = '''${description}'''
+description = "${description}"
 
 [[mixins]]
 config = "${mod_id}.mixins.json"
@@ -20,16 +20,17 @@ config = "${mod_id}.mixins.json"
 [[mixins]]
 config = "${mod_id}.neoforge.mixins.json"
 
-[[dependencies.${mod_id}]]
+[[dependencies.${ mod_id }]]
 modId = "neoforge"
-type="required"
+type = "required"
 versionRange = "${neoforge_loader_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.${ mod_id }]]
 modId = "minecraft"
-type="required"
+type = "required"
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+

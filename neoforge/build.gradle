@@ -45,4 +45,5 @@ repositories {
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
     api "fuzs.forgeconfigapiport:forgeconfigapiport-neoforge:20.6.0"
+    implementation "net.anvian.anvianslib:anvianslib-neoforge-1.21:${anvianslib_version}"
 }
