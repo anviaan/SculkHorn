@@ -1,8 +1,6 @@
 name: FabricPublish
 
-on:
-  workflow_dispatch:
-  workflow_call:
+on: [ workflow_dispatch ]
 
 env:
   JAVA_VERSION: 21
@@ -49,7 +47,7 @@ jobs:
           curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
           files: |
-            fabric/build/libs/!(*-@(dev|sources|javadoc)).jar
+            fabric/build/libs/!(*-@(dev|sources|javadoc|shadow)).jar
 
           name: ${{ env.RELEASE_NAME }}
           version: ${{ env.MOD_VERSION }}
