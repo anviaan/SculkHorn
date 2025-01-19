@@ -25,7 +25,7 @@ repositories {
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common-forgeapi:20.6.0"
-    implementation "net.anvian.anvianslib:anvianslib-common-1.20:${anvianslib_version}"
+    implementation "net.anvian.anvianslib:anvianslib-common-1.20.6:${anvianslib_version}"
 }
 
 configurations {
