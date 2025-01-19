@@ -1,14 +1,13 @@
 {
-    "itemGroup.sculkhorngroup": "Sculk Horn 模组",
-    "item.sculkhornid.sculkhorn": "斯库克喇叭",
-    "item.sculkhornid.sculkhorn_sonicboom": "斯库克喇叭",
-    "tooltip_info_item.sculkhorn_shif": "§7按 SHIFT 键了解更多信息",
-    "null": "",
-    "tooltip.cooldown": "§2%ds 冷却时间",
-    "tooltip.damage": "§2%d攻击伤害",
-    "tooltip.experience": "§2%dXP成本",
-    "tootip_sculkhorn_area": "§7面积",
-    "tooltip.radius": "§2%d半径",
-    "tootip_sculkhorn_distance": "§7距离",
-    "tooltip.distance": "§2%d距离"
+    "itemGroup.sculkhorngroup": "Sculk 号角 Mod",
+    "item.sculkhornid.sculkhorn": "斯卡尔克号角",
+    "item.sculkhornid.sculkhorn_sonicboom": "斯卡尔克号角",
+    "tooltip_info_item.sculkhorn_shif": "按 SHIFT 键获取更多信息",
+    "tooltip.cooldown": "冷却",
+    "tooltip.damage": "攻击伤害",
+    "tooltip.experience": "XP 成本",
+    "tootip_sculkhorn_area": "区域",
+    "tooltip.radius": "半径",
+    "tootip_sculkhorn_distance": "距离",
+    "tooltip.distance": "距离"
 }

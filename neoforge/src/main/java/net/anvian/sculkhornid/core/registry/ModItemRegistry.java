@@ -9,6 +9,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItemRegistry {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Constants.MOD_ID);
 
-    public static final DeferredItem<Item> SCULKHORN = ITEMS.register("sculkhorn", () -> ModItems.SCULKHORN);
-    public static final DeferredItem<Item> SCULKHORN_SONICBOOM = ITEMS.register("sculkhorn_sonicboom", () -> ModItems.SCULKHORN_SONICBOOM);
+    public static final DeferredItem<Item> SCULKHORN = ITEMS.register(Constants.SCULKHORN_ITEM_ID, () -> ModItems.SCULKHORN);
+    public static final DeferredItem<Item> SCULKHORN_SONICBOOM = ITEMS.register(Constants.SCULKHORN_SONICBOOM_ITEM_ID, () -> ModItems.SCULKHORN_SONICBOOM);
 }

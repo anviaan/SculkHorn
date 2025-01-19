@@ -27,6 +27,8 @@ public class ModConfigs {
     private static final ForgeConfigSpec.IntValue AREA_SPEED_DURATION = BUILDER.defineInRange("area_SPEED_DURATION", 30, 0, 10000);
     private static final ForgeConfigSpec.IntValue AREA_SPEED_AMPLIFIER = BUILDER.defineInRange("area_SPEED_AMPLIFIER", 0, 0, 10000);
 
+    private static final ForgeConfigSpec.BooleanValue BOTH_IN_COOLDOWN = BUILDER.define("both_in_cooldown", true);
+
     public static double distanceDamage;
     public static int distanceDistance;
     public static int distanceCooldown;
@@ -44,10 +46,12 @@ public class ModConfigs {
     public static int areaSpeedDuration;
     public static int areaSpeedAmplifier;
 
+    public static boolean bothInCooldown;
+
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static void loadConfig(ForgeConfigSpec spec, Path path) {
-        final CommentedFileConfig configData = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.APPEND).build();
+        final CommentedFileConfig configData = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.REPLACE).build();
         configData.load();
         spec.setConfig(configData);
 
@@ -67,5 +71,7 @@ public class ModConfigs {
         areaDurability = AREA_DURABILITY.get();
         areaSpeedDuration = AREA_SPEED_DURATION.get();
         areaSpeedAmplifier = AREA_SPEED_AMPLIFIER.get();
+
+        bothInCooldown = BOTH_IN_COOLDOWN.get();
     }
 }
