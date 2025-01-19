@@ -7,6 +7,6 @@ tasks.register("printEnv") {
         def envFile = new File(System.getenv("GITHUB_ENV"))
         envFile.append("MOD_VERSION=${version}\n")
         envFile.append("RELEASE_NAME=${mod_name}-${version}\n")
-        envFile.append("GAME_VERSIONS=${minecraft_version_range}\n")
+        envFile.append("GAME_VERSIONS=1.20.6\n")
     }
 }
