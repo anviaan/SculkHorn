@@ -1,0 +1,18 @@
+{
+  "itemGroup.sculkhorngroup": "Sculk Boynuzu Modu",
+
+  "item.sculkhornid.sculkhorn": "Sculk Boynuzu",
+  "item.sculkhornid.sculkhorn_sonicboom": "Sculk Boynuzu",
+
+  "tooltip_info_item.sculkhorn_shif": "Daha fazla bilgi için SHIFT tuşuna bas",
+
+  "tooltip.cooldown" : "Bekleme Süresi",
+  "tooltip.damage" : "Saldırı Hasarı",
+  "tooltip.experience" : "Tp Maliyeti",
+
+  "tootip_sculkhorn_area" : "Alan",
+  "tooltip.radius" : "Yarıçap",
+
+  "tootip_sculkhorn_distance" : "Mesafe",
+  "tooltip.distance" : "Mesafe"
+}

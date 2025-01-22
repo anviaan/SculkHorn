@@ -20,8 +20,8 @@ public class ForgeMod {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         Constants.LOG.info("Registering config for " + Constants.MOD_NAME + "...");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ModConfigs.SERVER_SPEC);
-        ModConfigs.loadConfig(ModConfigs.SERVER_SPEC, FMLPaths.CONFIGDIR.get().resolve(Constants.MOD_ID + "-config.toml"));
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ModConfigs.SPEC, Constants.MOD_ID + "-config.toml");
+        ModConfigs.loadConfig(ModConfigs.SPEC, FMLPaths.CONFIGDIR.get().resolve(Constants.MOD_ID).resolve(Constants.MOD_ID + "-config.toml"));
 
         Constants.LOG.info("Registering items for " + Constants.MOD_NAME + "...");
         ModItemRegistry.ITEMS.register(bus);

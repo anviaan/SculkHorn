@@ -1,9 +1,10 @@
 package net.anvian.sculkhornid.core.item.custom;
 
+import net.anvian.anvianslib.util.LibUtil;
 import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.util.Helper;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -16,36 +17,33 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SculkHornArea extends Item {
+public class SculkHornArea extends SculkHorn {
+    float RADIUS = (float) ModConfigs.areaRadius;
+    int SPEED_DURATION = ModConfigs.areaSpeedDuration;
+    int SPEED_AMPLIFIER = ModConfigs.areaSpeedAmplifier;
+
     public SculkHornArea(Properties properties) {
-        super(properties);
+        super(properties, (float) ModConfigs.areaDamage, ModConfigs.areaCooldown, ModConfigs.areaExperienceLevel, ModConfigs.areaRemoveExperience);
     }
 
-    float DAMAGE = ModConfigs.AREA_DAMAGE.get().floatValue();
-    int COOLDOWN = ModConfigs.AREA_COOLDOWN.get();
-    float RADIUS = ModConfigs.AREA_RADIUS.get().floatValue();
-    int EXPERIENCE_LEVEL = ModConfigs.AREA_EXPERIENCE_LEVEL.get();
-    int REMOVE_EXPERIENCE = ModConfigs.AREA_REMOVE_EXPERIENCE.get();
-
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, Level level, List<Component> list, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.radius", RADIUS)));
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.cooldown.area", Helper.ticksToSeconds(COOLDOWN))));
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip.damage.area", DAMAGE)));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(RADIUS)).append(" ").append(Component.translatable("tooltip.radius")).withStyle(ChatFormatting.DARK_GREEN));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(LibUtil.ticksToSeconds(COOLDOWN))).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(DAMAGE)).append(" ").append(Component.translatable("tooltip.damage")).withStyle(ChatFormatting.DARK_GREEN));
         } else {
-            list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tooltip_info_item.sculkhorn_shif")));
+            list.add(Math.min(1, list.size()), Component.translatable("tooltip_info_item.sculkhorn_shif"));
         }
-        list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("null")));
-        list.add(Math.min(1, list.size()), Component.nullToEmpty(I18n.get("tootip_sculkhorn_area")));
+        list.add(Math.min(1, list.size()), Component.empty());
+        list.add(Math.min(1, list.size()), Component.translatable("tootip_sculkhorn_area"));
     }
 
     @Override
@@ -60,8 +58,12 @@ public class SculkHornArea extends Item {
                 }
                 sonicBoom(player, player, RADIUS);
                 Helper.causeMagicExplosionAttack(level, player, player, DAMAGE, RADIUS);
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 30, 0));
-                player.getCooldowns().addCooldown(this, COOLDOWN);
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, SPEED_DURATION, SPEED_AMPLIFIER));
+                if (ModConfigs.bothInCooldown) {
+                    applyCooldownToBothHorns(player);
+                } else {
+                    player.getCooldowns().addCooldown(this, COOLDOWN);
+                }
             }
         }
         if (level.isClientSide) {
@@ -71,7 +73,7 @@ public class SculkHornArea extends Item {
         }
 
         if (player.experienceLevel < EXPERIENCE_LEVEL && !player.isCreative()) {
-            return super.use(level, player, interactionHand);
+            return new InteractionResultHolder<>(InteractionResult.FAIL, itemstack);
         } else {
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
         }
