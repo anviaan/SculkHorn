@@ -4,17 +4,15 @@
   "item.sculkhornid.sculkhorn": "Sculk Horn",
   "item.sculkhornid.sculkhorn_sonicboom": "Sculk Horn",
 
-  "tooltip_info_item.sculkhorn_shif": "§7Press SHIFT for more Information",
+  "tooltip_info_item.sculkhorn_shif": "Press SHIFT for more Information",
 
-  "null" : "",
+  "tooltip.cooldown" : "Cooldown",
+  "tooltip.damage" : "Attack Damage",
+  "tooltip.experience" : "Xp Cost",
 
-  "tootip_sculkhorn_area" : "§7Area",
-  "tooltip.damage.area" : "§2%d Attack Damage",
-  "tooltip.cooldown.area" : "§2%ds Cooldown",
-  "tooltip.radius" : "§2%d Radius",
+  "tootip_sculkhorn_area" : "Area",
+  "tooltip.radius" : "Radius",
 
-  "tootip_sculkhorn_distance" : "§7Distance",
-  "tooltip.damage.distance" : "§2%d Attack Damage",
-  "tooltip.cooldown.distance" : "§2%ds Cooldown",
-  "tooltip.distance" : "§2%d Distance"
+  "tootip_sculkhorn_distance" : "Distance",
+  "tooltip.distance" : "Distance"
 }

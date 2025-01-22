@@ -5,7 +5,7 @@ plugins {
 
 repositories {
     maven {
-        name = "Terraformers"
+        name = "Mod Menu"
         url = "https://maven.terraformersmc.com/"
     }
     maven {
@@ -23,6 +23,7 @@ dependencies {
     modLocalRuntime("com.terraformersmc:modmenu:${mod_menu_version}")
 
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:20.4.3"
+    modImplementation "net.anvian.anvianslib:anvianslib-fabric-1.20.4:${anvianslib_version}"
 }
 
 loom {

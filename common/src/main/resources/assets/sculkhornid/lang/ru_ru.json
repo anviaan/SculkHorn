@@ -1,15 +1,13 @@
 {
-    "itemGroup.sculkhorngroup": "Sculk Horn Mod",
-    "item.sculkhornid.sculkhorn": "Скалковый рог",
-    "item.sculkhornid.sculkhorn_sonicboom": "Скалковый рог",
-    "tooltip_info_item.sculkhorn_shif": "§7Нажмите shift для дополнительной информации",
-    "null": "",
-    "tootip_sculkhorn_area": "§7Область",
-    "tooltip.damage.area": "§2%d Урон от атаки",
-    "tooltip.cooldown.area": "§2%ds Перезарядка",
-    "tooltip.radius": "§2%d Радиус атаки",
-    "tootip_sculkhorn_distance": "§7Расстояние",
-    "tooltip.damage.distance": "§2%d Урон от атаки",
-    "tooltip.cooldown.distance": "§2%ds Перезарядка",
-    "tooltip.distance": "§2%d Расстояние атаки"
+    "itemGroup.sculkhorngroup": "Модификация Sculk Horn",
+    "item.sculkhornid.sculkhorn": "Скулк Хорн",
+    "item.sculkhornid.sculkhorn_sonicboom": "Скулк Хорн",
+    "tooltip_info_item.sculkhorn_shif": "Нажмите SHIFT для получения дополнительной информации",
+    "tooltip.cooldown": "Остывать",
+    "tooltip.damage": "Урон от атаки",
+    "tooltip.experience": "Стоимость опыта",
+    "tootip_sculkhorn_area": "Область",
+    "tooltip.radius": "Радиус",
+    "tootip_sculkhorn_distance": "Расстояние",
+    "tooltip.distance": "Расстояние"
 }

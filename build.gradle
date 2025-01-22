@@ -1,4 +1,12 @@
 plugins {
-    // Required for NeoGradle
     id "org.jetbrains.gradle.plugin.idea-ext" version "1.1.7"
+}
+
+tasks.register("printEnv") {
+    doLast {
+        def envFile = new File(System.getenv("GITHUB_ENV"))
+        envFile.append("MOD_VERSION=${version}\n")
+        envFile.append("RELEASE_NAME=${mod_name}-${version}\n")
+        envFile.append("GAME_VERSIONS=${minecraft_version_range}\n")
+    }
 }

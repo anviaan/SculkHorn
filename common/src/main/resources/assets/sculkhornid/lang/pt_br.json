@@ -1,15 +1,13 @@
 {
-    "itemGroup.sculkhorngroup": "Mod de chifre esculpido",
-    "item.sculkhornid.sculkhorn": "Sculk Horn",
-    "item.sculkhornid.sculkhorn_sonicboom": "Sculk Horn",
-    "tooltip_info_item.sculkhorn_shif": "§7Pressione Shift para mais informações",
-    "null": "",
-    "tootip_sculkhorn_area": "§7Área",
-    "tooltip.damage.area": "§2%dDano de ataque",
-    "tooltip.cooldown.area": "§2%ds Esfriar",
-    "tooltip.radius": "§2%d Raio",
-    "tootip_sculkhorn_distance": "§7Distância",
-    "tooltip.damage.distance": "§2%d Dano de ataque",
-    "tooltip.cooldown.distance": "§2%ds Esfriar",
-    "tooltip.distance": "§2%d Distância"
+    "itemGroup.sculkhorngroup": "Mod de chifre de escultura",
+    "item.sculkhornid.sculkhorn": "Chifre de Esculpir",
+    "item.sculkhornid.sculkhorn_sonicboom": "Chifre de Esculpir",
+    "tooltip_info_item.sculkhorn_shif": "Pressione SHIFT para mais informações",
+    "tooltip.cooldown": "Esfriar",
+    "tooltip.damage": "Dano de Ataque",
+    "tooltip.experience": "Custo de XP",
+    "tootip_sculkhorn_area": "Área",
+    "tooltip.radius": "Raio",
+    "tootip_sculkhorn_distance": "Distância",
+    "tooltip.distance": "Distância"
 }
