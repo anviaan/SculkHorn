@@ -1,3 +1,1 @@
-- pl_pl lang added
-- tr_tr lang added
-- Update tooltip formatting for Sculk Horn Area and Distance items.
+- Fixing error #29
