@@ -54,7 +54,8 @@ jobs:
           version-type: 'release'
           changelog-file: CHANGELOG.md
 
-          game-versions: ${{ env.GAME_VERSIONS }}
+          game-versions: |
+            [1.21,1.21.1)
 
           loaders: |
             fabric
