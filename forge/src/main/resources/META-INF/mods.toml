@@ -31,13 +31,13 @@ side = "BOTH"
 [[dependencies.${ mod_id }]]
 modId = "forgeconfigapiport"
 mandatory = true
-versionRange = "[21.0.8,)"
+versionRange = "[${forgeconfigapiport},)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${ mod_id }]]
 modId = "anvianslib"
 mandatory = true
-versionRange = "[1.0,)"
+versionRange = "[${anvianslib},)"
 ordering = "NONE"
 side = "BOTH"

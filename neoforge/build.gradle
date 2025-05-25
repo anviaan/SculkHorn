@@ -7,7 +7,7 @@ neoForge {
     version = neoforge_version
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
-        accessTransformers.add(at.absolutePath)
+        accessTransformers.from(at.absolutePath)
     }
     parchment {
         minecraftVersion = parchment_minecraft
@@ -22,7 +22,7 @@ neoForge {
             client()
         }
         data {
-            data()
+            clientData()
         }
         server {
             server()
@@ -37,14 +37,7 @@ neoForge {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-repositories {
-    maven {
-        name = "Fuzs Mod Resources"
-        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
-    }
-}
-
 dependencies {
-    api "fuzs.forgeconfigapiport:forgeconfigapiport-neoforge:21.0.8"
-    implementation "net.anvian.anvianslib:anvianslib-neoforge-1.21:${anvianslib_version}"
+    api "fuzs.forgeconfigapiport:forgeconfigapiport-neoforge:${forgeconfigapiport}"
+    implementation "net.anvian.anvianslib:anvianslib-neoforge-1.21:${anvianslib}"
 }

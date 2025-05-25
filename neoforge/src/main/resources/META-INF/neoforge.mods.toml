@@ -13,6 +13,7 @@ logoFile="${mod_id}.png"
 credits="${credits}"
 authors = "${mod_author}"
 description = "${description}"
+
 [[mixins]]
 config = "${mod_id}.mixins.json"
 
@@ -36,13 +37,13 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "forgeconfigapiport"
 type="required"
-versionRange = "[21.0.8,22.0.0)"
+versionRange = "[${forgeconfigapiport},)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${ mod_id }]]
 modId = "anvianslib"
 type = "required"
-versionRange = "[1.0,)"
+versionRange = "[${anvianslib},)"
 ordering = "NONE"
 side = "BOTH"

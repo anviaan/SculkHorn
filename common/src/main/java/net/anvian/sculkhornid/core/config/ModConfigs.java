@@ -12,7 +12,7 @@ public class ModConfigs {
 
     private static final ForgeConfigSpec.DoubleValue DISTANCE_DAMAGE = BUILDER.defineInRange("distance_DAMAGE", 8.0, 1.0, 10000.0);
     private static final ForgeConfigSpec.IntValue DISTANCE_DISTANCE = BUILDER.defineInRange("distance_DISTANCE", 16, 0, 10000);
-    private static final ForgeConfigSpec.IntValue DISTANCE_COOLDOWN = BUILDER.defineInRange("distance_COOLDOWN", 200, 0, 10000);
+    private static final ForgeConfigSpec.DoubleValue DISTANCE_COOLDOWN = BUILDER.defineInRange("distance_COOLDOWN", 10.0, 0, 10000);
     private static final ForgeConfigSpec.IntValue DISTANCE_EXPERIENCE_LEVEL = BUILDER.defineInRange("distance_EXPERIENCE_LEVEL", 5, 0, 10000);
     private static final ForgeConfigSpec.IntValue DISTANCE_REMOVE_EXPERIENCE = BUILDER.defineInRange("distance_REMOVE_EXPERIENCE", -55, -10000, 10000);
     private static final ForgeConfigSpec.IntValue DISTANCE_DURABILITY = BUILDER.defineInRange("distance_DURABILITY", 500, 0, 10000);
@@ -20,7 +20,7 @@ public class ModConfigs {
 
     private static final ForgeConfigSpec.DoubleValue AREA_DAMAGE = BUILDER.defineInRange("area_Damage", 12.0, 1.0, 10000.0);
     private static final ForgeConfigSpec.DoubleValue AREA_RADIUS = BUILDER.defineInRange("area_RADIUS", 3.5, 1.0, 10000.0);
-    private static final ForgeConfigSpec.IntValue AREA_COOLDOWN = BUILDER.defineInRange("area_cooldown", 300, 0, 10000);
+    private static final ForgeConfigSpec.DoubleValue AREA_COOLDOWN = BUILDER.defineInRange("area_COOLDOWN", 15.0, 0, 10000);
     private static final ForgeConfigSpec.IntValue AREA_EXPERIENCE_LEVEL = BUILDER.defineInRange("area_EXPERIENCE_LEVEL", 5, 0, 10000);
     private static final ForgeConfigSpec.IntValue AREA_REMOVE_EXPERIENCE = BUILDER.defineInRange("area_REMOVE_EXPERIENCE", -55, -10000, 10000);
     private static final ForgeConfigSpec.IntValue AREA_DURABILITY = BUILDER.defineInRange("area_DURABILITY", 350, 0, 10000);
@@ -31,7 +31,7 @@ public class ModConfigs {
 
     public static double distanceDamage;
     public static int distanceDistance;
-    public static int distanceCooldown;
+    public static double distanceCooldown;
     public static int distanceExperienceLevel;
     public static int distanceRemoveExperience;
     public static int distanceDurability;
@@ -39,7 +39,7 @@ public class ModConfigs {
 
     public static double areaDamage;
     public static double areaRadius;
-    public static int areaCooldown;
+    public static double areaCooldown;
     public static int areaExperienceLevel;
     public static int areaRemoveExperience;
     public static int areaDurability;

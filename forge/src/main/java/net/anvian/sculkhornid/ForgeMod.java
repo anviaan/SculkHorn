@@ -18,10 +18,14 @@ public class ForgeMod {
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ModConfigs.SPEC, Constants.MOD_ID + "-config.toml");
+        Constants.LOG.info("Registering config for " + Constants.MOD_NAME + "...");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ModConfigs.SPEC, Constants.MOD_ID + "/" + Constants.MOD_ID + "-config.toml");
         ModConfigs.loadConfig(ModConfigs.SPEC, FMLPaths.CONFIGDIR.get().resolve(Constants.MOD_ID).resolve(Constants.MOD_ID + "-config.toml"));
 
+        Constants.LOG.info("Registering creative tab for " + Constants.MOD_ID);
         ModTab.CREATIVE_MODE_TAB.register(eventBus);
+
+        Constants.LOG.info("Registering items for " + Constants.MOD_NAME + "...");
         ModItemRegistry.ITEMS.register(eventBus);
     }
 }

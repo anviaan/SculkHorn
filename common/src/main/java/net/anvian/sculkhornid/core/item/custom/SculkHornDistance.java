@@ -5,6 +5,7 @@ import net.anvian.sculkhornid.core.util.Helper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -12,20 +13,22 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.component.UseCooldown;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class SculkHornDistance extends SculkHorn {
     int DISTANCE = ModConfigs.distanceDistance;
@@ -35,37 +38,37 @@ public class SculkHornDistance extends SculkHorn {
         super(
                 properties,
                 (float) ModConfigs.distanceDamage,
-                ModConfigs.distanceCooldown,
+                (float) ModConfigs.distanceCooldown,
                 ModConfigs.distanceExperienceLevel,
                 ModConfigs.distanceRemoveExperience
         );
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> componentConsumer, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
-            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN));
-            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(DISTANCE)).append(" ").append(Component.translatable("tooltip.distance")).withStyle(ChatFormatting.DARK_GREEN));
-            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(Helper.ticksToSeconds(COOLDOWN))).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
-            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(DAMAGE)).append(" ").append(Component.translatable("tooltip.damage")).withStyle(ChatFormatting.DARK_GREEN));
+            componentConsumer.accept(Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN));
+            componentConsumer.accept(Component.empty().append(String.valueOf(DISTANCE)).append(" ").append(Component.translatable("tooltip.distance")).withStyle(ChatFormatting.DARK_GREEN));
+            componentConsumer.accept(Component.empty().append(String.valueOf(COOLDOWN)).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
+            componentConsumer.accept(Component.empty().append(String.valueOf(DAMAGE)).append(" ").append(Component.translatable("tooltip.damage")).withStyle(ChatFormatting.DARK_GREEN));
         } else {
-            list.add(Math.min(1, list.size()), Component.translatable("tooltip_info_item.sculkhorn_shif"));
+            componentConsumer.accept(Component.translatable("tooltip_info_item.sculkhorn_shif"));
         }
-        list.add(Math.min(1, list.size()), Component.empty());
-        list.add(Math.min(1, list.size()), Component.translatable("tootip_sculkhorn_distance"));
+        componentConsumer.accept(Component.empty());
+        componentConsumer.accept(Component.translatable("tootip_sculkhorn_distance"));
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
             player.startUsingItem(hand);
         }
-        return InteractionResultHolder.success(player.getItemInHand(hand));
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack itemStack) {
-        return UseAnim.BOW;
+    public ItemUseAnimation getUseAnimation(ItemStack itemStack) {
+        return ItemUseAnimation.BOW;
     }
 
     @Override
@@ -81,6 +84,7 @@ public class SculkHornDistance extends SculkHorn {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         if (!level.isClientSide) {
+            UseCooldown usecooldown = stack.get(DataComponents.USE_COOLDOWN);
             if (user instanceof Player player) {
                 if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
                     if (!player.isCreative()) {
@@ -90,7 +94,9 @@ public class SculkHornDistance extends SculkHorn {
                     if (ModConfigs.bothInCooldown) {
                         applyCooldownToBothHorns(player);
                     } else {
-                        player.getCooldowns().addCooldown(this, COOLDOWN);
+                        if (usecooldown != null) {
+                            usecooldown.apply(stack, player);
+                        }
                     }
                     spawnSonicBoom(level, user);
                 }

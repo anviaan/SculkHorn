@@ -37,8 +37,8 @@
     "fabric-api": "*",
     "minecraft": ">=${minecraft_version}",
     "java": ">=${java_version}",
-    "forgeconfigapiport": ">=21.0.8",
-    "anvianslib": ">=${anvianslib_version}"
+    "forgeconfigapiport": ">=${forgeconfigapiport}",
+    "anvianslib": ">=${anvianslib}"
   },
   "suggests": {
     "another-mod": "*"
