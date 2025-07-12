@@ -1,5 +1,6 @@
 package net.anvian.sculkhornid.core.util;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
@@ -9,24 +10,21 @@ import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.animal.wolf.Wolf;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
 public class Helper {
-    public static void causeMagicExplosionAttack(Level level, LivingEntity user, LivingEntity victim, float damageAmount, float distance) {
-        DamageSource magicExplosion = level.damageSources().explosion(user, user);
-        for (LivingEntity nearbyEntity : getAoeTargets(victim, user, distance)) {
-            nearbyEntity.hurt(magicExplosion, damageAmount);
+    public static void causeMagicExplosionAttack(ServerLevel serverLevel, LivingEntity user, LivingEntity victim, float damageAmount, float distance) {
+        DamageSource magicExplosion = serverLevel.damageSources().explosion(user, user);
+        for (LivingEntity nearbyEntity : getAoeTargets(serverLevel, victim, user, distance)) {
+            nearbyEntity.hurtServer(serverLevel, magicExplosion, damageAmount);
         }
     }
 
-    private static List<LivingEntity> getAoeTargets(LivingEntity center, LivingEntity attacker, float distance) {
-        return center.getCommandSenderWorld().getEntitiesOfClass(LivingEntity.class,
-                new AABB(center.blockPosition()).inflate(distance),
-                (nearbyEntity) -> isAoeTarget(nearbyEntity, attacker, center)
-        );
+    private static List<LivingEntity> getAoeTargets(ServerLevel serverLevel, LivingEntity center, LivingEntity attacker, float distance) {
+        AABB area = new AABB(center.blockPosition()).inflate(distance);
+        return serverLevel.getEntitiesOfClass(LivingEntity.class, area, (nearbyEntity) -> isAoeTarget(nearbyEntity, attacker, center));
     }
 
     private static boolean isAoeTarget(LivingEntity self, LivingEntity attacker, LivingEntity center) {

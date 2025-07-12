@@ -8,6 +8,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -52,7 +53,7 @@ public class SculkHornArea extends SculkHorn {
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
 
-        if (!level.isClientSide) {
+        if (level instanceof ServerLevel serverLevel) {
             UseCooldown usecooldown = itemstack.get(DataComponents.USE_COOLDOWN);
             if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
                 if (!player.isCreative()) {
@@ -60,7 +61,7 @@ public class SculkHornArea extends SculkHorn {
                     itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
                 }
                 sonicBoom(player, player, RADIUS);
-                Helper.causeMagicExplosionAttack(level, player, player, DAMAGE, RADIUS);
+                Helper.causeMagicExplosionAttack(serverLevel, player, player, DAMAGE, RADIUS);
                 player.addEffect(new MobEffectInstance(MobEffects.SPEED, SPEED_DURATION, SPEED_AMPLIFIER));
                 if (ModConfigs.bothInCooldown) {
                     applyCooldownToBothHorns(player);
@@ -87,7 +88,7 @@ public class SculkHornArea extends SculkHorn {
     private static void sonicBoom(LivingEntity attacker, LivingEntity victim, float radius) {
         AreaEffectCloud areaEffectCloud = new AreaEffectCloud(victim.level(), victim.getX(), victim.getY() + 0.25f, victim.getZ());
         areaEffectCloud.setOwner(attacker);
-        areaEffectCloud.setParticle(ParticleTypes.SONIC_BOOM);
+        areaEffectCloud.setCustomParticle(ParticleTypes.SONIC_BOOM);
         areaEffectCloud.setRadius(radius);
         areaEffectCloud.setDuration(0);
         attacker.level().addFreshEntity(areaEffectCloud);
