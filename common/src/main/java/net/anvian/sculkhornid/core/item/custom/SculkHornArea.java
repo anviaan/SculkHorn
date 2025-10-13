@@ -3,7 +3,7 @@ package net.anvian.sculkhornid.core.item.custom;
 import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.util.Helper;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.CommonComponents;
@@ -37,7 +37,7 @@ public class SculkHornArea extends SculkHorn {
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> componentConsumer, TooltipFlag tooltipFlag) {
-        if (Screen.hasShiftDown()) {
+        if (Minecraft.getInstance().hasControlDown()) {
             componentConsumer.accept(CommonComponents.space().append(Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN)));
             componentConsumer.accept(CommonComponents.space().append(Component.empty().append(String.valueOf(RADIUS)).append(" ").append(Component.translatable("tooltip.radius")).withStyle(ChatFormatting.DARK_GREEN)));
             componentConsumer.accept(CommonComponents.space().append(String.valueOf(COOLDOWN)).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
@@ -58,7 +58,7 @@ public class SculkHornArea extends SculkHorn {
             if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
                 if (!player.isCreative()) {
                     player.giveExperiencePoints(REMOVE_EXPERIENCE);
-                    itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
+                    itemstack.hurtAndBreak(1, player, player.getUsedItemHand());
                 }
                 sonicBoom(player, player, RADIUS);
                 Helper.causeMagicExplosionAttack(serverLevel, player, player, DAMAGE, RADIUS);
@@ -72,7 +72,7 @@ public class SculkHornArea extends SculkHorn {
                 }
             }
         }
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
                 level.playSound(player, player, SoundEvents.WARDEN_SONIC_BOOM, SoundSource.RECORDS, 1.0f, 1.0f);
             }

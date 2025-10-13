@@ -35,7 +35,7 @@
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": "*",
-    "minecraft": ">=${minecraft_version}",
+    "minecraft": ">=1.21.9",
     "java": ">=${java_version}",
     "forgeconfigapiport": ">=${forgeconfigapiport}",
     "anvianslib": ">=${anvianslib}"

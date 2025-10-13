@@ -3,7 +3,7 @@ package net.anvian.sculkhornid.core.item.custom;
 import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.util.Helper;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
@@ -46,7 +46,7 @@ public class SculkHornDistance extends SculkHorn {
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> componentConsumer, TooltipFlag tooltipFlag) {
-        if (Screen.hasShiftDown()) {
+        if (Minecraft.getInstance().hasControlDown()) {
             componentConsumer.accept(Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN));
             componentConsumer.accept(Component.empty().append(String.valueOf(DISTANCE)).append(" ").append(Component.translatable("tooltip.distance")).withStyle(ChatFormatting.DARK_GREEN));
             componentConsumer.accept(Component.empty().append(String.valueOf(COOLDOWN)).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
@@ -83,13 +83,13 @@ public class SculkHornDistance extends SculkHorn {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             UseCooldown usecooldown = stack.get(DataComponents.USE_COOLDOWN);
             if (user instanceof Player player) {
                 if (player.experienceLevel >= EXPERIENCE_LEVEL || player.isCreative()) {
                     if (!player.isCreative()) {
                         player.giveExperiencePoints(REMOVE_EXPERIENCE);
-                        stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
+                        stack.hurtAndBreak(1, player, player.getUsedItemHand());
                     }
                     if (ModConfigs.bothInCooldown) {
                         applyCooldownToBothHorns(player);

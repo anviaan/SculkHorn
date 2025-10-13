@@ -21,7 +21,7 @@ dependencies {
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
 
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common-forgeapi:${forgeconfigapiport}"
-    implementation "net.anvian.anvianslib:anvianslib-common-1.21.6:${anvianslib}"
+    implementation "net.anvian.anvianslib:anvianslib-common-1.21.10:${anvianslib}"
 }
 
 configurations {
