@@ -31,24 +31,24 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 public class SculkHornDistance extends SculkHorn {
-    int DISTANCE = ModConfigs.distanceDistance;
-    int DISTANCE_USE_TIME = ModConfigs.distanceUseTime;
+    ModConfigs.SculkHornConfig config;
 
-    public SculkHornDistance(Properties properties) {
+    public SculkHornDistance(ModConfigs.SculkHornConfig config, Properties properties) {
         super(
                 properties,
-                (float) ModConfigs.distanceDamage,
-                (float) ModConfigs.distanceCooldown,
-                ModConfigs.distanceExperienceLevel,
-                ModConfigs.distanceRemoveExperience
+                (float) config.distanceDamage,
+                (float) config.distanceCooldown,
+                config.distanceExperienceLevel,
+                config.distanceRemoveExperience
         );
+        this.config = config;
     }
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> componentConsumer, TooltipFlag tooltipFlag) {
-        if (Minecraft.getInstance().hasControlDown()) {
+        if (Minecraft.getInstance().hasShiftDown()) {
             componentConsumer.accept(Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN));
-            componentConsumer.accept(Component.empty().append(String.valueOf(DISTANCE)).append(" ").append(Component.translatable("tooltip.distance")).withStyle(ChatFormatting.DARK_GREEN));
+            componentConsumer.accept(Component.empty().append(String.valueOf(config.distanceDistance)).append(" ").append(Component.translatable("tooltip.distance")).withStyle(ChatFormatting.DARK_GREEN));
             componentConsumer.accept(Component.empty().append(String.valueOf(COOLDOWN)).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
             componentConsumer.accept(Component.empty().append(String.valueOf(DAMAGE)).append(" ").append(Component.translatable("tooltip.damage")).withStyle(ChatFormatting.DARK_GREEN));
         } else {
@@ -73,7 +73,7 @@ public class SculkHornDistance extends SculkHorn {
 
     @Override
     public int getUseDuration(ItemStack pStack, LivingEntity pEntity) {
-        return DISTANCE_USE_TIME;
+        return config.distanceUseTime;
     }
 
     @Override
@@ -91,7 +91,7 @@ public class SculkHornDistance extends SculkHorn {
                         player.giveExperiencePoints(REMOVE_EXPERIENCE);
                         stack.hurtAndBreak(1, player, player.getUsedItemHand());
                     }
-                    if (ModConfigs.bothInCooldown) {
+                    if (config.bothInCooldown) {
                         applyCooldownToBothHorns(player);
                     } else {
                         if (usecooldown != null) {
@@ -108,7 +108,7 @@ public class SculkHornDistance extends SculkHorn {
     private void spawnSonicBoom(Level level, LivingEntity user) {
         level.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 3.0f, 1.0f);
 
-        Vec3 target = user.position().add(user.getLookAngle().scale(DISTANCE));
+        Vec3 target = user.position().add(user.getLookAngle().scale(config.distanceDistance));
         Vec3 source = user.position().add(0.0, 1.6f, 0.0);
         Vec3 offSetToTarget = target.subtract(source);
         Vec3 normalized = offSetToTarget.normalize();

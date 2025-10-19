@@ -27,19 +27,18 @@ import net.minecraft.world.level.Level;
 import java.util.function.Consumer;
 
 public class SculkHornArea extends SculkHorn {
-    float RADIUS = (float) ModConfigs.areaRadius;
-    int SPEED_DURATION = ModConfigs.areaSpeedDuration;
-    int SPEED_AMPLIFIER = ModConfigs.areaSpeedAmplifier;
+    ModConfigs.SculkHornConfig config;
 
-    public SculkHornArea(Properties properties) {
-        super(properties, (float) ModConfigs.areaDamage, (float) ModConfigs.areaCooldown, ModConfigs.areaExperienceLevel, ModConfigs.areaRemoveExperience);
+    public SculkHornArea(ModConfigs.SculkHornConfig config, Properties properties) {
+        super(properties, (float) config.areaDamage, (float) config.areaCooldown, config.areaExperienceLevel, config.areaRemoveExperience);
+        this.config = config;
     }
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> componentConsumer, TooltipFlag tooltipFlag) {
-        if (Minecraft.getInstance().hasControlDown()) {
+        if (Minecraft.getInstance().hasShiftDown()) {
             componentConsumer.accept(CommonComponents.space().append(Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN)));
-            componentConsumer.accept(CommonComponents.space().append(Component.empty().append(String.valueOf(RADIUS)).append(" ").append(Component.translatable("tooltip.radius")).withStyle(ChatFormatting.DARK_GREEN)));
+            componentConsumer.accept(CommonComponents.space().append(Component.empty().append(String.valueOf(config.areaRadius)).append(" ").append(Component.translatable("tooltip.radius")).withStyle(ChatFormatting.DARK_GREEN)));
             componentConsumer.accept(CommonComponents.space().append(String.valueOf(COOLDOWN)).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
             componentConsumer.accept(Component.empty().append(String.valueOf(DAMAGE)).append(" ").append(Component.translatable("tooltip.damage")).withStyle(ChatFormatting.DARK_GREEN));
         } else {
@@ -60,10 +59,10 @@ public class SculkHornArea extends SculkHorn {
                     player.giveExperiencePoints(REMOVE_EXPERIENCE);
                     itemstack.hurtAndBreak(1, player, player.getUsedItemHand());
                 }
-                sonicBoom(player, player, RADIUS);
-                Helper.causeMagicExplosionAttack(serverLevel, player, player, DAMAGE, RADIUS);
-                player.addEffect(new MobEffectInstance(MobEffects.SPEED, SPEED_DURATION, SPEED_AMPLIFIER));
-                if (ModConfigs.bothInCooldown) {
+                sonicBoom(player, player, (float) config.areaRadius);
+                Helper.causeMagicExplosionAttack(serverLevel, player, player, DAMAGE, (float) config.areaRadius);
+                player.addEffect(new MobEffectInstance(MobEffects.SPEED, config.areaSpeedDuration, config.areaSpeedAmplifier));
+                if (config.bothInCooldown) {
                     applyCooldownToBothHorns(player);
                 } else {
                     if (usecooldown != null) {
