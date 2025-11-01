@@ -37,7 +37,6 @@
     "fabric-api": "*",
     "minecraft": ">=${minecraft_version}",
     "java": ">=${java_version}",
-    "forgeconfigapiport": "20.6.0",
     "anvianslib": ">=${anvianslib_version}"
   },
   "suggests": {

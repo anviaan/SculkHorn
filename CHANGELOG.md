@@ -1,1 +1,1 @@
-- Update the mod to version 3.0
+- Refactor configuration handling and remove dependencies on ForgeConfigApiPort
