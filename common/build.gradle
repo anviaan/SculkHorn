@@ -15,19 +15,11 @@ neoForge {
     }
 }
 
-repositories {
-    maven {
-        name = "Fuzs Mod Resources"
-        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
-    }
-}
-
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
 
-    api "fuzs.forgeconfigapiport:forgeconfigapiport-common-forgeapi:21.3.3"
     implementation "net.anvian.anvianslib:anvianslib-common-1.21:${anvianslib_version}"
 }
 

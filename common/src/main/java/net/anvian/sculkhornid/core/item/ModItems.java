@@ -1,5 +1,6 @@
 package net.anvian.sculkhornid.core.item;
 
+import net.anvian.sculkhornid.CommonMod;
 import net.anvian.sculkhornid.Constants;
 import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.item.custom.SculkHornArea;
@@ -11,15 +12,18 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 
 public class ModItems {
-    public static final Item SCULKHORN = new SculkHornArea(new Item.Properties()
+    private static final ModConfigs.SculkHornConfig config = CommonMod.configs.getConfig();
+
+    public static final Item SCULKHORN = new SculkHornArea(config, new Item.Properties()
             .rarity(Rarity.EPIC)
             .stacksTo(1)
-            .durability(ModConfigs.areaDurability)
+            .durability(config.areaDurability)
             .setId(key(Constants.SCULKHORN_ITEM_ID)));
-    public static final Item SCULKHORN_SONICBOOM = new SculkHornDistance(new Item.Properties()
+
+    public static final Item SCULKHORN_SONICBOOM = new SculkHornDistance(config, new Item.Properties()
             .rarity(Rarity.EPIC)
             .stacksTo(1)
-            .durability(ModConfigs.distanceDurability)
+            .durability(config.distanceDurability)
             .setId(key(Constants.SCULKHORN_SONICBOOM_ITEM_ID)));
 
     private static ResourceKey<Item> key(String name) {

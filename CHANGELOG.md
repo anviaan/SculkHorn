@@ -1,1 +1,1 @@
-- Add Forge Support
+- Refactor configuration handling and remove dependencies on ForgeConfigApiPort

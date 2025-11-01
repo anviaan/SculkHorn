@@ -15,3 +15,14 @@ tasks.register("printEnv") {
         envFile.appendText("GAME_VERSIONS=$COMPATIBLE_VERSIONS\n")
     }
 }
+
+subprojects {
+    repositories {
+        maven {
+            url = uri("https://libraries.minecraft.net")
+            content {
+                includeModule("org.lwjgl", "lwjgl-freetype")
+            }
+        }
+    }
+}
