@@ -58,10 +58,6 @@ subprojects {
             url = 'https://maven.blamejared.com'
         }
         maven {
-            name = "Fuzs Mod Resources"
-            url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
-        }
-        maven {
             name = 'Repsy Anvian'
             url = 'https://repo.repsy.io/mvn/anvian/anvians-lib'
         }
@@ -88,7 +84,8 @@ subprojects {
                 "mod_author"                : mod_author,
                 "mod_id"                    : mod_id,
                 "license"                   : license,
-                "description"               : project.description
+                "description"               : project.description,
+                "anvianslib"                : anvianslib
         ]
 
         filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', '*.mixins.json']) {

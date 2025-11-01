@@ -1,6 +1,6 @@
 package net.anvian.sculkhornid.core.item.custom;
 
-import net.anvian.anvianslib.util.LibUtil;
+import net.anvian.anvianslib.util.TimeUtil;
 import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.util.Helper;
 import net.minecraft.ChatFormatting;
@@ -30,16 +30,14 @@ import java.util.List;
 import java.util.Set;
 
 public class SculkHornDistance extends SculkHorn {
-    int DISTANCE = ModConfigs.distanceDistance;
-    int DISTANCE_USE_TIME = ModConfigs.distanceUseTime;
-
-    public SculkHornDistance(Properties properties) {
+    public SculkHornDistance(ModConfigs.SculkHornConfig config, Properties properties) {
         super(
+                config,
                 properties,
-                (float) ModConfigs.distanceDamage,
-                ModConfigs.distanceCooldown,
-                ModConfigs.distanceExperienceLevel,
-                ModConfigs.distanceRemoveExperience
+                (float) config.distanceDamage,
+                TimeUtil.secondsToTicks((float) config.distanceCooldown),
+                config.distanceExperienceLevel,
+                config.distanceRemoveExperience
         );
     }
 
@@ -47,9 +45,9 @@ public class SculkHornDistance extends SculkHorn {
     public void appendHoverText(ItemStack itemStack, Level level, List<Component> list, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
             list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN));
-            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(DISTANCE)).append(" ").append(Component.translatable("tooltip.distance")).withStyle(ChatFormatting.DARK_GREEN));
-            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(LibUtil.ticksToSeconds(COOLDOWN))).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
-            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(DAMAGE)).append(" ").append(Component.translatable("tooltip.damage")).withStyle(ChatFormatting.DARK_GREEN));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(this.config.distanceDistance)).append(" ").append(Component.translatable("tooltip.distance")).withStyle(ChatFormatting.DARK_GREEN));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(TimeUtil.ticksToSeconds(this.COOLDOWN))).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
+            list.add(Math.min(1, list.size()), Component.empty().append(String.valueOf(this.DAMAGE)).append(" ").append(Component.translatable("tooltip.damage")).withStyle(ChatFormatting.DARK_GREEN));
         } else {
             list.add(Math.min(1, list.size()), Component.translatable("tooltip_info_item.sculkhorn_shif"));
         }
@@ -73,7 +71,7 @@ public class SculkHornDistance extends SculkHorn {
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return DISTANCE_USE_TIME;
+        return config.distanceUseTime;
     }
 
     @Override
@@ -92,7 +90,7 @@ public class SculkHornDistance extends SculkHorn {
                         player.giveExperiencePoints(REMOVE_EXPERIENCE);
                         stack.hurtAndBreak(1, player, (entity) -> entity.broadcastBreakEvent(interactionHand));
                     }
-                    if (ModConfigs.bothInCooldown) {
+                    if (config.bothInCooldown) {
                         applyCooldownToBothHorns(player);
                     } else {
                         player.getCooldowns().addCooldown(this, COOLDOWN);
@@ -107,7 +105,7 @@ public class SculkHornDistance extends SculkHorn {
     private void spawnSonicBoom(Level level, LivingEntity user) {
         level.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 3.0f, 1.0f);
 
-        Vec3 target = user.position().add(user.getLookAngle().scale(DISTANCE));
+        Vec3 target = user.position().add(user.getLookAngle().scale(config.distanceDistance));
         Vec3 source = user.position().add(0.0, 1.6f, 0.0);
         Vec3 offSetToTarget = target.subtract(source);
         Vec3 normalized = offSetToTarget.normalize();

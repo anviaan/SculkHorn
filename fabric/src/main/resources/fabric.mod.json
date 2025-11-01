@@ -37,8 +37,7 @@
     "fabric": "*",
     "minecraft": ">=1.20",
     "java": ">=17",
-    "forgeconfigapiport": ">=7.0.0",
-    "anvianslib": ">=1.0"
+    "anvianslib": ">=${anvianslib}"
   },
   "suggests": {
     "another-mod": "*"
