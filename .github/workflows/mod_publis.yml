@@ -62,7 +62,6 @@ jobs:
 
           dependencies: |
             fabric-api
-            forge-config-api-port
             anvians-lib
 
           java: ${{ env.JAVA_VERSION }}
@@ -118,7 +117,6 @@ jobs:
             forge
 
           dependencies: |
-            forge-config-api-port
             anvians-lib
 
           java: ${{ env.JAVA_VERSION }}

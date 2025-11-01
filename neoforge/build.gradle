@@ -36,14 +36,9 @@ repositories {
         name = "FabricMC"
         url = "https://maven.fabricmc.net/"
     }
-    maven {
-        name = "Fuzs Mod Resources"
-        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
-    }
 }
 
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
-    api "fuzs.forgeconfigapiport:forgeconfigapiport-neoforge:20.4.3"
     implementation "net.anvian.anvianslib:anvianslib-neoforge-1.20.4:${anvianslib_version}"
 }
