@@ -13,3 +13,14 @@ tasks.register("printEnv") {
         envFile.appendText("RELEASE_NAME=$ARCHIVE_NAME-$MOD_VERSION\n")
     }
 }
+
+subprojects {
+    repositories {
+        maven {
+            url = uri("https://libraries.minecraft.net")
+            content {
+                includeModule("org.lwjgl", "lwjgl-freetype")
+            }
+        }
+    }
+}

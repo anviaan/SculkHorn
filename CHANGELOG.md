@@ -1,1 +1,1 @@
-- Fixing error #29
+- Refactor configuration handling and remove dependencies on ForgeConfigApiPort

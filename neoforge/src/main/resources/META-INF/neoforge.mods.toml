@@ -33,16 +33,9 @@ versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.${mod_id}]]
-modId = "forgeconfigapiport"
-type="required"
-versionRange = "[21.0.8,22.0.0)"
-ordering = "NONE"
-side = "BOTH"
-
 [[dependencies.${ mod_id }]]
 modId = "anvianslib"
 type = "required"
-versionRange = "[1.0,)"
+versionRange = "[${anvianslib_version},)"
 ordering = "NONE"
 side = "BOTH"

@@ -37,14 +37,6 @@ neoForge {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-repositories {
-    maven {
-        name = "Fuzs Mod Resources"
-        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
-    }
-}
-
 dependencies {
-    api "fuzs.forgeconfigapiport:forgeconfigapiport-neoforge:21.0.8"
     implementation "net.anvian.anvianslib:anvianslib-neoforge-1.21:${anvianslib_version}"
 }

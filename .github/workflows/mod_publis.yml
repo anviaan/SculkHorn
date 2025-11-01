@@ -62,7 +62,6 @@ jobs:
 
           dependencies: |
             fabric-api
-            forge-config-api-port
             anvians-lib
 
           java: ${{ env.JAVA_VERSION }}
@@ -91,7 +90,6 @@ jobs:
             neoforge
 
           dependencies: |
-            forge-config-api-port
             anvians-lib
 
           java: ${{ env.JAVA_VERSION }}
@@ -112,9 +110,6 @@ jobs:
           version: ${{ env.MOD_VERSION }}
           version-type: 'release'
           changelog-file: CHANGELOG.md
-
-          game-versions: |
-            [1.21,1.21.1)
 
           loaders: |
             forge
