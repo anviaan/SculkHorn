@@ -54,14 +54,10 @@ jobs:
           version-type: 'release'
           changelog-file: CHANGELOG.md
 
-          game-versions: |
-            [1.21,1.21.1)
-
           loaders: |
             forge
 
           dependencies: |
-            forge-config-api-port
             anvians-lib
 
           java: ${{ env.JAVA_VERSION }}

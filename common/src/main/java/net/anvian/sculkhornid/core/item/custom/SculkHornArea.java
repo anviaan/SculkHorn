@@ -25,13 +25,11 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Consumer;
 
-public class SculkHornArea extends SculkHorn {
-    float RADIUS = (float) ModConfigs.areaRadius;
-    int SPEED_DURATION = ModConfigs.areaSpeedDuration;
-    int SPEED_AMPLIFIER = ModConfigs.areaSpeedAmplifier;
+import static net.minecraft.client.renderer.chunk.RenderChunkRegion.RADIUS;
 
-    public SculkHornArea(Properties properties) {
-        super(properties, (float) ModConfigs.areaDamage, (float) ModConfigs.areaCooldown, ModConfigs.areaExperienceLevel, ModConfigs.areaRemoveExperience);
+public class SculkHornArea extends SculkHorn {
+    public SculkHornArea(ModConfigs.SculkHornConfig config, Properties properties) {
+        super(config, properties, (float) config.areaDamage, (float) config.areaCooldown, config.areaExperienceLevel, config.areaRemoveExperience);
     }
 
     @Override
@@ -59,10 +57,10 @@ public class SculkHornArea extends SculkHorn {
                     player.giveExperiencePoints(REMOVE_EXPERIENCE);
                     itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
                 }
-                sonicBoom(player, player, RADIUS);
+                sonicBoom(player, player, (float) config.areaRadius);
                 Helper.causeMagicExplosionAttack(level, player, player, DAMAGE, RADIUS);
-                player.addEffect(new MobEffectInstance(MobEffects.SPEED, SPEED_DURATION, SPEED_AMPLIFIER));
-                if (ModConfigs.bothInCooldown) {
+                player.addEffect(new MobEffectInstance(MobEffects.SPEED, config.areaSpeedDuration, config.areaSpeedAmplifier));
+                if (config.bothInCooldown) {
                     applyCooldownToBothHorns(player);
                 } else {
                     if (usecooldown != null) {

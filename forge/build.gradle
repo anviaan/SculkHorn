@@ -71,13 +71,19 @@ minecraft {
 
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
+repositories {
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
 
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
 
-    api(fg.deobf("fuzs.forgeconfigapiport:forgeconfigapiport-forge:${forgeconfigapiport}"))
     implementation "net.anvian.anvianslib:anvianslib-forge-1.21:${anvianslib}"
 }
 

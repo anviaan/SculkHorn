@@ -54,15 +54,12 @@ jobs:
           version-type: 'release'
           changelog-file: CHANGELOG.md
 
-          game-versions: ${{ env.GAME_VERSIONS }}
-
           loaders: |
             fabric
             quilt
 
           dependencies: |
             fabric-api
-            forge-config-api-port
             anvians-lib
 
           java: ${{ env.JAVA_VERSION }}
@@ -84,14 +81,10 @@ jobs:
           version-type: 'release'
           changelog-file: CHANGELOG.md
 
-          game-versions: |
-            [1.21,1.21.1)
-
           loaders: |
             neoforge
 
           dependencies: |
-            forge-config-api-port
             anvians-lib
 
           java: ${{ env.JAVA_VERSION }}
@@ -112,9 +105,6 @@ jobs:
           version: ${{ env.MOD_VERSION }}
           version-type: 'release'
           changelog-file: CHANGELOG.md
-
-          game-versions: |
-            [1.21,1.21.1)
 
           loaders: |
             forge

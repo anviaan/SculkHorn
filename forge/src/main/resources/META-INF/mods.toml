@@ -29,13 +29,6 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${ mod_id }]]
-modId = "forgeconfigapiport"
-mandatory = true
-versionRange = "[${forgeconfigapiport},)"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.${ mod_id }]]
 modId = "anvianslib"
 mandatory = true
 versionRange = "[${anvianslib},)"
