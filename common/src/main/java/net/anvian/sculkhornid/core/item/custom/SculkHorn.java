@@ -1,5 +1,6 @@
 package net.anvian.sculkhornid.core.item.custom;
 
+import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.item.ModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -20,9 +21,11 @@ public abstract class SculkHorn extends Item {
     protected float COOLDOWN;
     protected int EXPERIENCE_LEVEL;
     protected int REMOVE_EXPERIENCE;
+    protected final ModConfigs.SculkHornConfig config;
 
-    public SculkHorn(Properties properties, float damage, float cooldown, int experienceLevel, int removeExperience) {
+    public SculkHorn(ModConfigs.SculkHornConfig config, Properties properties, float damage, float cooldown, int experienceLevel, int removeExperience) {
         super(properties);
+        this.config = config;
         this.DAMAGE = damage;
         this.COOLDOWN = cooldown;
         this.EXPERIENCE_LEVEL = experienceLevel;

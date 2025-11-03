@@ -1,2 +1,1 @@
-- Port to 1.21.5
-- Fixing config loading
+- Refactor configuration handling and remove dependencies on ForgeConfigApiPort

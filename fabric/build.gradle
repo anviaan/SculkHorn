@@ -21,7 +21,6 @@ dependencies {
 
     modLocalRuntime("com.terraformersmc:modmenu:15.0.0-beta.3")
 
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forgeconfigapiport}"
     modImplementation "net.anvian.anvianslib:anvianslib-fabric-1.21.6:${anvianslib}"
 }
 

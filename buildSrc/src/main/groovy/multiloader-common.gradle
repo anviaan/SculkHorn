@@ -43,10 +43,6 @@ repositories {
         url = 'https://maven.blamejared.com'
     }
     maven {
-        name = "Fuzs Mod Resources"
-        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
-    }
-    maven {
         name = 'Repsy Anvian'
         url = 'https://repo.repsy.io/mvn/anvian/anvians-lib'
     }
@@ -108,7 +104,6 @@ processResources {
             "forge_version"                : forge_version,
             "forge_loader_version_range"   : forge_loader_version_range,
             "anvianslib"                   : anvianslib,
-            "forgeconfigapiport"           : forgeconfigapiport,
             'credits'                      : credits,
             'java_version'                 : java_version
     ]
