@@ -25,8 +25,6 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Consumer;
 
-import static net.minecraft.client.renderer.chunk.RenderChunkRegion.RADIUS;
-
 public class SculkHornArea extends SculkHorn {
     public SculkHornArea(ModConfigs.SculkHornConfig config, Properties properties) {
         super(config, properties, (float) config.areaDamage, (float) config.areaCooldown, config.areaExperienceLevel, config.areaRemoveExperience);
@@ -36,7 +34,7 @@ public class SculkHornArea extends SculkHorn {
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> componentConsumer, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
             componentConsumer.accept(CommonComponents.space().append(Component.empty().append(String.valueOf(Math.abs(REMOVE_EXPERIENCE))).append(" ").append(Component.translatable("tooltip.experience")).withStyle(ChatFormatting.DARK_GREEN)));
-            componentConsumer.accept(CommonComponents.space().append(Component.empty().append(String.valueOf(RADIUS)).append(" ").append(Component.translatable("tooltip.radius")).withStyle(ChatFormatting.DARK_GREEN)));
+            componentConsumer.accept(CommonComponents.space().append(Component.empty().append(String.valueOf(config.areaRadius)).append(" ").append(Component.translatable("tooltip.radius")).withStyle(ChatFormatting.DARK_GREEN)));
             componentConsumer.accept(CommonComponents.space().append(String.valueOf(COOLDOWN)).append(" ").append(Component.translatable("tooltip.cooldown")).withStyle(ChatFormatting.DARK_GREEN));
             componentConsumer.accept(Component.empty().append(String.valueOf(DAMAGE)).append(" ").append(Component.translatable("tooltip.damage")).withStyle(ChatFormatting.DARK_GREEN));
         } else {
@@ -58,7 +56,7 @@ public class SculkHornArea extends SculkHorn {
                     itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
                 }
                 sonicBoom(player, player, (float) config.areaRadius);
-                Helper.causeMagicExplosionAttack(level, player, player, DAMAGE, RADIUS);
+                Helper.causeMagicExplosionAttack(level, player, player, DAMAGE, (float) config.areaRadius);
                 player.addEffect(new MobEffectInstance(MobEffects.SPEED, config.areaSpeedDuration, config.areaSpeedAmplifier));
                 if (config.bothInCooldown) {
                     applyCooldownToBothHorns(player);

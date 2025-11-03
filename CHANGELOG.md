@@ -1,1 +1,1 @@
-- Refactor configuration handling and remove dependencies on ForgeConfigApiPort
+- Fixing an error on area horn
