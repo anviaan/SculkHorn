@@ -4,7 +4,7 @@ plugins {
 }
 
 base {
-    archivesName = "${mod_name}-${project.name}-${minecraft_version}"
+    archivesName = "${mod_id}-${project.name}-${minecraft_version}"
 }
 
 java {
@@ -25,40 +25,13 @@ repositories {
         }
         filter { includeGroupAndSubgroups('org.spongepowered') }
     }
-    exclusiveContent {
-        forRepositories(
-                maven {
-                    name = 'ParchmentMC'
-                    url = 'https://maven.parchmentmc.org/'
-                },
-                maven {
-                    name = "NeoForge"
-                    url = 'https://maven.neoforged.net/releases'
-                }
-        )
-        filter { includeGroup('org.parchmentmc.data') }
-    }
     maven {
         name = 'BlameJared'
         url = 'https://maven.blamejared.com'
     }
     maven {
         name = 'Repsy Anvian'
-        url = 'https://repo.repsy.io/mvn/anvian/anvians-lib'
-    }
-}
-
-// Declare capabilities on the outgoing configurations.
-// Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
-['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
-    configurations."$variant".outgoing {
-        capability("$group:${project.name}:$version")
-        capability("$group:${base.archivesName.get()}:$version")
-        capability("$group:$mod_id-${project.name}-${minecraft_version}:$version")
-        capability("$group:$mod_id:$version")
-    }
-    publishing.publications.configureEach {
-        suppressPomMetadataWarningsFor(variant)
+        url = 'https://maven.anvian.net/releases'
     }
 }
 
@@ -101,8 +74,6 @@ processResources {
             'description'                  : project.description,
             'neoforge_version'             : neoforge_version,
             'neoforge_loader_version_range': neoforge_loader_version_range,
-            "forge_version"                : forge_version,
-            "forge_loader_version_range"   : forge_loader_version_range,
             "anvianslib"                   : anvianslib,
             'credits'                      : credits,
             'java_version'                 : java_version
@@ -125,14 +96,38 @@ processResources {
 
 publishing {
     publications {
-        register('mavenJava', MavenPublication) {
-            artifactId base.archivesName.get()
+        mavenJava(MavenPublication) {
+            artifactId = base.archivesName.get()
             from components.java
+            pom {
+                name = "anvian's Lib"
+                description = "A small utility library for Anvian's mods."
+                url = 'https://github.com/anviaan/anvians-lib/'
+                licenses {
+                    license {
+                        name = 'GNU GPLv3'
+                        url = 'https://github.com/anviaan/anvians-lib/blob/main/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        name = 'anvian'
+                    }
+                }
+            }
         }
     }
     repositories {
         maven {
-            url System.getenv('local_maven_url')
+            name = "Reposilite"
+            url = uri(version.toString().endsWith("SNAPSHOT") ?
+                    "https://maven.anvian.net/snapshots" :
+                    "https://maven.anvian.net/releases")
+            credentials {
+                username = (project.findProperty("reposilite.user") as String) ?: System.getenv("REPOSILITE_USER")
+                password = (project.findProperty("reposilite.token") as String) ?: System.getenv("REPOSILITE_TOKEN")
+            }
         }
     }
 }

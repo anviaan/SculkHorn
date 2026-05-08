@@ -1,2 +1,1 @@
-- Port to 1.21.10
-- Refactor configuration handling and remove dependencies on ForgeConfigApiPort
+- Port to 26.1

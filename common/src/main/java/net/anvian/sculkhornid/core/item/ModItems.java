@@ -6,8 +6,8 @@ import net.anvian.sculkhornid.core.config.ModConfigs;
 import net.anvian.sculkhornid.core.item.custom.SculkHornArea;
 import net.anvian.sculkhornid.core.item.custom.SculkHornDistance;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 
@@ -30,6 +30,6 @@ public class ModItems {
     );
 
     private static ResourceKey<Item> key(String name) {
-        return ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 }
